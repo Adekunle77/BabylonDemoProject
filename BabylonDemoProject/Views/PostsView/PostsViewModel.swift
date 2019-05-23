@@ -20,17 +20,17 @@ protocol ViewModelDelegate: class {
 typealias PostTuple = (author: Author, post: Posts, commentsCount: String)
 
 class PostsViewModel: NSObject {
-    
-
-   // private var posts = [Posts]()
+ 
     weak var delegate: ViewModelDelegate?
     let reuseIdentifier = "Cell"
+    var postsArray = [Posts]()
+    var authorsArray = [Author]()
+    var commentsArray = [Comment]()
     
-//    override init() {
-//        super .init()
-//
-//        //coreDataSavedPosts()
-//    }
+    override init() {
+
+        
+    }
     
     
     private func fetchSavedCoreData<T: NSManagedObject>(with objectType: T.Type) -> [T] {
@@ -41,46 +41,14 @@ class PostsViewModel: NSObject {
             let fetchObject = try PersistenceService.context.fetch(fetchRequest) as? [T]
             data = fetchObject ?? [T]()
         } catch let error {
-            print("error")
             self.delegate?.modelDidUpdateWithError(error: error)
         }
         return data
     }
-    
-//    func coreDataSavedPosts() {
-//        let fetchRequest: NSFetchRequest<Posts> = Posts.fetchRequest()
-//        do {
-//            let title = try PersistenceService.context.fetch(fetchRequest)
-//            self.delegate?.modelDidUpdateData()
-//        } catch let error {
-//          self.delegate?.modelDidUpdateWithError(error: error)
-//            print(error)
-//        }
-//    }
-
-
-//    private func loadPosts() -> [Posts] {
-//        var titleArray = [Posts]()
-//        loadData.posts.forEach({titleArray.append($0)})
-//        return titleArray
-//    }
-//
-//    private func loadAuthorInfo() -> [Author] {
-//        var authorArray = [Author]()
-//        loadData.author.forEach({authorArray.append($0)})
-//        return authorArray
-//    }
-//
-//    private func loadComments() -> [Comment] {
-//        var commentsArray = [Comment]()
-//        loadData.comment.forEach({commentsArray.append($0)})
-//        return commentsArray
-//    }
-//
+  
     private func getCommentsCount(using post: Posts, with array: [Comment]) -> String {
         let userID = post.id
         let comments = array.all(where: {$0.postId == userID})
-
         return String(comments.count)
     }
 
@@ -102,14 +70,16 @@ extension PostsViewModel: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return fetchSavedCoreData(with: Posts.self).count
+        let fetchedposts = fetchSavedCoreData(with: Posts.self)
+        self.postsArray = fetchedposts
+        return self.postsArray.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CollectionViewCell
 
-        let data = fetchSavedCoreData(with: Posts.self)
-        let info = data[indexPath.item]
+        let post = self.postsArray
+        let info = post[indexPath.item]
         cell.updateCell(with: info)
 
         return cell

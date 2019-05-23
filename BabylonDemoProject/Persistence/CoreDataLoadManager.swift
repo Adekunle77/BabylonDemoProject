@@ -11,21 +11,18 @@ import CoreData
 
 class CoreDataLoadManager: SaveDataDelegate {
     
-    var author = Set<Author>()
-    var posts = Set<Posts>()
-    var comment = Set<Comment>()
+    var author = [Author(context: PersistenceService.context)]
+    var posts = [Posts(context: PersistenceService.context)]
+    var comment = [Comment(context: PersistenceService.context)]
     
     var dataSource = HttpRequest()
     private var savedData: CoreDataSaveManager?
     
     init() {
-
         self.savedData = CoreDataSaveManager(dataSource: dataSource)
         savedData?.delegate = self
-
-//        fetchAuthorData()
-//        fetchCommentData()
-        fetchTitleData()
+        fetchPostData()
+        print(posts.count)
     }
     
     deinit {
@@ -33,41 +30,42 @@ class CoreDataLoadManager: SaveDataDelegate {
     }
     
     func CoreDataSavedAuthor() {
-        let fetchRequest: NSFetchRequest<Author> = Author.fetchRequest()
-        do {
-            let author = try PersistenceService.context.fetch(fetchRequest)
-            author.forEach({self.author.insert($0)})
-            NotificationCenter.default.post(name: didLoadAuthorInfoNotificationKey, object: nil)
-        } catch let error {
-            self.dataSavingError(error: error)
-        }
+        NotificationCenter.default.post(name: didLoadAuthorInfoNotificationKey, object: nil)
+//        let fetchRequest: NSFetchRequest<Author> = Author.fetchRequest()
+//        do {
+//            let author = try PersistenceService.context.fetch(fetchRequest)
+//            author.forEach({self.author.append($0)})
+//
+//        } catch let error {
+//            self.dataSavingError(error: error)
+//        }
     }
 
     func dataDidSaveComment() {
-        let fetchRequest: NSFetchRequest<Comment> = Comment.fetchRequest()
-        do {
-            let comment = try PersistenceService.context.fetch(fetchRequest)
-            print(comment.count, "dataDidSaveComment")
-            comment.forEach({self.comment.insert($0)})
-            NotificationCenter.default.post(name: didLoadCommentsNotificationKey, object: nil)
-        } catch let error {
-            self.dataSavingError(error: error)
-        }
+         NotificationCenter.default.post(name: didLoadCommentsNotificationKey, object: nil)
+//        let fetchRequest: NSFetchRequest<Comment> = Comment.fetchRequest()
+//        do {
+//            let comment = try PersistenceService.context.fetch(fetchRequest)
+//            comment.forEach({self.comment.append($0)})
+//
+//        } catch let error {
+//            self.dataSavingError(error: error)
+//        }
     }
     
     func dataDidSaveTitle() {
-        let fetchRequest: NSFetchRequest<Posts> = Posts.fetchRequest()
-        do {
-            let title = try PersistenceService.context.fetch(fetchRequest)
-            title.forEach({self.posts.insert($0)})
-            NotificationCenter.default.post(name: didLoadPostsNotificationKey, object: nil)
-        } catch let error {
-            self.dataSavingError(error: error)
-        }
+        NotificationCenter.default.post(name: didLoadPostsNotificationKey, object: nil)
+//        let fetchRequest: NSFetchRequest<Posts> = Posts.fetchRequest()
+//        do {
+//            let title = try PersistenceService.context.fetch(fetchRequest)
+//            title.forEach({self.posts.append($0)})
+//
+//        } catch let error {
+//            self.dataSavingError(error: error)
+//        }
     }
     
     func dataSavingError(error: Error) {
-        //NotificationCenter.default.post(name: didLoadErrorNotificationKey, object: nil)
         let coreDataError: [String: Error] = ["error": error]
         NotificationCenter.default.post(name: didLoadErrorNotificationKey, object: nil, userInfo: coreDataError)
     }
@@ -79,7 +77,7 @@ class CoreDataLoadManager: SaveDataDelegate {
         }
     }
     
-     func fetchTitleData() {
+     func fetchPostData() {
         if posts.isEmpty {
             let path = URLEndpoint.init(path: Paths.titleUrlPath)
             savedData?.fetchAPIData(with: path)
@@ -93,6 +91,14 @@ class CoreDataLoadManager: SaveDataDelegate {
         }
     }
  
+//    func checkDataIsAvailable() -> Bool {
+//        if posts.isEmpty && entityIsEmpty(entity: "Posts") == false {
+//            return true
+//        }
+//        return false
+//    }
+//
+    
     private func entityIsEmpty(entity: String) -> Bool {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entity)
         do {
@@ -106,16 +112,12 @@ class CoreDataLoadManager: SaveDataDelegate {
         return true
     }
     
-
-    // fetchCommentData() functions needs to be recalled again, after refreshing 
     func refreshData() {
-        //TODO: Make safe
-        if posts.isEmpty && comment.isEmpty && author.isEmpty != false {
+  
             self.author.forEach({PersistenceService.context.delete($0)})
             self.comment.forEach({PersistenceService.context.delete($0)})
             self.posts.forEach({PersistenceService.context.delete($0)})
             PersistenceService.saveContext()
-        }
     }
     
 }

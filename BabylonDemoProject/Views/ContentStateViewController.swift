@@ -30,6 +30,10 @@ class ContentStateViewController: UIViewController {
         }
     }
     
+    func refreshData() {
+        model.refreshData()
+    }
+    
     func transtion(to newState: State, identifiers: Identifiers ) {
         showViewController?.remove()
         let vc = viewController(for: newState)
@@ -57,6 +61,7 @@ extension ContentStateViewController: ContentStateViewModelDelegate {
     }
     
     func didUpdateWithData() {
+        print("didUpdateWithData")
         let postViewVC = PostsViewController()
         transtion(to: .render(postViewVC), identifiers: .postView)
     }

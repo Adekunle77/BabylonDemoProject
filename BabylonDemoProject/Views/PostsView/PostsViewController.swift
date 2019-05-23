@@ -14,7 +14,7 @@ class PostsViewController: UIViewController {
     private weak var stateViewController: ContentStateViewController?
     @IBOutlet weak private var collectionView: UICollectionView!
     private var viewModel = PostsViewModel()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel.delegate = self
@@ -22,7 +22,7 @@ class PostsViewController: UIViewController {
     }
 
     @IBAction func testAction(_ sender: Any) {
-       // self.loadData.refreshData()
+        stateViewController?.refreshData()
     }
     
     private func collectionViewSetUp() {
