@@ -51,8 +51,8 @@ extension ContentStateViewController: ContentStateViewModelDelegate {
     func didUpdateWithError(error: Error) {
         guard let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ErrorViewVC") as? ErrorViewController else { return }
     
-        
-        viewController.errorUILabel?.text = error.localizedDescription
+        viewController.error = error.localizedDescription
+        print(error.localizedDescription)
         self.present(viewController, animated: false, completion: nil)
     }
     

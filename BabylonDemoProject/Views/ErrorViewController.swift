@@ -16,7 +16,7 @@ class ErrorViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        displayError(error: error ?? "There is an Error")
     }
     func displayError(error: String) {
         errorUILabel?.text = error
