@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		331240FE2292B8F100F64F92 /* NotificationsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331240FD2292B8F100F64F92 /* NotificationsKeys.swift */; };
-		3322C0972295AF5A00A55432 /* ErrorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3322C0962295AF5A00A55432 /* ErrorViewModel.swift */; };
 		33360F94228720D000702A39 /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33360F93228720D000702A39 /* PersistenceService.swift */; };
 		33360F962287245200702A39 /* CoreDataSaveManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33360F952287245200702A39 /* CoreDataSaveManager.swift */; };
 		33360FB622872B3300702A39 /* Posts+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33360FB422872B3300702A39 /* Posts+CoreDataClass.swift */; };
@@ -63,7 +62,6 @@
 
 /* Begin PBXFileReference section */
 		331240FD2292B8F100F64F92 /* NotificationsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsKeys.swift; sourceTree = "<group>"; };
-		3322C0962295AF5A00A55432 /* ErrorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorViewModel.swift; sourceTree = "<group>"; };
 		33360F93228720D000702A39 /* PersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
 		33360F952287245200702A39 /* CoreDataSaveManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataSaveManager.swift; sourceTree = "<group>"; };
 		33360FB422872B3300702A39 /* Posts+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Posts+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -169,7 +167,6 @@
 				3375C1C922859A1B0087E5F1 /* ContentStateViewController.swift */,
 				33A97288229443EC0021BBD4 /* ContentStateViewModel.swift */,
 				3375C1CC22859D140087E5F1 /* ErrorViewController.swift */,
-				3322C0962295AF5A00A55432 /* ErrorViewModel.swift */,
 				3375C1C72285994A0087E5F1 /* LoadingViewController.swift */,
 				331240FF2292DAE600F64F92 /* PostsView */,
 				33DE3C3222856CCE006E5617 /* Main.storyboard */,
@@ -399,7 +396,6 @@
 				33DE3C3122856CCE006E5617 /* PostsViewController.swift in Sources */,
 				33DE3C5A22856DBE006E5617 /* HttpRequest.swift in Sources */,
 				33DE3C6422856DD9006E5617 /* ModelType.swift in Sources */,
-				3322C0972295AF5A00A55432 /* ErrorViewModel.swift in Sources */,
 				331240FE2292B8F100F64F92 /* NotificationsKeys.swift in Sources */,
 				33360FBB22872B7400702A39 /* Comment+CoreDataClass.swift in Sources */,
 				3375C1CA22859A1B0087E5F1 /* ContentStateViewController.swift in Sources */,

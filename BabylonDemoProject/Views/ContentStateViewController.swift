@@ -18,12 +18,8 @@ class ContentStateViewController: UIViewController {
     var model: ContentStateViewModel?
     private var showViewController: UIViewController?
     weak var delegate: ContentStateErrorDelegate?
-    var testString = String()
     private var state: State?
-    
-    
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         model = ContentStateViewModel()
@@ -33,10 +29,6 @@ class ContentStateViewController: UIViewController {
             transtion(to: .loading, identifiers: .loadingView)
         }
     }
-    
-    func test() {
-        print("test")
-        model?.refreshData()}
     
     func transtion(to newState: State, identifiers: Identifiers ) {
         showViewController?.remove()
@@ -57,19 +49,22 @@ class ContentStateViewController: UIViewController {
 
 extension ContentStateViewController: ContentStateViewModelDelegate {
     func didUpdateWithError(error: Error) {
-        guard let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ErrorViewVC") as? ErrorViewController else { return }
+        guard let viewController = UIStoryboard(
+        name: "Main",
+        bundle: nil).instantiateViewController(
+        withIdentifier: "ErrorViewVC") as? ErrorViewController else { return }
     
         viewController.error = error.localizedDescription
         self.present(viewController, animated: false, completion: nil)
     }
     
     func didUpdateWithData() {
-        guard let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PostViewVC") as? PostsViewController else { return }
-       // let postViewVC = PostsViewController()
+        guard let viewController = UIStoryboard(
+        name: "Main",
+        bundle: nil).instantiateViewController(
+        withIdentifier: "PostViewVC") as? PostsViewController else { return }
+        
         transtion(to: .render(viewController), identifiers: .postView)
-
-      
-       // self.present(viewController, animated: false, completion: nil)
     }
 }
 

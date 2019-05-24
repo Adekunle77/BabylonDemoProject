@@ -37,7 +37,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ho0-jB-fQT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-255.19999999999999" y="61.619190404797607"/>
+            <point key="canvasLocation" x="-255" y="6"/>
         </scene>
         <!--Content State View Controller-->
         <scene sceneID="ZXy-KL-Jnp">
@@ -46,6 +46,15 @@
                     <view key="view" contentMode="scaleToFill" id="xp8-6b-aUz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Lie Cheat steal kill win win" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TGg-8I-zg5">
+                                <rect key="frame" x="16" y="273" width="359" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" red="0.5845266268" green="0.78617300420000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="qln-qM-vgn"/>
                     </view>
@@ -57,7 +66,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ukm-ot-sjr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="750" y="-779"/>
+            <point key="canvasLocation" x="748" y="-936.88155922038993"/>
         </scene>
         <!--Posts View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -115,7 +124,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="572" y="25"/>
+            <point key="canvasLocation" x="748" y="6"/>
         </scene>
         <!--Error View Controller-->
         <scene sceneID="AA7-nV-jox">
@@ -147,7 +156,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lMt-41-ecr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1576.8" y="60.719640179910051"/>
+            <point key="canvasLocation" x="1788" y="6"/>
         </scene>
         <!--Post Detail View Controller-->
         <scene sceneID="AHb-aD-WJd">
@@ -181,7 +190,6 @@
                                 </state>
                                 <connections>
                                     <action selector="backButton:" destination="MON-H8-wLu" eventType="touchUpInside" id="WPV-nZ-LZn"/>
-                                    <segue destination="BYZ-38-t0r" kind="show" id="lHH-mL-w20"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B2v-gb-305">
@@ -220,8 +228,4 @@
             <point key="canvasLocation" x="749.27536231884062" y="808.25892857142856"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="Bd1-jr-OVL"/>
-        <segue reference="lHH-mL-w20"/>
-    </inferredMetricsTieBreakers>
 </document>

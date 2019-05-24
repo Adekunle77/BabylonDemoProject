@@ -14,17 +14,21 @@ class PostsViewController: UIViewController {
     private var stateViewController: ContentStateViewController?
     @IBOutlet weak private var collectionView: UICollectionView!
     private var viewModel = PostsViewModel()
-    //var load: CoreDataLoadManager?
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-      //  load = CoreDataLoadManager()
         viewModel.delegate = self
         collectionViewSetUp()
     }
 
     @IBAction func testAction(_ sender: Any) {
-        viewModel.refreshData()
+        guard let viewController = UIStoryboard(
+            name: "Main",
+            bundle: nil).instantiateViewController(
+            withIdentifier: "ContentStateVC") as? ContentStateViewController else { return }
+        
+            viewController.model?.getPosts()
+        
     }
     
     private func collectionViewSetUp() {
@@ -45,15 +49,21 @@ extension PostsViewController: ViewModelDelegate {
     }
     
     func modelDidUpdateWithError(error: Error) {
-        let testString = error.localizedDescription
-        let errorVC = ErrorViewController()
-        errorVC.errorUILabel?.text = testString
-       self.stateViewController?.transtion(to: .failed, identifiers: .errorView)
+        guard let viewController = UIStoryboard(
+        name: "Main",
+        bundle: nil).instantiateViewController(
+        withIdentifier: "ErrorViewVC") as? ErrorViewController else { return }
+        
+        viewController.error = error.localizedDescription
+        self.present(viewController, animated: false, completion: nil)
+        
     }
 }
 
 extension PostsViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView, layout
+        collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
         let width = view.bounds.size.width
         let height = view.bounds.size.height
 

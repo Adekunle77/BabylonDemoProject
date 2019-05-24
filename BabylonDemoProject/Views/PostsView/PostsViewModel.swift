@@ -27,6 +27,11 @@ class PostsViewModel: NSObject {
     var authorsArray = [Author]()
     var commentsArray = [Comment]()
     
+    override init() {
+        print("override")
+    }
+    
+    
     private func fetchSavedCoreData<T: NSManagedObject>(with objectType: T.Type) -> [T] {
         var data = [T]()
         let entityName = String(describing: objectType)
@@ -44,7 +49,6 @@ class PostsViewModel: NSObject {
         let userID = post.id
         print(userID)
         let comments = array.all(where: {$0.postId == userID})
-        print(comments.count)
         return String(comments.count)
     }
 
@@ -71,6 +75,7 @@ class PostsViewModel: NSObject {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
         do{
+            print("deleted")
             try PersistenceService.context.execute(deleteRequest)
             PersistenceService.saveContext()
         } catch let error {
@@ -85,15 +90,19 @@ extension PostsViewModel: UICollectionViewDataSource {
         return 1
     }
 
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection
+                            section: Int) -> Int {
+        
         let fetchedposts = fetchSavedCoreData(with: Posts.self)
         self.postsArray = fetchedposts
         return self.postsArray.count
     }
 
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CollectionViewCell
-
+        
         let post = self.postsArray
         let info = post[indexPath.item]
         cell.updateCell(with: info)
@@ -103,13 +112,19 @@ extension PostsViewModel: UICollectionViewDataSource {
 }
 
 extension PostsViewModel: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView,
+                        didSelectItemAt indexPath: IndexPath) {
+        
         let posts = fetchSavedCoreData(with: Posts.self)
         let postInfo = posts[indexPath.item]
         let authorArray = fetchSavedCoreData(with: Author.self)
         let author = self.getAuthorInfo(using: postInfo, with: authorArray)
         let comments = fetchSavedCoreData(with: Comment.self)
-        let commentCount = self.getCommentsCount(using: postInfo, with: comments)
-        self.delegate?.showPostDetails(post: (author: author, post: postInfo, commentsCount: commentCount))
+        let commentCount = self.getCommentsCount(
+            using: postInfo, with: comments)
+        
+        self.delegate?.showPostDetails(post: (
+            author: author, post: postInfo, commentsCount: commentCount))
+        
     }
 }

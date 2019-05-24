@@ -14,7 +14,7 @@ class CollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var cellBackgroundView: UIView!
     override func awakeFromNib() {
         super.awakeFromNib()
-        cellBackgroundView.addBorder(toSide: .Bottom, withColor: UIColor.black.cgColor, andThickness: 1.0)
+        cellBackgroundView.addBorder(to: .bottom, with: UIColor.black.cgColor, thickness: 1.0)
     }
 
     func updateCell(with info: Posts) {
