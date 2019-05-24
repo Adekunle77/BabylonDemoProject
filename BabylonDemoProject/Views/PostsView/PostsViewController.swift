@@ -11,18 +11,20 @@ import CoreData
 
 class PostsViewController: UIViewController {
 
-    private weak var stateViewController: ContentStateViewController?
+    private var stateViewController: ContentStateViewController?
     @IBOutlet weak private var collectionView: UICollectionView!
     private var viewModel = PostsViewModel()
-
+    //var load: CoreDataLoadManager?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+      //  load = CoreDataLoadManager()
         viewModel.delegate = self
         collectionViewSetUp()
     }
 
     @IBAction func testAction(_ sender: Any) {
-        stateViewController?.refreshData()
+        viewModel.refreshData()
     }
     
     private func collectionViewSetUp() {

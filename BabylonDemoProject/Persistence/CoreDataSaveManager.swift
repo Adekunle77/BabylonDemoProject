@@ -22,11 +22,11 @@ class CoreDataSaveManager {
     let dataSource: API
     weak var delegate: SaveDataDelegate?
     init(dataSource: API) {
-        print("CoreDataSaveManager in it")
         self.dataSource = dataSource
     }
     
     func fetchAPIData(with path: URLEndpoint) {
+
         dataSource.fetchJSONdata(endPoint: path, completion: {[weak self] result in
             switch result {
             case .failure(let error):
@@ -48,6 +48,7 @@ class CoreDataSaveManager {
             switch data {
             case .authors(let authors):
                 saveAuthorData(with: authors)
+                   print(authors.count, "authors")
                 self.delegate?.CoreDataSavedAuthor()
             default:
                 break
@@ -57,6 +58,7 @@ class CoreDataSaveManager {
     func checkDataIsComment(data: (ModelType)) {
             switch data {
             case .comments(let comments):
+                print(comments.count, "comments")
                 saveCommentData(with: comments)
                 self.delegate?.dataDidSaveComment()
             default:

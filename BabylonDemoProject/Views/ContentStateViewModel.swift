@@ -16,64 +16,42 @@ protocol ContentStateViewModelDelegate: class {
 }
 
 class ContentStateViewModel {
-    
+
     let saveData = CoreDataLoadManager()
     weak var delegate: ContentStateViewModelDelegate?
-    
-    init() {
-        creatObservers()
-        getSavedPost()
-    }
-    
-    private func creatObservers() {
+
+    func createObservers() {
+        
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(ContentStateViewModel.getSavedPost),
+                                               selector: #selector(ContentStateViewModel.getPosts),
                                                name: didLoadPostsNotificationKey,
                                                object: nil)
-        // Notification for error
+        
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(ContentStateViewModel.showSpinningWheel(notification:)), name: didLoadErrorNotificationKey, object: nil)
+                                               selector: #selector(ContentStateViewModel.didReceiveError(notification:)), name: didLoadErrorNotificationKey, object: nil)
     }
     
-
-    @objc func getSavedPost() {
-        if saveData.posts.count > 0 {
-            self.delegate?.didUpdateWithData()
-        }
-    }
-    
-    
-    @objc func showSpinningWheel(notification: NSNotification) {
-        if let error = notification.userInfo?["error"] as? Error {
-            self.delegate?.didUpdateWithError(error: error)
-        }
-    }
-    
-    func updateContenStateView() {
-        self.delegate?.didUpdateWithData()
-    }
-    
-    func entityIsEmpty<T>(entity: T.Type) -> Bool {
-        var data = [T]()
-        let entityName = String(describing: entity)
+    @objc func getPosts() {
+        let entityName = String(describing: Posts.self)
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
-        do{
-            let fetchObject = try PersistenceService.context.fetch(fetchRequest) as? [T]
-            data = fetchObject ?? [T]()
-            if data.isEmpty {
-                return true
+        do {
+            let fetchObject = try PersistenceService.context.fetch(fetchRequest) as? [Posts]
+            guard fetchObject != nil else { return }
+            if fetchObject?.count ?? 0 > 0 {
+                self.delegate?.didUpdateWithData()
+            } else {
+                createObservers()
+                self.saveData.fetchPostData()
             }
         } catch let error {
             self.delegate?.didUpdateWithError(error: error)
         }
-
-        return false
     }
     
-    
-    func refreshData() {
-        print(refreshData)
-        //saveData.refreshData()
+    @objc func didReceiveError(notification: NSNotification) {
+        if let error = notification.userInfo?["error"] as? Error {
+            self.delegate?.didUpdateWithError(error: error)
+        }
     }
     
 }

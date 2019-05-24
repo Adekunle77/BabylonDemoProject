@@ -15,24 +15,28 @@ protocol ContentStateErrorDelegate: class {
 
 class ContentStateViewController: UIViewController {
     
-    let model = ContentStateViewModel()
+    var model: ContentStateViewModel?
     private var showViewController: UIViewController?
     weak var delegate: ContentStateErrorDelegate?
     var testString = String()
     private var state: State?
     
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        model.delegate = self
+        model = ContentStateViewModel()
+        model?.delegate = self
+        model?.getPosts()
         if state == nil {
             transtion(to: .loading, identifiers: .loadingView)
         }
     }
     
-    func refreshData() {
-        model.refreshData()
-    }
+    func test() {
+        print("test")
+        model?.refreshData()}
     
     func transtion(to newState: State, identifiers: Identifiers ) {
         showViewController?.remove()
@@ -56,14 +60,16 @@ extension ContentStateViewController: ContentStateViewModelDelegate {
         guard let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ErrorViewVC") as? ErrorViewController else { return }
     
         viewController.error = error.localizedDescription
-        print(error.localizedDescription)
         self.present(viewController, animated: false, completion: nil)
     }
     
     func didUpdateWithData() {
-        print("didUpdateWithData")
-        let postViewVC = PostsViewController()
-        transtion(to: .render(postViewVC), identifiers: .postView)
+        guard let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PostViewVC") as? PostsViewController else { return }
+       // let postViewVC = PostsViewController()
+        transtion(to: .render(viewController), identifiers: .postView)
+
+      
+       // self.present(viewController, animated: false, completion: nil)
     }
 }
 
