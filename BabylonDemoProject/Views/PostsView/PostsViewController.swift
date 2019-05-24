@@ -22,12 +22,16 @@ class PostsViewController: UIViewController {
     }
 
     @IBAction func testAction(_ sender: Any) {
+        viewModel.refreshData()
         guard let viewController = UIStoryboard(
             name: "Main",
             bundle: nil).instantiateViewController(
             withIdentifier: "ContentStateVC") as? ContentStateViewController else { return }
         
+        
+        self.present(viewController, animated: true, completion: {
             viewController.model?.getPosts()
+        })
         
     }
     
