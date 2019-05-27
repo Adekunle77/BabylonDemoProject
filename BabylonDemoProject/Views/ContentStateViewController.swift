@@ -25,6 +25,7 @@ class ContentStateViewController: UIViewController {
         model = ContentStateViewModel()
         model?.delegate = self
         model?.getPosts()
+        
         if state == nil {
             transtion(to: .loading, identifiers: .loadingView)
         }

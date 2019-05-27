@@ -26,12 +26,7 @@ class PostsViewModel: NSObject {
     var postsArray = [Posts]()
     var authorsArray = [Author]()
     var commentsArray = [Comment]()
-    
-    override init() {
-        print("override")
-    }
-    
-    
+
     private func fetchSavedCoreData<T: NSManagedObject>(with objectType: T.Type) -> [T] {
         var data = [T]()
         let entityName = String(describing: objectType)
@@ -47,7 +42,6 @@ class PostsViewModel: NSObject {
   
     private func getCommentsCount(using post: Posts, with array: [Comment]) -> String {
         let userID = post.id
-        print(userID)
         let comments = array.all(where: {$0.postId == userID})
         return String(comments.count)
     }
@@ -55,7 +49,6 @@ class PostsViewModel: NSObject {
     private func getAuthorInfo(using title: Posts, with array: [Author]) -> Author {
         let userID = title.userID
         var author = Author(context: PersistenceService.context)
-
         if let id = array.first(where: {$0.authorID == userID}) {
             author = id
         }
@@ -75,7 +68,6 @@ class PostsViewModel: NSObject {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
         do{
-            print("deleted")
             try PersistenceService.context.execute(deleteRequest)
             PersistenceService.saveContext()
         } catch let error {

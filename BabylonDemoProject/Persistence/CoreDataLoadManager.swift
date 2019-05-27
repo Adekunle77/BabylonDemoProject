@@ -10,11 +10,7 @@ import Foundation
 import CoreData
 
 class CoreDataLoadManager: SaveDataDelegate {
-    
-//    var author = [Author(context: PersistenceService.context)]
-//    var posts = [Posts(context: PersistenceService.context)]
-//    var comment = [Comment(context: PersistenceService.context)]
-//
+
     var dataSource = HttpRequest()
     private var savedData: CoreDataSaveManager?
     

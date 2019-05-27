@@ -48,7 +48,6 @@ class CoreDataSaveManager {
             switch data {
             case .authors(let authors):
                 saveAuthorData(with: authors)
-                   print(authors.count, "authors")
                 self.delegate?.CoreDataSavedAuthor()
             default:
                 break
@@ -58,7 +57,6 @@ class CoreDataSaveManager {
     func checkDataIsComment(data: (ModelType)) {
             switch data {
             case .comments(let comments):
-                print(comments.count, "comments")
                 saveCommentData(with: comments)
                 self.delegate?.dataDidSaveComment()
             default:
