@@ -11,7 +11,7 @@ import CoreData
 
 protocol SaveDataDelegate: class {
     func CoreDataSavedAuthor()
-    func dataDidSaveTitle()
+    func dataDidSavePosts()
     func dataDidSaveComment()
     func dataSavingError(error: Error)
 }
@@ -26,8 +26,7 @@ class CoreDataSaveManager {
     }
     
     func fetchAPIData(with path: URLEndpoint) {
-
-        dataSource.fetchJSONdata(endPoint: path, completion: {[weak self] result in
+                dataSource.fetchJSONdata(endPoint: path, completion: {[weak self] result in
             switch result {
             case .failure(let error):
                 self?.delegate?.dataSavingError(error: error)
@@ -37,7 +36,7 @@ class CoreDataSaveManager {
                     self?.checkDataIsAuthor(data: data)
                 case .commentsUrlPath:
                     self?.checkDataIsComment(data: data)
-                case .titleUrlPath:
+                case .postsUrlPath:
                     self?.checkDataIsTitle(data: data)
                 }
             }
@@ -68,7 +67,7 @@ class CoreDataSaveManager {
             switch data {
             case .titles(let title):
                 saveTitleData(with: title)
-                self.delegate?.dataDidSaveTitle()
+                self.delegate?.dataDidSavePosts()
             default:
                 break
             }

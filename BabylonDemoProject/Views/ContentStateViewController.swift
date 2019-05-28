@@ -24,13 +24,15 @@ class ContentStateViewController: UIViewController {
         super.viewDidLoad()
         model = ContentStateViewModel()
         model?.delegate = self
-        model?.getPosts()
+        if self.model?.postsArray.isEmpty == true {
+            self.model?.getPosts()
+        }
         
         if state == nil {
             transtion(to: .loading, identifiers: .loadingView)
         }
     }
-    
+
     func transtion(to newState: State, identifiers: Identifiers ) {
         showViewController?.remove()
         let vc = viewController(for: newState)
@@ -54,7 +56,7 @@ extension ContentStateViewController: ContentStateViewModelDelegate {
         name: "Main",
         bundle: nil).instantiateViewController(
         withIdentifier: "ErrorViewVC") as? ErrorViewController else { return }
-    
+
         viewController.error = error.localizedDescription
         self.present(viewController, animated: false, completion: nil)
     }
@@ -64,7 +66,6 @@ extension ContentStateViewController: ContentStateViewModelDelegate {
         name: "Main",
         bundle: nil).instantiateViewController(
         withIdentifier: "PostViewVC") as? PostsViewController else { return }
-        
         transtion(to: .render(viewController), identifiers: .postView)
     }
 }

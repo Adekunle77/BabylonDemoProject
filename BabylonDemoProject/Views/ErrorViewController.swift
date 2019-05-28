@@ -21,6 +21,10 @@ class ErrorViewController: UIViewController {
     func displayError(error: String) {
         errorUILabel?.text = error
     }
+    
+    
+    @IBAction func returnToLoadingView(_ sender: Any) {
+    }
 }
 
 

@@ -22,10 +22,6 @@ class CoreDataLoadManager: SaveDataDelegate {
         fetchCommentData()
     }
     
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
     func fetchAuthorData() {
         if entityIsEmpty(entity: Author.self) {
             let path = URLEndpoint.init(path: Paths.authorUrlPath)
@@ -34,8 +30,8 @@ class CoreDataLoadManager: SaveDataDelegate {
     }
     
     func fetchPostData() {
-        if entityIsEmpty(entity: Posts.self) {
-            let path = URLEndpoint.init(path: Paths.titleUrlPath)
+        if entityIsEmpty(entity: Posts.self) == true {
+            let path = URLEndpoint.init(path: Paths.postsUrlPath)
             savedData?.fetchAPIData(with: path)
         }
     }
@@ -55,11 +51,12 @@ class CoreDataLoadManager: SaveDataDelegate {
          NotificationCenter.default.post(name: didLoadCommentsNotificationKey, object: nil)
     }
     
-    func dataDidSaveTitle() {
+    func dataDidSavePosts() {
         NotificationCenter.default.post(name: didLoadPostsNotificationKey, object: nil)
     }
     
     func dataSavingError(error: Error) {
+
         let coreDataError: [String: Error] = ["error": error]
         NotificationCenter.default.post(name: didLoadErrorNotificationKey, object: nil, userInfo: coreDataError)
     }
@@ -70,6 +67,7 @@ class CoreDataLoadManager: SaveDataDelegate {
         do {
             let result = try PersistenceService.context.count(for: fetchRequest)
             if result == 0 {
+                
                 return true
             }
         } catch let error {

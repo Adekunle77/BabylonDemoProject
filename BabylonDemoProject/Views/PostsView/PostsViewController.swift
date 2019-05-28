@@ -21,7 +21,7 @@ class PostsViewController: UIViewController {
         collectionViewSetUp()
     }
 
-    @IBAction func testAction(_ sender: Any) {
+    @IBAction func refreshData(_ sender: Any) {
         viewModel.refreshData()
         guard let viewController = UIStoryboard(
             name: "Main",
@@ -32,7 +32,6 @@ class PostsViewController: UIViewController {
         self.present(viewController, animated: true, completion: {
             viewController.model?.getPosts()
         })
-        
     }
     
     private func collectionViewSetUp() {
@@ -46,10 +45,6 @@ class PostsViewController: UIViewController {
 extension PostsViewController: ViewModelDelegate {
     func showPostDetails(post: PostTuple) {
         self.performSegue(withIdentifier: "postDetail", sender: post)
-    }
-    
-    func modelDidUpdateData() {
-        self.collectionView.reloadData() 
     }
     
     func modelDidUpdateWithError(error: Error) {

@@ -42,7 +42,7 @@ import Foundation
                     }
                 }
                     
-                if endPoint.path == Paths.titleUrlPath {
+                if endPoint.path == Paths.postsUrlPath {
 
                     if let data = try Parse.titleData(data: data) {
                         DispatchQueue.main.async {

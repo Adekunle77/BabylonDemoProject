@@ -20,14 +20,8 @@ class ContentStateViewModel {
     var postsArray = [Posts]()
     let saveData = CoreDataLoadManager()
     weak var delegate: ContentStateViewModelDelegate?
-    init() {
-        if self.postsArray.isEmpty == true {
-            self.getPosts()
-        }
-    }
-    
-    
-    @objc func getPosts() {
+  
+    func getPosts() {
         let entityName = String(describing: Posts.self)
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(
             entityName: entityName)
@@ -38,8 +32,12 @@ class ContentStateViewModel {
             if fetchObject?.count ?? 0 > 0 {
                 self.delegate?.didUpdateWithData()
                 self.postsArray.removeAll()
+                NotificationCenter.default.removeObserver(self)
             } else {
-                self.saveData.fetchPostData()
+                NotificationCenter.default.addObserver(
+                    self,
+                    selector: #selector(ContentStateViewModel.didReceiveError(notification:)),
+                    name: didLoadErrorNotificationKey, object: nil)
             }
         } catch let error {
             self.delegate?.didUpdateWithError(error: error)
@@ -47,8 +45,9 @@ class ContentStateViewModel {
     }
     
     @objc func didReceiveError(notification: NSNotification) {
-        if let error = notification.userInfo?["error"] as? Error {
+            if let error = notification.userInfo?["error"] as? Error {
             self.delegate?.didUpdateWithError(error: error)
+            NotificationCenter.default.removeObserver(self)
         }
     }
 }

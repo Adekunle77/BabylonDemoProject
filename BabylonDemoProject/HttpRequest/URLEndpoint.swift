@@ -13,7 +13,7 @@ struct URLEndpoint {
 }
 
 enum Paths: String {
-    case titleUrlPath = "/posts"
+    case postsUrlPath = "/posts"
     case authorUrlPath = "/users"
     case commentsUrlPath = "/comments"
 }

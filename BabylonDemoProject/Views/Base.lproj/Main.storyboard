@@ -13,7 +13,7 @@
         <!--Loading View Controller-->
         <scene sceneID="GOk-wU-z4T">
             <objects>
-                <viewController id="0ap-E2-CIR" customClass="LoadingViewController" customModule="BabylonDemoProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoadingViewVC" id="0ap-E2-CIR" customClass="LoadingViewController" customModule="BabylonDemoProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sqk-Ny-s6y">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -46,15 +46,6 @@
                     <view key="view" contentMode="scaleToFill" id="xp8-6b-aUz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Lie Cheat steal kill win win" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TGg-8I-zg5">
-                                <rect key="frame" x="16" y="273" width="359" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
                         <color key="backgroundColor" red="0.5845266268" green="0.78617300420000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="qln-qM-vgn"/>
                     </view>
@@ -100,7 +91,7 @@
                                 <rect key="frame" x="258" y="28" width="110" height="30"/>
                                 <state key="normal" title="Refresh "/>
                                 <connections>
-                                    <action selector="testAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KXp-Tv-vXI"/>
+                                    <action selector="refreshData:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KXp-Tv-vXI"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -140,13 +131,23 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cLG-vS-4Pc">
+                                <rect key="frame" x="283" y="573" width="39" height="30"/>
+                                <state key="normal" title="Reset"/>
+                                <connections>
+                                    <action selector="returnToLoadingView:" destination="3b4-cX-X8M" eventType="touchUpInside" id="buX-oB-8qd"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="hMl-Z1-NhA" firstAttribute="trailing" secondItem="Ec6-3a-dXI" secondAttribute="trailing" constant="53" id="3CK-XL-acO"/>
+                            <constraint firstItem="cLG-vS-4Pc" firstAttribute="leading" secondItem="hMl-Z1-NhA" secondAttribute="leading" constant="283" id="IV2-gp-gQG"/>
                             <constraint firstItem="Ec6-3a-dXI" firstAttribute="top" secondItem="hMl-Z1-NhA" secondAttribute="top" constant="269" id="Yw4-I4-GX3"/>
                             <constraint firstItem="hMl-Z1-NhA" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Ec6-3a-dXI" secondAttribute="bottom" constant="357" id="bQv-Ih-H8x"/>
                             <constraint firstItem="Ec6-3a-dXI" firstAttribute="leading" secondItem="hMl-Z1-NhA" secondAttribute="leading" constant="52" id="bgc-vn-ZBL"/>
+                            <constraint firstItem="hMl-Z1-NhA" firstAttribute="bottom" secondItem="cLG-vS-4Pc" secondAttribute="bottom" constant="64" id="cuJ-Kn-HFX"/>
+                            <constraint firstItem="hMl-Z1-NhA" firstAttribute="trailing" secondItem="cLG-vS-4Pc" secondAttribute="trailing" constant="53" id="lq5-Kg-dYa"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="hMl-Z1-NhA"/>
                     </view>

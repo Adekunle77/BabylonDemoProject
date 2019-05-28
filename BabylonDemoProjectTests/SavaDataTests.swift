@@ -80,7 +80,7 @@ class SavaDataTests: XCTestCase {
         let spy = SaveDataDelegateSpy()
         let saveData = CoreDataSaveManager(dataSource: mockAPI)
         saveData.delegate = spy
-        let path = URLEndpoint.init(path: Paths.titleUrlPath)
+        let path = URLEndpoint.init(path: Paths.postsUrlPath)
         
         saveData.fetchAPIData(with: path)
         

@@ -12,7 +12,6 @@ import CoreData
 import UIKit
 
 protocol ViewModelDelegate: class {
-    func modelDidUpdateData()
     func modelDidUpdateWithError(error: Error)
     func showPostDetails(post: PostTuple)
 }
