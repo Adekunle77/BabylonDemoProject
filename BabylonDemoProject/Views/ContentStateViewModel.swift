@@ -35,9 +35,10 @@ class ContentStateViewModel {
                 NotificationCenter.default.removeObserver(self)
             } else {
                 NotificationCenter.default.addObserver(
-                    self,
-                    selector: #selector(ContentStateViewModel.didReceiveError(notification:)),
-                    name: didLoadErrorNotificationKey, object: nil)
+                self,
+                selector: #selector(
+                    ContentStateViewModel.didReceiveError(notification:)),
+                name: didLoadErrorNotificationKey, object: nil)
             }
         } catch let error {
             self.delegate?.didUpdateWithError(error: error)

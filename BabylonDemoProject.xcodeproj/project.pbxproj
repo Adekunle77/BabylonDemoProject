@@ -43,7 +43,6 @@
 		33DE3C5E22856DBE006E5617 /* URLEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DE3C5922856DBE006E5617 /* URLEndpoint.swift */; };
 		33DE3C6322856DD9006E5617 /* DataSourceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DE3C6022856DD9006E5617 /* DataSourceError.swift */; };
 		33DE3C6422856DD9006E5617 /* ModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DE3C6122856DD9006E5617 /* ModelType.swift */; };
-		33DE3C6522856DD9006E5617 /* Results.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DE3C6222856DD9006E5617 /* Results.swift */; };
 		33DE3C6A22856E12006E5617 /* Titles.json in Resources */ = {isa = PBXBuildFile; fileRef = 33DE3C6722856E12006E5617 /* Titles.json */; };
 		33DE3C6B22856E12006E5617 /* Comments.json in Resources */ = {isa = PBXBuildFile; fileRef = 33DE3C6822856E12006E5617 /* Comments.json */; };
 		33DE3C6C22856E12006E5617 /* Authors.json in Resources */ = {isa = PBXBuildFile; fileRef = 33DE3C6922856E12006E5617 /* Authors.json */; };
@@ -101,7 +100,6 @@
 		33DE3C5922856DBE006E5617 /* URLEndpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLEndpoint.swift; sourceTree = "<group>"; };
 		33DE3C6022856DD9006E5617 /* DataSourceError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSourceError.swift; sourceTree = "<group>"; };
 		33DE3C6122856DD9006E5617 /* ModelType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelType.swift; sourceTree = "<group>"; };
-		33DE3C6222856DD9006E5617 /* Results.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Results.swift; sourceTree = "<group>"; };
 		33DE3C6722856E12006E5617 /* Titles.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Titles.json; sourceTree = "<group>"; };
 		33DE3C6822856E12006E5617 /* Comments.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Comments.json; sourceTree = "<group>"; };
 		33DE3C6922856E12006E5617 /* Authors.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Authors.json; sourceTree = "<group>"; };
@@ -266,7 +264,6 @@
 			children = (
 				33DE3C6022856DD9006E5617 /* DataSourceError.swift */,
 				33DE3C6122856DD9006E5617 /* ModelType.swift */,
-				33DE3C6222856DD9006E5617 /* Results.swift */,
 			);
 			path = ModelHelpers;
 			sourceTree = "<group>";
@@ -409,7 +406,6 @@
 				33DE3C5E22856DBE006E5617 /* URLEndpoint.swift in Sources */,
 				33360F962287245200702A39 /* CoreDataSaveManager.swift in Sources */,
 				33360FB722872B3300702A39 /* Posts+CoreDataProperties.swift in Sources */,
-				33DE3C6522856DD9006E5617 /* Results.swift in Sources */,
 				3375C1D22285B67B0087E5F1 /* PostsViewModel.swift in Sources */,
 				33DE3C5C22856DBE006E5617 /* API.swift in Sources */,
 				33360F94228720D000702A39 /* PersistenceService.swift in Sources */,

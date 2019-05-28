@@ -28,7 +28,6 @@ class PostsViewController: UIViewController {
             bundle: nil).instantiateViewController(
             withIdentifier: "ContentStateVC") as? ContentStateViewController else { return }
         
-        
         self.present(viewController, animated: true, completion: {
             viewController.model?.getPosts()
         })

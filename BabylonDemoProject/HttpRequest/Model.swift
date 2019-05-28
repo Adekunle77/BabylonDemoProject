@@ -55,8 +55,11 @@ struct Comments: Codable {
 
 extension Titles: Equatable {
     static func ==(lhs: Titles, rhs: Titles) -> Bool {
-        
-        return lhs.id == rhs.id && lhs.userId == rhs.userId && lhs.body == rhs.body && lhs.title == rhs.title
+    
+        return lhs.id == rhs.id &&
+            lhs.userId == rhs.userId &&
+            lhs.body == rhs.body &&
+            lhs.title == rhs.title
     }
 }
 
@@ -64,13 +67,22 @@ extension Titles: Equatable {
 extension Authors: Equatable {
     static func ==(lhs: Authors, rhs: Authors) -> Bool {
         
-        return lhs.id == rhs.id && lhs.name == rhs.name && lhs.username == rhs.username && lhs.email == rhs.email && lhs.phone == rhs.phone && lhs.website == rhs.website
+        return lhs.id == rhs.id &&
+            lhs.name == rhs.name &&
+            lhs.username == rhs.username &&
+            lhs.email == rhs.email &&
+            lhs.phone == rhs.phone &&
+            lhs.website == rhs.website
     }
 }
 
 extension Comments: Equatable {
     static func ==(lhs: Comments, rhs: Comments) -> Bool {
         
-        return lhs.postId == rhs.postId && lhs.id == rhs.id && lhs.name == rhs.name && lhs.email == rhs.email && lhs.body == rhs.body
+        return lhs.postId == rhs.postId &&
+            lhs.id == rhs.id &&
+            lhs.name == rhs.name &&
+            lhs.email == rhs.email &&
+            lhs.body == rhs.body
     }
 }

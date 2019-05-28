@@ -26,7 +26,7 @@ class CoreDataSaveManager {
     }
     
     func fetchAPIData(with path: URLEndpoint) {
-                dataSource.fetchJSONdata(endPoint: path, completion: {[weak self] result in
+        dataSource.fetchJSONdata(endPoint: path, completion: {[weak self] result in
             switch result {
             case .failure(let error):
                 self?.delegate?.dataSavingError(error: error)

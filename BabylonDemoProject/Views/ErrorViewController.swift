@@ -10,7 +10,6 @@ import UIKit
 
 class ErrorViewController: UIViewController {
     
-
     @IBOutlet weak var errorUILabel: UILabel!
     var error: String?
     
@@ -22,8 +21,15 @@ class ErrorViewController: UIViewController {
         errorUILabel?.text = error
     }
     
-    
     @IBAction func returnToLoadingView(_ sender: Any) {
+        guard let viewController = UIStoryboard(
+            name: "Main",
+            bundle: nil).instantiateViewController(
+            withIdentifier: "LoadingViewVC") as? LoadingViewController else { return }
+        
+        self.present(viewController, animated: true, completion: {
+            viewController.hideObjectsInView()
+        })
     }
 }
 

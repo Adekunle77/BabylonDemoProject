@@ -10,6 +10,7 @@ import UIKit
 
 class LoadingViewController: UIViewController {
 
+    @IBOutlet weak var resetButton: UIButton!
     private lazy var activityIndicator = UIActivityIndicatorView(style: .gray)
     
     override func viewDidLoad() {
@@ -27,9 +28,24 @@ class LoadingViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        resetButton?.isHidden = true
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
             self?.activityIndicator.startAnimating()
         }
+    }
+    
+    func hideObjectsInView() {
+        resetButton?.isHidden = false
+    }
+    
+    @IBAction private func returnToContentStateVC(_ sender: Any) {
+        guard let viewController = UIStoryboard(
+            name: "Main",
+            bundle: nil).instantiateViewController(
+            withIdentifier: "ContentStateVC") as? ContentStateViewController else { return }
+        
+        self.present(viewController, animated: true, completion: {
+            viewController.model?.getPosts()
+        })
     }
 }
