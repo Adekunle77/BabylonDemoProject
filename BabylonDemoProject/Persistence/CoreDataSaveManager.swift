@@ -26,6 +26,7 @@ class CoreDataSaveManager {
     }
     
     func fetchAPIData(with path: URLEndpoint) {
+        print("fetchAPIData")
         dataSource.fetchJSONdata(endPoint: path, completion: {[weak self] result in
             switch result {
             case .failure(let error):

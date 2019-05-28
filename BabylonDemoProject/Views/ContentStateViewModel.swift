@@ -21,26 +21,38 @@ class ContentStateViewModel {
     let saveData = CoreDataLoadManager()
     weak var delegate: ContentStateViewModelDelegate?
   
-    func getPosts() {
+    func createObservers() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(
+                ContentStateViewModel.getPosts),
+            name: didLoadPostsNotificationKey, object: nil)
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(
+                ContentStateViewModel.didReceiveError(notification:)),
+            name: didLoadErrorNotificationKey, object: nil)
+    }
+    
+    @objc func getPosts() {
         let entityName = String(describing: Posts.self)
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(
             entityName: entityName)
         do {
             let fetchObject = try PersistenceService.context.fetch(fetchRequest) as? [Posts]
             guard fetchObject != nil else { return }
-            self.postsArray = fetchObject ?? [Posts]()
-            if fetchObject?.count ?? 0 > 0 {
+            if let fetchedPost = fetchObject {
+                self.postsArray = fetchedPost
+            }
+            if self.postsArray.count > 0 {
                 self.delegate?.didUpdateWithData()
                 self.postsArray.removeAll()
                 NotificationCenter.default.removeObserver(self)
             } else {
-                NotificationCenter.default.addObserver(
-                self,
-                selector: #selector(
-                    ContentStateViewModel.didReceiveError(notification:)),
-                name: didLoadErrorNotificationKey, object: nil)
+                self.createObservers()
+                saveData.fetchPostData()
             }
-        } catch let error {
+        } catch {
             self.delegate?.didUpdateWithError(error: error)
         }
     }
