@@ -16,25 +16,16 @@ protocol ContentStateViewModelDelegate: class {
 }
 
 class ContentStateViewModel {
-    
     var postsArray = [Posts]()
     let saveData = CoreDataLoadManager()
     weak var delegate: ContentStateViewModelDelegate?
   
-    func createObservers() {
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(
-                ContentStateViewModel.getPosts),
-            name: didLoadPostsNotificationKey, object: nil)
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(
-                ContentStateViewModel.didReceiveError(notification:)),
-            name: didLoadErrorNotificationKey, object: nil)
+    init() {
+        self.getPosts()
+        self.saveData.delegate = self
     }
     
-    @objc func getPosts() {
+    func getPosts() {
         let entityName = String(describing: Posts.self)
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(
             entityName: entityName)
@@ -43,24 +34,28 @@ class ContentStateViewModel {
             guard fetchObject != nil else { return }
             if let fetchedPost = fetchObject {
                 self.postsArray = fetchedPost
+                print(postsArray.count)
             }
-            if self.postsArray.count > 0 {
-                self.delegate?.didUpdateWithData()
-                self.postsArray.removeAll()
-                NotificationCenter.default.removeObserver(self)
+            if self.postsArray.count == 0 {    
+                self.saveData.fetchData()
             } else {
-                self.createObservers()
-                saveData.fetchPostData()
+               self.delegate?.didUpdateWithData()
             }
         } catch {
             self.delegate?.didUpdateWithError(error: error)
         }
     }
     
-    @objc func didReceiveError(notification: NSNotification) {
-            if let error = notification.userInfo?["error"] as? Error {
-            self.delegate?.didUpdateWithError(error: error)
-            NotificationCenter.default.removeObserver(self)
-        }
+}
+
+extension ContentStateViewModel: CoreDataLoadManagerDelegate {
+    func didLoadCoreData() {
+        self.delegate?.didUpdateWithData()
     }
+    
+    func didLoadCoreDataError(error: Error) {
+        self.delegate?.didUpdateWithError(error: error)
+    }
+    
+    
 }

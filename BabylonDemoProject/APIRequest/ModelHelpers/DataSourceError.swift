@@ -6,8 +6,6 @@
 //  Copyright © 2019 AKA. All rights reserved.
 //
 
-import Foundation
-
 enum DataSourceError: Error {
     case fetal(String)
     case network(Error)

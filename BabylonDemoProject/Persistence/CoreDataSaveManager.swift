@@ -9,72 +9,34 @@
 import Foundation
 import CoreData
 
-protocol SaveDataDelegate: class {
-    func CoreDataSavedAuthor()
-    func dataDidSavePosts()
-    func dataDidSaveComment()
-    func dataSavingError(error: Error)
-}
-
-
 class CoreDataSaveManager {
-    
+
     let dataSource: API
-    weak var delegate: SaveDataDelegate?
     init(dataSource: API) {
         self.dataSource = dataSource
     }
-    
-    func fetchAPIData(with path: URLEndpoint) {
-        print("fetchAPIData")
+
+    func fetchAPIData(with path: URLEndpoint, completion: @escaping (Result<(), DataSourceError>) -> ()) {
         dataSource.fetchJSONdata(endPoint: path, completion: {[weak self] result in
             switch result {
             case .failure(let error):
-                self?.delegate?.dataSavingError(error: error)
+                completion(.failure(.dataError(error)))
             case .success(let data):
-                switch path.path {
-                case .authorUrlPath:
-                    self?.checkDataIsAuthor(data: data)
-                case .commentsUrlPath:
-                    self?.checkDataIsComment(data: data)
-                case .postsUrlPath:
-                    self?.checkDataIsTitle(data: data)
+                switch data {
+                case .authors(let author):
+                    self?.saveAuthorData(with: author)
+                case .comments(let comment):
+                    self?.saveCommentData(with: comment)
+                case .posts(let post):
+                    self?.savePostData(with: post)
                 }
+               completion(.success(()))
             }
         })
     }
     
-    func checkDataIsAuthor(data: (ModelType)) {
-            switch data {
-            case .authors(let authors):
-                saveAuthorData(with: authors)
-                self.delegate?.CoreDataSavedAuthor()
-            default:
-                break
-            }
-    }
     
-    func checkDataIsComment(data: (ModelType)) {
-            switch data {
-            case .comments(let comments):
-                saveCommentData(with: comments)
-                self.delegate?.dataDidSaveComment()
-            default:
-                break
-            }
-    }
-    
-    func checkDataIsTitle(data: (ModelType)) {
-            switch data {
-            case .titles(let title):
-                saveTitleData(with: title)
-                self.delegate?.dataDidSavePosts()
-            default:
-                break
-            }
-    }
-
-    func saveTitleData(with dataArray: [Titles]) {
+    func savePostData(with dataArray: [PostsModel]) {
         for item in dataArray {
             let title = Posts(context: PersistenceService.context)
             title.title = item.title
@@ -83,10 +45,9 @@ class CoreDataSaveManager {
             title.userID = Int16(item.userId)
             PersistenceService.saveContext()
         }
-        
     }
     
-    private func saveAuthorData(with dataArray: [Authors]) {
+    private func saveAuthorData(with dataArray: [AuthorModel]) {
         for item in dataArray {
             let author = Author(context: PersistenceService.context)
             author.name = item.name
@@ -95,7 +56,7 @@ class CoreDataSaveManager {
         }
     }
     
-    private func saveCommentData(with dataArray: [Comments]) {
+    private func saveCommentData(with dataArray: [CommentModel]) {
         for item in dataArray {
             let comment = Comment(context: PersistenceService.context)
             comment.comments = item.body
@@ -104,6 +65,7 @@ class CoreDataSaveManager {
             PersistenceService.saveContext()
         }
     }
+    
 }
     
     

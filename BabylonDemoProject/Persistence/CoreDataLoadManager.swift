@@ -9,69 +9,69 @@
 import Foundation
 import CoreData
 
-class CoreDataLoadManager: SaveDataDelegate {
+protocol CoreDataLoadManagerDelegate {
+    func didLoadCoreData()
+    func didLoadCoreDataError(error: Error)
+}
 
-    var dataSource = HttpRequest()
+class CoreDataLoadManager {
+
+    var dataSource = APIRequest()
     private var savedData: CoreDataSaveManager?
+    var delegate: CoreDataLoadManagerDelegate?
     
     init() {
         self.savedData = CoreDataSaveManager(dataSource: dataSource)
-        savedData?.delegate = self
-        fetchPostData()
-        fetchAuthorData()
-        fetchCommentData()
     }
     
-    func fetchAuthorData() {
-        if entityIsEmpty(entity: Author.self) {
-            let path = URLEndpoint.init(path: Paths.authorUrlPath)
-            savedData?.fetchAPIData(with: path)
-        }
-    }
     
-    func fetchPostData() {
-        if entityIsEmpty(entity: Posts.self) == true {
-            let path = URLEndpoint.init(path: Paths.postsUrlPath)
-            savedData?.fetchAPIData(with: path)
-        }
-    }
-    
-    func fetchCommentData() {
-        if entityIsEmpty(entity: Comment.self) {
-            let path = URLEndpoint.init(path: Paths.commentsUrlPath)
-            savedData?.fetchAPIData(with: path)
+    func fetchData() {
+        let dispatchGroup = DispatchGroup()
+        let authorPath = URLEndpoint.init(path: Paths.authorUrlPath)
+        dispatchGroup.enter()
+        savedData?.fetchAPIData(with: authorPath, completion: { [weak self] result in
+            switch result {
+            case .failure(let error):
+                self?.delegate?.didLoadCoreDataError(error: error)
+            case .success():
+                 dispatchGroup.leave()
+            }
+        })
+        
+        let postsPath = URLEndpoint.init(path: Paths.postsUrlPath)
+        dispatchGroup.enter()
+        savedData?.fetchAPIData(with: postsPath, completion: { [weak self] result in
+            switch result {
+            case .failure(let error):
+                 self?.delegate?.didLoadCoreDataError(error: error)
+            case .success():
+                dispatchGroup.leave()
+            }
+        })
+        
+        dispatchGroup.enter()
+        let commentsPath = URLEndpoint.init(path: Paths.commentsUrlPath)
+        savedData?.fetchAPIData(with: commentsPath, completion: {[weak self] result in
+            switch result {
+            case .failure(let error):
+                self?.delegate?.didLoadCoreDataError(error: error)
+            case .success():
+                dispatchGroup.leave()
+            }
+        })
+
+        dispatchGroup.notify(queue: .main) {
+            self.delegate?.didLoadCoreData()
         }
     }
 
-    func CoreDataSavedAuthor() {
-        NotificationCenter.default.post(name: didLoadAuthorInfoNotificationKey, object: nil)
-    }
-
-    func dataDidSaveComment() {
-         NotificationCenter.default.post(name: didLoadCommentsNotificationKey, object: nil)
-    }
-    
-    func dataDidSavePosts() {
-        NotificationCenter.default.post(name: didLoadPostsNotificationKey, object: nil)
-    }
-    
-    func dataSavingError(error: Error) {
-
-        let coreDataError: [String: Error] = ["error": error]
-        NotificationCenter.default.post(name: didLoadErrorNotificationKey, object: nil, userInfo: coreDataError)
-    }
-    
     private func entityIsEmpty<T: NSManagedObject>(entity: T.Type) -> Bool {
         let entityName = String(describing: entity)
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
         do {
-            let result = try PersistenceService.context.count(for: fetchRequest)
-            if result == 0 {
-                
-                return true
-            }
+            return try PersistenceService.context.count(for: fetchRequest) == 0
         } catch let error {
-            self.dataSavingError(error: error)
+            self.delegate?.didLoadCoreDataError(error: error)
         }
         return false
     }

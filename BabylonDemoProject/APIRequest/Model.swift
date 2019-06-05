@@ -8,14 +8,14 @@
 
 import Foundation
 
-struct Titles: Codable {
+struct PostsModel: Codable {
     let userId: Int
     let id: Int
     let body: String
     let title: String
 }
 
-struct Authors: Codable {
+struct AuthorModel: Codable {
     let id: Int
     let name: String
     let username: String
@@ -45,7 +45,7 @@ struct Company: Codable {
     let bs: String
 }
 
-struct Comments: Codable {
+struct CommentModel: Codable {
     let postId: Int
     let id: Int
     let name: String
@@ -53,8 +53,8 @@ struct Comments: Codable {
     let body: String
 }
 
-extension Titles: Equatable {
-    static func ==(lhs: Titles, rhs: Titles) -> Bool {
+extension PostsModel: Equatable {
+    static func ==(lhs: PostsModel, rhs: PostsModel) -> Bool {
     
         return lhs.id == rhs.id &&
             lhs.userId == rhs.userId &&
@@ -64,8 +64,8 @@ extension Titles: Equatable {
 }
 
 
-extension Authors: Equatable {
-    static func ==(lhs: Authors, rhs: Authors) -> Bool {
+extension AuthorModel: Equatable {
+    static func ==(lhs: AuthorModel, rhs: AuthorModel) -> Bool {
         
         return lhs.id == rhs.id &&
             lhs.name == rhs.name &&
@@ -76,8 +76,8 @@ extension Authors: Equatable {
     }
 }
 
-extension Comments: Equatable {
-    static func ==(lhs: Comments, rhs: Comments) -> Bool {
+extension CommentModel: Equatable {
+    static func ==(lhs: CommentModel, rhs: CommentModel) -> Bool {
         
         return lhs.postId == rhs.postId &&
             lhs.id == rhs.id &&

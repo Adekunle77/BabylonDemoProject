@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		331240FE2292B8F100F64F92 /* NotificationsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331240FD2292B8F100F64F92 /* NotificationsKeys.swift */; };
 		33360F94228720D000702A39 /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33360F93228720D000702A39 /* PersistenceService.swift */; };
 		33360F962287245200702A39 /* CoreDataSaveManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33360F952287245200702A39 /* CoreDataSaveManager.swift */; };
 		33360FB622872B3300702A39 /* Posts+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33360FB422872B3300702A39 /* Posts+CoreDataClass.swift */; };
@@ -36,7 +35,7 @@
 		33DE3C3922856CCF006E5617 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33DE3C3822856CCF006E5617 /* Assets.xcassets */; };
 		33DE3C3C22856CCF006E5617 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33DE3C3A22856CCF006E5617 /* LaunchScreen.storyboard */; };
 		33DE3C4722856CCF006E5617 /* BabylonDemoProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DE3C4622856CCF006E5617 /* BabylonDemoProjectTests.swift */; };
-		33DE3C5A22856DBE006E5617 /* HttpRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DE3C5522856DBE006E5617 /* HttpRequest.swift */; };
+		33DE3C5A22856DBE006E5617 /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DE3C5522856DBE006E5617 /* APIRequest.swift */; };
 		33DE3C5B22856DBE006E5617 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DE3C5622856DBE006E5617 /* Model.swift */; };
 		33DE3C5C22856DBE006E5617 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DE3C5722856DBE006E5617 /* API.swift */; };
 		33DE3C5D22856DBE006E5617 /* Parse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DE3C5822856DBE006E5617 /* Parse.swift */; };
@@ -60,7 +59,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		331240FD2292B8F100F64F92 /* NotificationsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsKeys.swift; sourceTree = "<group>"; };
 		33360F93228720D000702A39 /* PersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
 		33360F952287245200702A39 /* CoreDataSaveManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataSaveManager.swift; sourceTree = "<group>"; };
 		33360FB422872B3300702A39 /* Posts+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Posts+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -93,7 +91,7 @@
 		33DE3C4222856CCF006E5617 /* BabylonDemoProjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BabylonDemoProjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		33DE3C4622856CCF006E5617 /* BabylonDemoProjectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabylonDemoProjectTests.swift; sourceTree = "<group>"; };
 		33DE3C4822856CCF006E5617 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		33DE3C5522856DBE006E5617 /* HttpRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpRequest.swift; sourceTree = "<group>"; };
+		33DE3C5522856DBE006E5617 /* APIRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
 		33DE3C5622856DBE006E5617 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		33DE3C5722856DBE006E5617 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		33DE3C5822856DBE006E5617 /* Parse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parse.swift; sourceTree = "<group>"; };
@@ -178,7 +176,6 @@
 			isa = PBXGroup;
 			children = (
 				3375C1CF22859EFA0087E5F1 /* UIViewControllerExtension.swift */,
-				331240FD2292B8F100F64F92 /* NotificationsKeys.swift */,
 			);
 			path = ViewHelpers;
 			sourceTree = "<group>";
@@ -215,7 +212,7 @@
 			children = (
 				3375C1CB22859A320087E5F1 /* Views */,
 				33360F922287205B00702A39 /* Persistence */,
-				33DE3C5422856D92006E5617 /* HttpRequest */,
+				33DE3C5422856D92006E5617 /* APIRequest */,
 				33DE3C5122856D3D006E5617 /* SupportingFiles */,
 			);
 			path = BabylonDemoProject;
@@ -246,17 +243,17 @@
 			path = SupportingFiles;
 			sourceTree = "<group>";
 		};
-		33DE3C5422856D92006E5617 /* HttpRequest */ = {
+		33DE3C5422856D92006E5617 /* APIRequest */ = {
 			isa = PBXGroup;
 			children = (
-				33DE3C5522856DBE006E5617 /* HttpRequest.swift */,
+				33DE3C5522856DBE006E5617 /* APIRequest.swift */,
 				33DE3C5922856DBE006E5617 /* URLEndpoint.swift */,
 				33DE3C5722856DBE006E5617 /* API.swift */,
 				33DE3C5822856DBE006E5617 /* Parse.swift */,
 				33DE3C5622856DBE006E5617 /* Model.swift */,
 				33DE3C5F22856DC9006E5617 /* ModelHelpers */,
 			);
-			path = HttpRequest;
+			path = APIRequest;
 			sourceTree = "<group>";
 		};
 		33DE3C5F22856DC9006E5617 /* ModelHelpers */ = {
@@ -391,9 +388,8 @@
 				33360FC022872BA300702A39 /* Author+CoreDataProperties.swift in Sources */,
 				3375C1D022859EFA0087E5F1 /* UIViewControllerExtension.swift in Sources */,
 				33DE3C3122856CCE006E5617 /* PostsViewController.swift in Sources */,
-				33DE3C5A22856DBE006E5617 /* HttpRequest.swift in Sources */,
+				33DE3C5A22856DBE006E5617 /* APIRequest.swift in Sources */,
 				33DE3C6422856DD9006E5617 /* ModelType.swift in Sources */,
-				331240FE2292B8F100F64F92 /* NotificationsKeys.swift in Sources */,
 				33360FBB22872B7400702A39 /* Comment+CoreDataClass.swift in Sources */,
 				3375C1CA22859A1B0087E5F1 /* ContentStateViewController.swift in Sources */,
 				33DE3C3722856CCE006E5617 /* BabylonDemoProject.xcdatamodeld in Sources */,

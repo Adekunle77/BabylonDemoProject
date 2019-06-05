@@ -8,7 +8,7 @@
 
 import Foundation
 
- class HttpRequest: API {
+ class APIRequest: API {
     
     func fetchJSONdata(endPoint: URLEndpoint, completion: @escaping CompletionHandler) {
         guard let url = endPoint.url else { return }
@@ -46,7 +46,7 @@ import Foundation
 
                     if let data = try Parse.titleData(data: data) {
                         DispatchQueue.main.async {
-                            completion(.success(.titles(data)))
+                            completion(.success(.posts(data)))
                         }
                     }
                 }

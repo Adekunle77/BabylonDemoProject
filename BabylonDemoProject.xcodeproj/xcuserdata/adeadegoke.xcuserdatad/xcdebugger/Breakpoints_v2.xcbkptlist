@@ -2,4 +2,162 @@
 <Bucket
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BabylonDemoProject/Views/ContentStateViewController.swift"
+            timestampString = "581456957.7950799"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "18"
+            endingLineNumber = "18"
+            landmarkName = "ContentStateViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BabylonDemoProject.ContentStateViewController.model.getter : Swift.Optional&lt;BabylonDemoProject.ContentStateViewModel&gt;"
+                  moduleName = "BabylonDemoProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/adeadegoke/Desktop/BabylonDemoProject/BabylonDemoProject/Views/ContentStateViewController.swift"
+                  timestampString = "581456957.806379"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "114">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BabylonDemoProject.ContentStateViewController.model.setter : Swift.Optional&lt;BabylonDemoProject.ContentStateViewModel&gt;"
+                  moduleName = "BabylonDemoProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/adeadegoke/Desktop/BabylonDemoProject/BabylonDemoProject/Views/ContentStateViewController.swift"
+                  timestampString = "581456957.809222"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "128">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BabylonDemoProject.ContentStateViewController.model.modify : Swift.Optional&lt;BabylonDemoProject.ContentStateViewModel&gt;"
+                  moduleName = "BabylonDemoProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/adeadegoke/Desktop/BabylonDemoProject/BabylonDemoProject/Views/ContentStateViewController.swift"
+                  timestampString = "581456957.811911"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "18">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BabylonDemoProject.ContentStateViewController.model.modify : Swift.Optional&lt;BabylonDemoProject.ContentStateViewModel&gt; with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "BabylonDemoProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/adeadegoke/Desktop/BabylonDemoProject/BabylonDemoProject/Views/ContentStateViewController.swift"
+                  timestampString = "581456957.814726"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "4">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BabylonDemoProject.ContentStateViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; BabylonDemoProject.ContentStateViewController"
+                  moduleName = "BabylonDemoProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/adeadegoke/Desktop/BabylonDemoProject/BabylonDemoProject/Views/ContentStateViewController.swift"
+                  timestampString = "581456957.8174959"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "217">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BabylonDemoProject.ContentStateViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;BabylonDemoProject.ContentStateViewController&gt;"
+                  moduleName = "BabylonDemoProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/adeadegoke/Desktop/BabylonDemoProject/BabylonDemoProject/Views/ContentStateViewController.swift"
+                  timestampString = "581456957.820057"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "137">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BabylonDemoProject/Views/ContentStateViewController.swift"
+            timestampString = "581456957.795534"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BabylonDemoProject/Views/ContentStateViewModel.swift"
+            timestampString = "581456957.7958339"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
+            landmarkName = "getPosts()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BabylonDemoProject/Views/ContentStateViewModel.swift"
+            timestampString = "581456957.7958961"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
+            landmarkName = "init()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

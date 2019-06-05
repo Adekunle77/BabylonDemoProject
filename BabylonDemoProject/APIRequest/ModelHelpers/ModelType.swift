@@ -6,11 +6,10 @@
 //  Copyright © 2019 AKA. All rights reserved.
 //
 
-import Foundation
 
 enum ModelType {
-    case titles([Titles])
-    case authors([Authors])
-    case comments([Comments])
+    case posts([PostsModel])
+    case authors([AuthorModel])
+    case comments([CommentModel])
 
 }

@@ -12,6 +12,7 @@ import CoreData
 import UIKit
 
 protocol ViewModelDelegate: class {
+    func modelDidUpdateWithData()
     func modelDidUpdateWithError(error: Error)
     func showPostDetails(post: PostTuple)
 }
@@ -25,7 +26,7 @@ class PostsViewModel: NSObject {
     var postsArray = [Posts]()
     var authorsArray = [Author]()
     var commentsArray = [Comment]()
-
+    
     private func fetchSavedCoreData<T: NSManagedObject>(with objectType: T.Type) -> [T] {
         var data = [T]()
         let entityName = String(describing: objectType)
@@ -58,6 +59,7 @@ class PostsViewModel: NSObject {
         self.deleteSavedCoreData(with: Posts.self)
         self.deleteSavedCoreData(with: Author.self)
         self.deleteSavedCoreData(with: Comment.self)
+        self.delegate?.modelDidUpdateWithData()
     }
     
     
@@ -93,7 +95,6 @@ extension PostsViewModel: UICollectionViewDataSource {
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CollectionViewCell
-        
         let post = self.postsArray
         let info = post[indexPath.item]
         cell.updateCell(with: info)

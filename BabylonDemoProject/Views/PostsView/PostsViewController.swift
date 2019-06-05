@@ -27,10 +27,7 @@ class PostsViewController: UIViewController {
             name: "Main",
             bundle: nil).instantiateViewController(
             withIdentifier: "ContentStateVC") as? ContentStateViewController else { return }
-        
-        self.present(viewController, animated: true, completion: {
-            viewController.model?.getPosts()
-        })
+        self.present(viewController, animated: true, completion: nil)
     }
     
     private func collectionViewSetUp() {
@@ -42,6 +39,10 @@ class PostsViewController: UIViewController {
 }
 
 extension PostsViewController: ViewModelDelegate {
+    func modelDidUpdateWithData() {
+        self.collectionView.reloadData()
+    }
+    
     func showPostDetails(post: PostTuple) {
         self.performSegue(withIdentifier: "postDetail", sender: post)
     }

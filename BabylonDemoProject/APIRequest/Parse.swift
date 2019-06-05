@@ -10,27 +10,27 @@ import Foundation
 
 final class Parse {
     
-    static func titleData(data: Data) throws -> [Titles]? {
+    static func titleData(data: Data) throws -> [PostsModel]? {
         let jsonDecoder = JSONDecoder()
-        guard let parsedJson = try? jsonDecoder.decode([Titles].self, from: data) else {
+        guard let parsedJson = try? jsonDecoder.decode([PostsModel].self, from: data) else {
             let parsedError = DataSourceError.noData.self
             throw parsedError
         }
         return parsedJson
     }
     
-    static func authorData(data: Data) throws -> [Authors]? {
+    static func authorData(data: Data) throws -> [AuthorModel]? {
         let jsonDecoder = JSONDecoder()
-        guard let parsedJson = try? jsonDecoder.decode([Authors].self, from: data) else {
+        guard let parsedJson = try? jsonDecoder.decode([AuthorModel].self, from: data) else {
             let parsedError = DataSourceError.noData.self
             throw parsedError
         }
         return parsedJson
     }
     
-    static func commentsData(data: Data) throws -> [Comments]? {
+    static func commentsData(data: Data) throws -> [CommentModel]? {
         let jsonDecoder = JSONDecoder()
-        guard let parsedJson = try? jsonDecoder.decode([Comments].self, from: data) else {
+        guard let parsedJson = try? jsonDecoder.decode([CommentModel].self, from: data) else {
             let parsedError = DataSourceError.noData.self
             throw parsedError
         }

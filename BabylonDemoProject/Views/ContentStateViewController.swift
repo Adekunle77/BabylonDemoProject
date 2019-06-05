@@ -22,15 +22,11 @@ class ContentStateViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        model = ContentStateViewModel()
         model?.delegate = self
-        if self.model?.postsArray.isEmpty == true {
-            self.model?.getPosts()
-        }
-        
+        model = ContentStateViewModel()
         if state == nil {
             transtion(to: .loading, identifiers: .loadingView)
-        }
+        } 
     }
 
     func transtion(to newState: State, identifiers: Identifiers ) {
@@ -43,9 +39,9 @@ class ContentStateViewController: UIViewController {
     }
     
     enum Identifiers: String {
-        case loadingView = "loadingView"
-        case errorView = "errorView"
-        case postView = "postView"
+        case loadingView
+        case errorView
+        case postView
     }
     
 }
@@ -53,19 +49,20 @@ class ContentStateViewController: UIViewController {
 extension ContentStateViewController: ContentStateViewModelDelegate {
     func didUpdateWithError(error: Error) {
         guard let viewController = UIStoryboard(
-        name: "Main",
-        bundle: nil).instantiateViewController(
-        withIdentifier: "ErrorViewVC") as? ErrorViewController else { return }
+            name: "Main",
+            bundle: nil).instantiateViewController(
+            withIdentifier: "ErrorViewVC")  as? ErrorViewController else { return }
 
         viewController.error = error.localizedDescription
         self.present(viewController, animated: false, completion: nil)
     }
     
     func didUpdateWithData() {
+        print("wdjchbcdwkjcdwkjwckjwc")
         guard let viewController = UIStoryboard(
-        name: "Main",
-        bundle: nil).instantiateViewController(
-        withIdentifier: "PostViewVC") as? PostsViewController else { return }
+            name: "Main",
+            bundle: nil).instantiateViewController(
+                withIdentifier: "PostViewVC") as? PostsViewController else { return }
         transtion(to: .render(viewController), identifiers: .postView)
     }
 }
