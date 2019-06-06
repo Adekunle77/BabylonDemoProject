@@ -21,7 +21,7 @@ class ContentStateViewModel {
     weak var delegate: ContentStateViewModelDelegate?
   
     init() {
-        self.getPosts()
+        //self.getPosts()
         self.saveData.delegate = self
     }
     

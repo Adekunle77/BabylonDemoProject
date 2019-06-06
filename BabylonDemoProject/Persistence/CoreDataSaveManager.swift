@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 class CoreDataSaveManager {
-
+    var counter = 0
     let dataSource: API
     init(dataSource: API) {
         self.dataSource = dataSource
@@ -23,7 +23,7 @@ class CoreDataSaveManager {
                 completion(.failure(.dataError(error)))
             case .success(let data):
                 switch data {
-                case .authors(let author):
+                case .authors(let author):                    
                     self?.saveAuthorData(with: author)
                 case .comments(let comment):
                     self?.saveCommentData(with: comment)

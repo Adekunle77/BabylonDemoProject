@@ -14,21 +14,24 @@ protocol ContentStateErrorDelegate: class {
 
 
 class ContentStateViewController: UIViewController {
-    
-    var model: ContentStateViewModel?
+
+    var model = ContentStateViewModel()
     private var showViewController: UIViewController?
     weak var delegate: ContentStateErrorDelegate?
     private var state: State?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        model?.delegate = self
-        model = ContentStateViewModel()
+        
+        //model = ContentStateViewModel()
+        self.model.delegate = self
+        self.model.getPosts()
         if state == nil {
             transtion(to: .loading, identifiers: .loadingView)
-        } 
+        }
     }
 
+    
     func transtion(to newState: State, identifiers: Identifiers ) {
         showViewController?.remove()
         let vc = viewController(for: newState)
@@ -36,6 +39,7 @@ class ContentStateViewController: UIViewController {
         showViewController = vc
         state = newState
         self.performSegue(withIdentifier: identifiers.rawValue, sender: nil)
+        
     }
     
     enum Identifiers: String {
@@ -54,11 +58,11 @@ extension ContentStateViewController: ContentStateViewModelDelegate {
             withIdentifier: "ErrorViewVC")  as? ErrorViewController else { return }
 
         viewController.error = error.localizedDescription
-        self.present(viewController, animated: false, completion: nil)
+       // self.present(viewController, animated: false, completion: nil)
+        transtion(to: .render(viewController), identifiers: .errorView)
     }
     
     func didUpdateWithData() {
-        print("wdjchbcdwkjcdwkjwckjwc")
         guard let viewController = UIStoryboard(
             name: "Main",
             bundle: nil).instantiateViewController(
