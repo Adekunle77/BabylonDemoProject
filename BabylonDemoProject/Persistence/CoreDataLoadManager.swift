@@ -19,6 +19,7 @@ class CoreDataLoadManager {
     var dataSource = APIRequest()
     private var savedData: CoreDataSaveManager?
     var delegate: CoreDataLoadManagerDelegate?
+  
     
     init() {
         self.savedData = CoreDataSaveManager(dataSource: dataSource)
@@ -27,35 +28,37 @@ class CoreDataLoadManager {
     
     func fetchData() {
         let dispatchGroup = DispatchGroup()
-        let authorPath = URLEndpoint.init(path: Paths.authorUrlPath)
-        dispatchGroup.enter()
-        savedData?.fetchAPIData(with: authorPath, completion: { [weak self] result in
-            switch result {
-            case .failure(let error):
-                self?.delegate?.didLoadCoreDataError(error: error)
-            case .success():
-                 dispatchGroup.leave()
-            }
-        })
-        
         let postsPath = URLEndpoint.init(path: Paths.postsUrlPath)
         dispatchGroup.enter()
-        savedData?.fetchAPIData(with: postsPath, completion: { [weak self] result in
+        savedData?.fetchAPIData(with: postsPath, completion: { result in
             switch result {
             case .failure(let error):
-                 self?.delegate?.didLoadCoreDataError(error: error)
+                self.delegate?.didLoadCoreDataError(error: error)
             case .success():
-                dispatchGroup.leave()
-            }
-        })
-        
-        dispatchGroup.enter()
-        let commentsPath = URLEndpoint.init(path: Paths.commentsUrlPath)
-        savedData?.fetchAPIData(with: commentsPath, completion: {[weak self] result in
-            switch result {
-            case .failure(let error):
-                self?.delegate?.didLoadCoreDataError(error: error)
-            case .success():
+                do {
+                    let authorPath = URLEndpoint.init(path: Paths.authorUrlPath)
+                    dispatchGroup.enter()
+                    self.savedData?.fetchAPIData(with: authorPath, completion: { result in
+                        switch result {
+                        case .failure(let error):
+                            self.delegate?.didLoadCoreDataError(error: error)
+                        case .success():
+                            do {
+                                dispatchGroup.enter()
+                                let commentsPath = URLEndpoint.init(path: Paths.commentsUrlPath)
+                                self.savedData?.fetchAPIData(with: commentsPath, completion: { result in
+                                    switch result {
+                                    case .failure(let error):
+                                        self.delegate?.didLoadCoreDataError(error: error)
+                                    case .success():
+                                        dispatchGroup.leave()
+                                    }
+                                })
+                            }
+                            dispatchGroup.leave()
+                        }
+                    })
+                }
                 dispatchGroup.leave()
             }
         })
@@ -65,6 +68,8 @@ class CoreDataLoadManager {
         }
     }
 
+    
+    
     private func entityIsEmpty<T: NSManagedObject>(entity: T.Type) -> Bool {
         let entityName = String(describing: entity)
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)

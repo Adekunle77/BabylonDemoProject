@@ -10,13 +10,13 @@ import Foundation
 import CoreData
 
 class CoreDataSaveManager {
-    var counter = 0
     let dataSource: API
     init(dataSource: API) {
         self.dataSource = dataSource
     }
 
     func fetchAPIData(with path: URLEndpoint, completion: @escaping (Result<(), DataSourceError>) -> ()) {
+        
         dataSource.fetchJSONdata(endPoint: path, completion: {[weak self] result in
             switch result {
             case .failure(let error):

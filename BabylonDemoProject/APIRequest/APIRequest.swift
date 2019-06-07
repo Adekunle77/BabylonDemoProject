@@ -17,6 +17,7 @@ import Foundation
             if let error = error {
                 DispatchQueue.main.async {
                     completion(.failure(.network(error)))
+
                 }
             }
             guard let data = data else {

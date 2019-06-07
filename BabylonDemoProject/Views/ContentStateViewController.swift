@@ -58,8 +58,8 @@ extension ContentStateViewController: ContentStateViewModelDelegate {
             withIdentifier: "ErrorViewVC")  as? ErrorViewController else { return }
 
         viewController.error = error.localizedDescription
-       // self.present(viewController, animated: false, completion: nil)
-        transtion(to: .render(viewController), identifiers: .errorView)
+        self.present(viewController, animated: false, completion: nil)
+       // transtion(to: .render(viewController), identifiers: .errorView)
     }
     
     func didUpdateWithData() {
