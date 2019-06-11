@@ -51,16 +51,23 @@ class ContentStateViewController: UIViewController {
 }
 
 extension ContentStateViewController: ContentStateViewModelDelegate {
-    func didUpdateWithError(error: Error) {
-        guard let viewController = UIStoryboard(
-            name: "Main",
-            bundle: nil).instantiateViewController(
-            withIdentifier: "ErrorViewVC")  as? ErrorViewController else { return }
+    func didUpdateWithError(error: [Error]) {
+        print(error.count, "why jh")
 
-        viewController.error = error.localizedDescription
-        self.present(viewController, animated: false, completion: nil)
-       // transtion(to: .render(viewController), identifiers: .errorView)
+                guard let viewController = UIStoryboard(
+                    name: "Main",
+                    bundle: nil).instantiateViewController(
+                    withIdentifier: "ErrorViewVC")  as? ErrorViewController else { return }
+        
+               // viewController.error = error.localizedDescription
+//                self.dismiss(animated: true, completion: {
+//                   print("dissmiss")
+//                    self.transtion(to: .render(viewController), identifiers: .errorView)
+//                })
+            self.present(viewController, animated: false, completion: nil)
+               //
     }
+    
     
     func didUpdateWithData() {
         guard let viewController = UIStoryboard(

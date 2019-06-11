@@ -12,7 +12,7 @@ import UIKit
 
 protocol ContentStateViewModelDelegate: class {
     func didUpdateWithData()
-    func didUpdateWithError(error: Error)
+    func didUpdateWithError(error: [Error])
 }
 
 class ContentStateViewModel {
@@ -34,15 +34,16 @@ class ContentStateViewModel {
             guard fetchObject != nil else { return }
             if let fetchedPost = fetchObject {
                 self.postsArray = fetchedPost
-                print(postsArray.count)
             }
             if self.postsArray.count == 0 {    
                 self.saveData.fetchData()
             } else {
                self.delegate?.didUpdateWithData()
             }
-        } catch {
-            self.delegate?.didUpdateWithError(error: error)
+        } catch let error {
+            var errorsArray = [Error]()
+            errorsArray.append(error)
+            self.delegate?.didUpdateWithError(error: errorsArray)
         }
     }
     
@@ -53,8 +54,9 @@ extension ContentStateViewModel: CoreDataLoadManagerDelegate {
         self.delegate?.didUpdateWithData()
     }
     
-    func didLoadCoreDataError(error: Error) {
+    func didLoadCoreDataError(error: [Error]) {
         self.delegate?.didUpdateWithError(error: error)
+        print(error.count, "didLoadCoreDataError didLoadCoreDataError")
     }
     
     

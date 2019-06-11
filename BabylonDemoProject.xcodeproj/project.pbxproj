@@ -38,7 +38,6 @@
 		33DE3C5A22856DBE006E5617 /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DE3C5522856DBE006E5617 /* APIRequest.swift */; };
 		33DE3C5B22856DBE006E5617 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DE3C5622856DBE006E5617 /* Model.swift */; };
 		33DE3C5C22856DBE006E5617 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DE3C5722856DBE006E5617 /* API.swift */; };
-		33DE3C5D22856DBE006E5617 /* Parse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DE3C5822856DBE006E5617 /* Parse.swift */; };
 		33DE3C5E22856DBE006E5617 /* URLEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DE3C5922856DBE006E5617 /* URLEndpoint.swift */; };
 		33DE3C6322856DD9006E5617 /* DataSourceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DE3C6022856DD9006E5617 /* DataSourceError.swift */; };
 		33DE3C6422856DD9006E5617 /* ModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DE3C6122856DD9006E5617 /* ModelType.swift */; };
@@ -94,7 +93,6 @@
 		33DE3C5522856DBE006E5617 /* APIRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
 		33DE3C5622856DBE006E5617 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		33DE3C5722856DBE006E5617 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
-		33DE3C5822856DBE006E5617 /* Parse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parse.swift; sourceTree = "<group>"; };
 		33DE3C5922856DBE006E5617 /* URLEndpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLEndpoint.swift; sourceTree = "<group>"; };
 		33DE3C6022856DD9006E5617 /* DataSourceError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSourceError.swift; sourceTree = "<group>"; };
 		33DE3C6122856DD9006E5617 /* ModelType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelType.swift; sourceTree = "<group>"; };
@@ -249,7 +247,6 @@
 				33DE3C5522856DBE006E5617 /* APIRequest.swift */,
 				33DE3C5922856DBE006E5617 /* URLEndpoint.swift */,
 				33DE3C5722856DBE006E5617 /* API.swift */,
-				33DE3C5822856DBE006E5617 /* Parse.swift */,
 				33DE3C5622856DBE006E5617 /* Model.swift */,
 				33DE3C5F22856DC9006E5617 /* ModelHelpers */,
 			);
@@ -405,7 +402,6 @@
 				3375C1D22285B67B0087E5F1 /* PostsViewModel.swift in Sources */,
 				33DE3C5C22856DBE006E5617 /* API.swift in Sources */,
 				33360F94228720D000702A39 /* PersistenceService.swift in Sources */,
-				33DE3C5D22856DBE006E5617 /* Parse.swift in Sources */,
 				33DE3C2F22856CCE006E5617 /* AppDelegate.swift in Sources */,
 				3375C1C82285994A0087E5F1 /* LoadingViewController.swift in Sources */,
 			);

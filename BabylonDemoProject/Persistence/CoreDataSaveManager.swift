@@ -14,13 +14,12 @@ class CoreDataSaveManager {
     init(dataSource: API) {
         self.dataSource = dataSource
     }
-
+    
     func fetchAPIData(with path: URLEndpoint, completion: @escaping (Result<(), DataSourceError>) -> ()) {
-        
         dataSource.fetchJSONdata(endPoint: path, completion: {[weak self] result in
             switch result {
             case .failure(let error):
-                completion(.failure(.dataError(error)))
+                completion(.failure(.network(error)))
             case .success(let data):
                 switch data {
                 case .authors(let author):                    
@@ -34,7 +33,6 @@ class CoreDataSaveManager {
             }
         })
     }
-    
     
     func savePostData(with dataArray: [PostsModel]) {
         for item in dataArray {
