@@ -7,10 +7,8 @@
 //
 //
 
-import Foundation
 import CoreData
+import Foundation
 
 @objc(Comment)
-public class Comment: NSManagedObject {
-
-}
+public class Comment: NSManagedObject {}

@@ -9,28 +9,28 @@
 import UIKit
 
 class ErrorViewController: UIViewController {
-    
-    @IBOutlet weak var errorUILabel: UILabel!
+    @IBOutlet var errorUILabel: UILabel!
     var error: String?
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         displayError(error: error ?? "There is an Error")
     }
+
     func displayError(error: String) {
         errorUILabel?.text = error
     }
-    
-    @IBAction func returnToLoadingView(_ sender: Any) {
+
+    @IBAction func returnToLoadingView(_: Any) {
         guard let viewController = UIStoryboard(
             name: "Main",
-            bundle: nil).instantiateViewController(
-            withIdentifier: "LoadingViewVC") as? LoadingViewController else { return }
-        
-        self.present(viewController, animated: true, completion: {
+            bundle: nil
+        ).instantiateViewController(
+            withIdentifier: "LoadingViewVC"
+        ) as? LoadingViewController else { return }
+
+        present(viewController, animated: true, completion: {
             viewController.hideObjectsInView()
         })
     }
 }
-
-

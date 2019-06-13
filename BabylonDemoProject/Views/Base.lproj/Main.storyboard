@@ -129,7 +129,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There is an error!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ec6-3a-dXI">
-                                <rect key="frame" x="52" y="289" width="270" height="21"/>
+                                <rect key="frame" x="52" y="289" width="270" height="23"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -147,7 +147,7 @@
                             <constraint firstItem="hMl-Z1-NhA" firstAttribute="trailing" secondItem="Ec6-3a-dXI" secondAttribute="trailing" constant="53" id="3CK-XL-acO"/>
                             <constraint firstItem="cLG-vS-4Pc" firstAttribute="leading" secondItem="hMl-Z1-NhA" secondAttribute="leading" constant="283" id="IV2-gp-gQG"/>
                             <constraint firstItem="Ec6-3a-dXI" firstAttribute="top" secondItem="hMl-Z1-NhA" secondAttribute="top" constant="269" id="Yw4-I4-GX3"/>
-                            <constraint firstItem="hMl-Z1-NhA" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Ec6-3a-dXI" secondAttribute="bottom" constant="357" id="bQv-Ih-H8x"/>
+                            <constraint firstItem="hMl-Z1-NhA" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Ec6-3a-dXI" secondAttribute="bottom" multiplier="0.5" constant="357" id="bQv-Ih-H8x"/>
                             <constraint firstItem="Ec6-3a-dXI" firstAttribute="leading" secondItem="hMl-Z1-NhA" secondAttribute="leading" constant="52" id="bgc-vn-ZBL"/>
                             <constraint firstItem="hMl-Z1-NhA" firstAttribute="bottom" secondItem="cLG-vS-4Pc" secondAttribute="bottom" constant="64" id="cuJ-Kn-HFX"/>
                             <constraint firstItem="hMl-Z1-NhA" firstAttribute="trailing" secondItem="cLG-vS-4Pc" secondAttribute="trailing" constant="53" id="lq5-Kg-dYa"/>

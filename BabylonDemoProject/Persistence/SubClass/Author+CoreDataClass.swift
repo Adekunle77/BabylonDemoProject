@@ -7,10 +7,8 @@
 //
 //
 
-import Foundation
 import CoreData
+import Foundation
 
 @objc(Author)
-public class Author: NSManagedObject {
-
-}
+public class Author: NSManagedObject {}

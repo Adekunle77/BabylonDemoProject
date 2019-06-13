@@ -1,4 +1,5 @@
 //
+import CoreData
 //  ContentStateViewModel.swift
 //  BabylonDemoProject
 //
@@ -6,9 +7,7 @@
 //  Copyright © 2019 AKA. All rights reserved.
 //
 import Foundation
-import CoreData
 import UIKit
-
 
 protocol ContentStateViewModelDelegate: class {
     func didUpdateWithData()
@@ -19,45 +18,52 @@ class ContentStateViewModel {
     var postsArray = [Posts]()
     let saveData = CoreDataLoadManager()
     weak var delegate: ContentStateViewModelDelegate?
-  
+
     init() {
-        //self.getPosts()
-        self.saveData.delegate = self
+        // self.getPosts()
+        saveData.delegate = self
     }
-    
+
     func getPosts() {
         let entityName = String(describing: Posts.self)
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(
-            entityName: entityName)
+            entityName: entityName
+        )
         do {
             let fetchObject = try PersistenceService.context.fetch(fetchRequest) as? [Posts]
             guard fetchObject != nil else { return }
             if let fetchedPost = fetchObject {
-                self.postsArray = fetchedPost
+                postsArray = fetchedPost
             }
-            if self.postsArray.count == 0 {    
-                self.saveData.fetchData()
+            if postsArray.count == 0 {
+                saveData.fetchData()
             } else {
-               self.delegate?.didUpdateWithData()
+                delegate?.didUpdateWithData()
             }
-        } catch let error {
+        } catch {
             var errorsArray = [Error]()
             errorsArray.append(error)
-            self.delegate?.didUpdateWithError(error: errorsArray)
+            delegate?.didUpdateWithError(error: errorsArray)
         }
     }
     
+    
+    
+    func stringLocalizedError(error: [Error]) -> String{
+        var errorMessage = String()
+        for message in error {
+            errorMessage += "\(message.localizedDescription) \n"
+        }
+        return errorMessage
+    }
 }
 
 extension ContentStateViewModel: CoreDataLoadManagerDelegate {
     func didLoadCoreData() {
-        self.delegate?.didUpdateWithData()
+        delegate?.didUpdateWithData()
     }
-    
+
     func didLoadCoreDataError(error: [Error]) {
-        self.delegate?.didUpdateWithError(error: error)
-        print(error.count, "didLoadCoreDataError didLoadCoreDataError")
+        delegate?.didUpdateWithError(error: error)
     }
-    
-    
 }

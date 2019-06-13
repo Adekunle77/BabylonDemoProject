@@ -6,34 +6,34 @@
 //  Copyright © 2019 AKA. All rights reserved.
 //
 
-import Foundation
 import CoreData
+import Foundation
 
 class CoreDataSaveManager {
     let dataSource: API
     init(dataSource: API) {
         self.dataSource = dataSource
     }
-    
-    func fetchAPIData(with path: URLEndpoint, completion: @escaping (Result<(), DataSourceError>) -> ()) {
-        dataSource.fetchJSONdata(endPoint: path, completion: {[weak self] result in
+
+    func fetchAPIData(with path: URLEndpoint, completion: @escaping (Result<(), DataSourceError>) -> Void) {
+        dataSource.fetchJSONdata(endPoint: path, completion: { [weak self] result in
             switch result {
-            case .failure(let error):
+            case let .failure(error):
                 completion(.failure(.network(error)))
-            case .success(let data):
+            case let .success(data):
                 switch data {
-                case .authors(let author):                    
+                case let .authors(author):
                     self?.saveAuthorData(with: author)
-                case .comments(let comment):
+                case let .comments(comment):
                     self?.saveCommentData(with: comment)
-                case .posts(let post):
+                case let .posts(post):
                     self?.savePostData(with: post)
                 }
-               completion(.success(()))
+                completion(.success(()))
             }
         })
     }
-    
+
     func savePostData(with dataArray: [PostsModel]) {
         for item in dataArray {
             let title = Posts(context: PersistenceService.context)
@@ -44,7 +44,7 @@ class CoreDataSaveManager {
             PersistenceService.saveContext()
         }
     }
-    
+
     private func saveAuthorData(with dataArray: [AuthorModel]) {
         for item in dataArray {
             let author = Author(context: PersistenceService.context)
@@ -53,7 +53,7 @@ class CoreDataSaveManager {
             PersistenceService.saveContext()
         }
     }
-    
+
     private func saveCommentData(with dataArray: [CommentModel]) {
         for item in dataArray {
             let comment = Comment(context: PersistenceService.context)
@@ -63,8 +63,4 @@ class CoreDataSaveManager {
             PersistenceService.saveContext()
         }
     }
-    
 }
-    
-    
-

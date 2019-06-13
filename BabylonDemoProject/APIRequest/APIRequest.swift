@@ -8,16 +8,16 @@
 
 import Foundation
 
- class APIRequest: API {
+class APIRequest: API {
     func fetchJSONdata(endPoint: URLEndpoint, completion: @escaping CompletionHandler) {
         guard let url = endPoint.url else { return }
-        let task = URLSession.shared.dataTask(with: url) {(data, response, error) in
+        let task = URLSession.shared.dataTask(with: url) { data, _, error in
             DispatchQueue.main.async {
-                switch (error, data)  {
+                switch (error, data) {
                 case let (error?, _):
                     completion(.failure(DataSourceError.network(error)))
                 case let (_, data?):
-                    completion(Result { try endPoint.parse(data)})
+                    completion(Result { try endPoint.parse(data) })
                 default:
                     completion(.failure(DataSourceError.noData))
                 }
@@ -26,4 +26,3 @@ import Foundation
         task.resume()
     }
 }
-

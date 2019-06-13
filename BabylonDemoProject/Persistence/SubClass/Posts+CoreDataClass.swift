@@ -7,10 +7,8 @@
 //
 //
 
-import Foundation
 import CoreData
+import Foundation
 
 @objc(Posts)
-public class Posts: NSManagedObject {
-
-}
+public class Posts: NSManagedObject {}

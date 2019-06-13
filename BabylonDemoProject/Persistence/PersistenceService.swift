@@ -6,29 +6,27 @@
 //  Copyright © 2019 AKA. All rights reserved.
 //
 
-import Foundation
 import CoreData
-
+import Foundation
 
 final class PersistenceService {
-    
     private init() {}
-    
+
     static var context: NSManagedObjectContext {
         return persistentContainer.viewContext
     }
-    
+
     static var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "BabylonDemoProject")
-        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+        container.loadPersistentStores(completionHandler: { _, error in
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         })
         return container
     }()
-    
-    static func saveContext () {
+
+    static func saveContext() {
         let context = persistentContainer.viewContext
         if context.hasChanges {
             do {
@@ -39,5 +37,4 @@ final class PersistenceService {
             }
         }
     }
-
 }

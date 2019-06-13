@@ -6,13 +6,12 @@
 //  Copyright © 2019 AKA. All rights reserved.
 //
 
-import UIKit
 import CoreData
+import UIKit
 
 class PostsViewController: UIViewController {
-
     private var stateViewController: ContentStateViewController?
-    @IBOutlet weak private var collectionView: UICollectionView!
+    @IBOutlet private var collectionView: UICollectionView!
     private var viewModel = PostsViewModel()
 
     override func viewDidLoad() {
@@ -21,48 +20,50 @@ class PostsViewController: UIViewController {
         collectionViewSetUp()
     }
 
-    @IBAction func refreshData(_ sender: Any) {
+    @IBAction func refreshData(_: Any) {
         viewModel.refreshData()
         guard let viewController = UIStoryboard(
             name: "Main",
-            bundle: nil).instantiateViewController(
-            withIdentifier: "ContentStateVC") as? ContentStateViewController else { return }
-        self.present(viewController, animated: true, completion: nil)
+            bundle: nil
+        ).instantiateViewController(
+            withIdentifier: "ContentStateVC"
+        ) as? ContentStateViewController else { return }
+        present(viewController, animated: true, completion: nil)
     }
-    
+
     private func collectionViewSetUp() {
-        self.collectionView?.delegate = viewModel
-        self.collectionView?.dataSource = viewModel
+        collectionView?.delegate = viewModel
+        collectionView?.dataSource = viewModel
         let nib = UINib(nibName: "CollectionViewCell", bundle: nil)
-        self.collectionView?.register(nib, forCellWithReuseIdentifier: viewModel.reuseIdentifier)
+        collectionView?.register(nib, forCellWithReuseIdentifier: viewModel.reuseIdentifier)
     }
 }
 
 extension PostsViewController: ViewModelDelegate {
     func modelDidUpdateWithData() {
-        self.collectionView.reloadData()
+        collectionView.reloadData()
     }
-    
+
     func showPostDetails(post: PostTuple) {
-        self.performSegue(withIdentifier: "postDetail", sender: post)
+        performSegue(withIdentifier: "postDetail", sender: post)
     }
-    
+
     func modelDidUpdateWithError(error: Error) {
         guard let viewController = UIStoryboard(
-        name: "Main",
-        bundle: nil).instantiateViewController(
-        withIdentifier: "ErrorViewVC") as? ErrorViewController else { return }
-        
+            name: "Main",
+            bundle: nil
+        ).instantiateViewController(
+            withIdentifier: "ErrorViewVC"
+        ) as? ErrorViewController else { return }
+
         viewController.error = error.localizedDescription
-        self.present(viewController, animated: false, completion: nil)
-        
+        present(viewController, animated: false, completion: nil)
     }
 }
 
 extension PostsViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout
-        collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
+    func collectionView(_: UICollectionView, layout
+        _: UICollectionViewLayout, sizeForItemAt _: IndexPath) -> CGSize {
         let width = view.bounds.size.width
         let height = view.bounds.size.height
 
@@ -74,7 +75,7 @@ extension PostsViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let detailPostVC = segue.destination as? PostDetailViewController,
             let detailPost = sender as? PostTuple {
-                detailPostVC.postDetails = detailPost
+            detailPostVC.postDetails = detailPost
         }
     }
 }

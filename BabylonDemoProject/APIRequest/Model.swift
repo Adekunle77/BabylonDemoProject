@@ -54,8 +54,7 @@ struct CommentModel: Codable {
 }
 
 extension PostsModel: Equatable {
-    static func ==(lhs: PostsModel, rhs: PostsModel) -> Bool {
-    
+    static func == (lhs: PostsModel, rhs: PostsModel) -> Bool {
         return lhs.id == rhs.id &&
             lhs.userId == rhs.userId &&
             lhs.body == rhs.body &&
@@ -63,10 +62,8 @@ extension PostsModel: Equatable {
     }
 }
 
-
 extension AuthorModel: Equatable {
-    static func ==(lhs: AuthorModel, rhs: AuthorModel) -> Bool {
-        
+    static func == (lhs: AuthorModel, rhs: AuthorModel) -> Bool {
         return lhs.id == rhs.id &&
             lhs.name == rhs.name &&
             lhs.username == rhs.username &&
@@ -77,8 +74,7 @@ extension AuthorModel: Equatable {
 }
 
 extension CommentModel: Equatable {
-    static func ==(lhs: CommentModel, rhs: CommentModel) -> Bool {
-        
+    static func == (lhs: CommentModel, rhs: CommentModel) -> Bool {
         return lhs.postId == rhs.postId &&
             lhs.id == rhs.id &&
             lhs.name == rhs.name &&

@@ -6,8 +6,8 @@
 //  Copyright © 2019 AKA. All rights reserved.
 //
 
-import Foundation
 import CoreData
+import Foundation
 
 protocol CoreDataLoadManagerDelegate {
     func didLoadCoreData()
@@ -15,53 +15,50 @@ protocol CoreDataLoadManagerDelegate {
 }
 
 class CoreDataLoadManager {
-
     var dataSource = APIRequest()
     private var savedData: CoreDataSaveManager?
     var delegate: CoreDataLoadManagerDelegate?
-  
-    
+
     init() {
-        self.savedData = CoreDataSaveManager(dataSource: dataSource)
+        savedData = CoreDataSaveManager(dataSource: dataSource)
     }
-    
-    
+
     func fetchData() {
         let dispatchGroup = DispatchGroup()
         var errorsArray = [Error]()
-        let postsPath = URLEndpoint.init(path: Paths.postsUrlPath)
+        let postsPath = URLEndpoint(path: Paths.postsUrlPath)
         dispatchGroup.enter()
         savedData?.fetchAPIData(with: postsPath, completion: { result in
             switch result {
-            case .failure(let error):
+            case let .failure(error):
                 errorsArray.append(error)
             case .success(): break
             }
             dispatchGroup.leave()
         })
-        
-        let authorPath = URLEndpoint.init(path: Paths.authorUrlPath)
+
+        let authorPath = URLEndpoint(path: Paths.authorUrlPath)
         dispatchGroup.enter()
         savedData?.fetchAPIData(with: authorPath, completion: { result in
             switch result {
-            case .failure(let error):
+            case let .failure(error):
                 errorsArray.append(error)
             case .success(): break
             }
             dispatchGroup.leave()
         })
-        
-        let commentsPath = URLEndpoint.init(path: Paths.authorUrlPath)
+
+        let commentsPath = URLEndpoint(path: Paths.authorUrlPath)
         dispatchGroup.enter()
         savedData?.fetchAPIData(with: commentsPath, completion: { result in
             switch result {
-            case .failure(let error):
+            case let .failure(error):
                 errorsArray.append(error)
             case .success(): break
             }
-           dispatchGroup.leave()
+            dispatchGroup.leave()
         })
-        
+
         dispatchGroup.notify(queue: .main) {
             print(errorsArray.count)
             if errorsArray.count > 0 {

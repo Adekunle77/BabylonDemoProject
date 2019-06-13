@@ -9,23 +9,22 @@
 import UIKit
 
 class LoadingViewController: UIViewController {
-
-    @IBOutlet weak var resetButton: UIButton!
+    @IBOutlet var resetButton: UIButton!
     private lazy var activityIndicator = UIActivityIndicatorView(style: .gray)
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .magenta
         view.addSubview(activityIndicator)
 
         NSLayoutConstraint.activate([
             activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor),
         ])
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         resetButton?.isHidden = true
@@ -33,18 +32,20 @@ class LoadingViewController: UIViewController {
             self?.activityIndicator.startAnimating()
         }
     }
-    
+
     func hideObjectsInView() {
         resetButton?.isHidden = false
     }
-    
-    @IBAction private func returnToContentStateVC(_ sender: Any) {
+
+    @IBAction private func returnToContentStateVC(_: Any) {
         guard let viewController = UIStoryboard(
             name: "Main",
-            bundle: nil).instantiateViewController(
-            withIdentifier: "ContentStateVC") as? ContentStateViewController else { return }
-        
-        self.present(viewController, animated: true, completion: {
+            bundle: nil
+        ).instantiateViewController(
+            withIdentifier: "ContentStateVC"
+        ) as? ContentStateViewController else { return }
+
+        present(viewController, animated: true, completion: {
             viewController.model.getPosts()
         })
     }

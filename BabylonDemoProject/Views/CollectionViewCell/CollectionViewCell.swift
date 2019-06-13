@@ -9,9 +9,8 @@
 import UIKit
 
 class CollectionViewCell: UICollectionViewCell {
-
-    @IBOutlet weak var title: UILabel!
-    @IBOutlet weak var cellBackgroundView: UIView!
+    @IBOutlet var title: UILabel!
+    @IBOutlet var cellBackgroundView: UIView!
     override func awakeFromNib() {
         super.awakeFromNib()
         cellBackgroundView.addBorder(to: .bottom, with: UIColor.black.cgColor, thickness: 1.0)

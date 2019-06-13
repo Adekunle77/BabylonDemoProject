@@ -7,12 +7,10 @@
 //
 //
 
-import Foundation
 import CoreData
-
+import Foundation
 
 extension Comment {
-
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Comment> {
         return NSFetchRequest<Comment>(entityName: "Comment")
     }

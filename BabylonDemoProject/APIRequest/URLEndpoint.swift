@@ -20,7 +20,7 @@ enum Paths: String {
 
 extension URLEndpoint {
     var url: URL? {
-    var components = URLComponents()
+        var components = URLComponents()
         components.scheme = "https"
         components.host = "jsonplaceholder.typicode.com"
         components.path = path.rawValue
@@ -29,7 +29,6 @@ extension URLEndpoint {
 }
 
 extension URLEndpoint {
-        
     func parse(_ data: Data) throws -> ModelType {
         let decoder = JSONDecoder()
         switch path {
@@ -41,5 +40,4 @@ extension URLEndpoint {
             return try .comments(decoder.decode([CommentModel].self, from: data))
         }
     }
-
 }
