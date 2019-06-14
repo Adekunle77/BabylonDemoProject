@@ -17,6 +17,6 @@ extension Posts {
 
     @NSManaged public var title: String
     @NSManaged public var body: String
-    @NSManaged public var id: Int16
+    @NSManaged public var postId: Int16
     @NSManaged public var userID: Int16
 }

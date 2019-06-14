@@ -29,12 +29,11 @@ class ContentStateViewController: UIViewController {
 
     func transtion(to newState: State, identifiers: Identifiers) {
         showViewController?.remove()
-        let vc = viewController(for: newState)
-        add(vc)
-        showViewController = vc
+        let view = viewController(for: newState)
+        add(view)
+        showViewController = view
         state = newState
         performSegue(withIdentifier: identifiers.rawValue, sender: nil)
-  
     }
 
     enum Identifiers: String {
@@ -46,7 +45,6 @@ class ContentStateViewController: UIViewController {
 
 extension ContentStateViewController: ContentStateViewModelDelegate {
     func didUpdateWithError(error: [Error]) {
-        
         guard let viewController = UIStoryboard(
             name: "Main",
             bundle: nil
@@ -57,9 +55,8 @@ extension ContentStateViewController: ContentStateViewModelDelegate {
         let errorMessage = self.model.stringLocalizedError(error: error)
         viewController.error = errorMessage
         present(viewController, animated: false, completion: nil)
-        
     }
-
+    
     func didUpdateWithData() {
         guard let viewController = UIStoryboard(
             name: "Main",

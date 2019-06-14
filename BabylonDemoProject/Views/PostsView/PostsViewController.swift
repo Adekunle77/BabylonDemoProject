@@ -49,11 +49,9 @@ extension PostsViewController: ViewModelDelegate {
     }
 
     func modelDidUpdateWithError(error: Error) {
-        guard let viewController = UIStoryboard(
-            name: "Main",
-            bundle: nil
-        ).instantiateViewController(
-            withIdentifier: "ErrorViewVC"
+        guard let viewController = UIStoryboard( name: "Main",
+                                                 bundle: nil ).instantiateViewController(
+                                                    withIdentifier: "ErrorViewVC"
         ) as? ErrorViewController else { return }
 
         viewController.error = error.localizedDescription
@@ -62,8 +60,9 @@ extension PostsViewController: ViewModelDelegate {
 }
 
 extension PostsViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_: UICollectionView, layout
-        _: UICollectionViewLayout, sizeForItemAt _: IndexPath) -> CGSize {
+    func collectionView(_: UICollectionView,
+                        layout _: UICollectionViewLayout,
+                        sizeForItemAt _: IndexPath) -> CGSize {
         let width = view.bounds.size.width
         let height = view.bounds.size.height
 

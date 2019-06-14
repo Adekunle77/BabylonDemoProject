@@ -39,7 +39,7 @@ class CoreDataSaveManager {
             let title = Posts(context: PersistenceService.context)
             title.title = item.title
             title.body = item.body
-            title.id = Int16(item.id)
+            title.postId = Int16(item.identification)
             title.userID = Int16(item.userId)
             PersistenceService.saveContext()
         }
@@ -49,7 +49,7 @@ class CoreDataSaveManager {
         for item in dataArray {
             let author = Author(context: PersistenceService.context)
             author.name = item.name
-            author.authorID = Int16(item.id)
+            author.authorID = Int16(item.identification)
             PersistenceService.saveContext()
         }
     }
@@ -59,7 +59,7 @@ class CoreDataSaveManager {
             let comment = Comment(context: PersistenceService.context)
             comment.comments = item.body
             comment.postId = Int16(item.postId)
-            comment.id = Int16(item.id)
+            comment.commentId = Int16(item.identification)
             PersistenceService.saveContext()
         }
     }

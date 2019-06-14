@@ -9,7 +9,7 @@
 import CoreData
 import Foundation
 
-protocol CoreDataLoadManagerDelegate {
+protocol CoreDataLoadManagerDelegate: class {
     func didLoadCoreData()
     func didLoadCoreDataError(error: [Error])
 }
@@ -17,7 +17,7 @@ protocol CoreDataLoadManagerDelegate {
 class CoreDataLoadManager {
     var dataSource = APIRequest()
     private var savedData: CoreDataSaveManager?
-    var delegate: CoreDataLoadManagerDelegate?
+    weak var delegate: CoreDataLoadManagerDelegate?
 
     init() {
         savedData = CoreDataSaveManager(dataSource: dataSource)
@@ -32,7 +32,7 @@ class CoreDataLoadManager {
             switch result {
             case let .failure(error):
                 errorsArray.append(error)
-            case .success(): break
+            case .success: break
             }
             dispatchGroup.leave()
         })
@@ -43,7 +43,7 @@ class CoreDataLoadManager {
             switch result {
             case let .failure(error):
                 errorsArray.append(error)
-            case .success(): break
+            case .success: break
             }
             dispatchGroup.leave()
         })
@@ -54,7 +54,7 @@ class CoreDataLoadManager {
             switch result {
             case let .failure(error):
                 errorsArray.append(error)
-            case .success(): break
+            case .success: break
             }
             dispatchGroup.leave()
         })

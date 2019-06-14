@@ -11,3 +11,5 @@ enum ModelType {
     case authors([AuthorModel])
     case comments([CommentModel])
 }
+
+extension ModelType: Equatable {}

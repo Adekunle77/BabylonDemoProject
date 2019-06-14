@@ -39,7 +39,7 @@ class PostsViewModel: NSObject {
     }
 
     private func getCommentsCount(using post: Posts, with array: [Comment]) -> String {
-        let userID = post.id
+        let userID = post.postId
         let comments = array.all(where: { $0.postId == userID })
         return String(comments.count)
     }
@@ -47,8 +47,8 @@ class PostsViewModel: NSObject {
     private func getAuthorInfo(using title: Posts, with array: [Author]) -> Author {
         let userID = title.userID
         var author = Author(context: PersistenceService.context)
-        if let id = array.first(where: { $0.authorID == userID }) {
-            author = id
+        if let identification = array.first(where: { $0.authorID == userID }) {
+            author = identification
         }
         return author
     }
@@ -87,7 +87,11 @@ extension PostsViewModel: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CollectionViewCell
+
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier,
+                                                            for: indexPath) as? CollectionViewCell else {
+            return UICollectionViewCell()
+        }
         let post = postsArray
         let info = post[indexPath.item]
         cell.updateCell(with: info)

@@ -20,7 +20,6 @@ class ContentStateViewModel {
     weak var delegate: ContentStateViewModelDelegate?
 
     init() {
-        // self.getPosts()
         saveData.delegate = self
     }
 
@@ -46,10 +45,7 @@ class ContentStateViewModel {
             delegate?.didUpdateWithError(error: errorsArray)
         }
     }
-    
-    
-    
-    func stringLocalizedError(error: [Error]) -> String{
+    func stringLocalizedError(error: [Error]) -> String {
         var errorMessage = String()
         for message in error {
             errorMessage += "\(message.localizedDescription) \n"

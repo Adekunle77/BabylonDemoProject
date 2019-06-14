@@ -10,13 +10,17 @@ import Foundation
 
 struct PostsModel: Codable {
     let userId: Int
-    let id: Int
+    let identification: Int
     let body: String
     let title: String
+    enum CodingKeys: String, CodingKey {
+        case userId, body, title
+        case identification = "id"
+    }
 }
 
 struct AuthorModel: Codable {
-    let id: Int
+    let identification: Int
     let name: String
     let username: String
     let email: String
@@ -24,6 +28,10 @@ struct AuthorModel: Codable {
     let phone: String
     let website: String
     let company: Company
+    enum CodingKeys: String, CodingKey {
+        case name, username, email, address, phone, website, company
+        case identification = "id"
+    }
 }
 
 struct Address: Codable {
@@ -31,31 +39,47 @@ struct Address: Codable {
     let suite: String
     let city: String
     let zipcode: String
-    let geo: Geo
+    let geocode: Geo
+    enum CodingKeys: String, CodingKey {
+        case street, suite, city, zipcode
+        case geocode = "geo"
+    }
 }
 
 struct Geo: Codable {
-    let lat: String
-    let lng: String
+    let latitude: String
+    let longitude: String
+    enum CodingKeys: String, CodingKey {
+        case latitude = "lat"
+        case longitude = "lng"
+    }
 }
 
 struct Company: Codable {
     let name: String
     let catchPhrase: String
-    let bs: String
+    let bachelorScience: String
+    enum CodingKeys: String, CodingKey {
+        case name, catchPhrase
+        case bachelorScience = "bs"
+    }
 }
 
 struct CommentModel: Codable {
     let postId: Int
-    let id: Int
+    let identification: Int
     let name: String
     let email: String
     let body: String
+    enum CodingKeys: String, CodingKey {
+        case postId, name, email, body
+        case identification = "id"
+    }
 }
 
 extension PostsModel: Equatable {
     static func == (lhs: PostsModel, rhs: PostsModel) -> Bool {
-        return lhs.id == rhs.id &&
+        return lhs.identification == rhs.identification &&
             lhs.userId == rhs.userId &&
             lhs.body == rhs.body &&
             lhs.title == rhs.title
@@ -64,7 +88,7 @@ extension PostsModel: Equatable {
 
 extension AuthorModel: Equatable {
     static func == (lhs: AuthorModel, rhs: AuthorModel) -> Bool {
-        return lhs.id == rhs.id &&
+        return lhs.identification == rhs.identification &&
             lhs.name == rhs.name &&
             lhs.username == rhs.username &&
             lhs.email == rhs.email &&
@@ -76,7 +100,7 @@ extension AuthorModel: Equatable {
 extension CommentModel: Equatable {
     static func == (lhs: CommentModel, rhs: CommentModel) -> Bool {
         return lhs.postId == rhs.postId &&
-            lhs.id == rhs.id &&
+            lhs.identification == rhs.identification &&
             lhs.name == rhs.name &&
             lhs.email == rhs.email &&
             lhs.body == rhs.body

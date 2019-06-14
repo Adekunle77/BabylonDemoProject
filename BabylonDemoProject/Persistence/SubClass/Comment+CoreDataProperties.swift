@@ -17,5 +17,5 @@ extension Comment {
 
     @NSManaged public var comments: String
     @NSManaged public var postId: Int16
-    @NSManaged public var id: Int16
+    @NSManaged public var commentId: Int16
 }
