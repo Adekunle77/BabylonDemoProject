@@ -20,8 +20,11 @@ class ContentStateViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        model.delegate = self
-        model.getPosts()
+        self.model.delegate = self
+        self.model.getPost()
+        self.setState()
+    }
+    private func setState() {
         if state == nil {
             transtion(to: .loading, identifiers: .loadingView)
         }
@@ -54,9 +57,10 @@ extension ContentStateViewController: ContentStateViewModelDelegate {
 
         let errorMessage = self.model.stringLocalizedError(error: error)
         viewController.error = errorMessage
-        present(viewController, animated: false, completion: nil)
+        transtion(to: .render(viewController), identifiers: .postView)
+     //  present(viewController, animated: false, completion: nil)
+        
     }
-    
     func didUpdateWithData() {
         guard let viewController = UIStoryboard(
             name: "Main",

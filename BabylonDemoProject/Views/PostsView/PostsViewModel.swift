@@ -61,6 +61,7 @@ class PostsViewModel: NSObject {
     }
 
     private func deleteSavedCoreData<T: NSManagedObject>(with objectType: T.Type) {
+        print("delegate")
         let entityName = String(describing: objectType)
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
@@ -78,8 +79,7 @@ extension PostsViewModel: UICollectionViewDataSource {
         return 1
     }
 
-    func collectionView(_: UICollectionView, numberOfItemsInSection
-        _: Int) -> Int {
+    func collectionView(_: UICollectionView, numberOfItemsInSection _: Int) -> Int {
         let fetchedposts = fetchSavedCoreData(with: Posts.self)
         postsArray = fetchedposts
         return postsArray.count

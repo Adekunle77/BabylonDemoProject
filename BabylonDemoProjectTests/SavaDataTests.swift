@@ -26,7 +26,7 @@ class SavaDataTests: XCTestCase {
     func testSaveDataFetchDataReturnsError() {
         mockAPI.isReturningError = true
         let spy = CoreDataLoadManagerDelegateSpy()
-        let saveData = CoreDataSaveManager(dataSource: mockAPI)
+        let saveData = SaveManager(dataSource: mockAPI)
         let path = URLEndpoint(path: Paths.commentsUrlPath)
 
         saveData.fetchAPIData(with: path, completion: { result in
@@ -46,7 +46,7 @@ class SavaDataTests: XCTestCase {
     func testSaveDataFetchAuthorDataReturnsSuccess() {
         mockAPI.isReturningError = false
         let spy = CoreDataLoadManagerDelegateSpy()
-        let saveData = CoreDataSaveManager(dataSource: mockAPI)
+        let saveData = SaveManager(dataSource: mockAPI)
         let path = URLEndpoint(path: Paths.authorUrlPath)
 
         saveData.fetchAPIData(with: path, completion: { result in
@@ -66,7 +66,7 @@ class SavaDataTests: XCTestCase {
     func testSaveDataFetchCommentsDataReturnsSuccess() {
         mockAPI.isReturningError = false
         let spy = CoreDataLoadManagerDelegateSpy()
-        let saveData = CoreDataSaveManager(dataSource: mockAPI)
+        let saveData = SaveManager(dataSource: mockAPI)
         let path = URLEndpoint(path: Paths.commentsUrlPath)
 
         saveData.fetchAPIData(with: path, completion: { result in
@@ -87,7 +87,7 @@ class SavaDataTests: XCTestCase {
     func testSaveDataFetchTitleDataReturnsSuccess() {
         mockAPI.isReturningError = false
         let spy = CoreDataLoadManagerDelegateSpy()
-        let saveData = CoreDataSaveManager(dataSource: mockAPI)
+        let saveData = SaveManager(dataSource: mockAPI)
         let path = URLEndpoint(path: Paths.postsUrlPath)
 
         saveData.fetchAPIData(with: path, completion: { result in

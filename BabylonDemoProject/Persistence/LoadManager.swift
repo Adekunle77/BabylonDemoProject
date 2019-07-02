@@ -14,13 +14,13 @@ protocol CoreDataLoadManagerDelegate: class {
     func didLoadCoreDataError(error: [Error])
 }
 
-class CoreDataLoadManager {
+class LoadManager {
     var dataSource = APIRequest()
-    private var savedData: CoreDataSaveManager?
+    private var savedData: SaveManager?
     weak var delegate: CoreDataLoadManagerDelegate?
 
     init() {
-        savedData = CoreDataSaveManager(dataSource: dataSource)
+        savedData = SaveManager(dataSource: dataSource)
     }
 
     func fetchData() {

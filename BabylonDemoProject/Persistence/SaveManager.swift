@@ -9,7 +9,7 @@
 import CoreData
 import Foundation
 
-class CoreDataSaveManager {
+class SaveManager {
     let dataSource: API
     init(dataSource: API) {
         self.dataSource = dataSource
@@ -36,11 +36,11 @@ class CoreDataSaveManager {
 
     func savePostData(with dataArray: [PostsModel]) {
         for item in dataArray {
-            let title = Posts(context: PersistenceService.context)
-            title.title = item.title
-            title.body = item.body
-            title.postId = Int16(item.identification)
-            title.userID = Int16(item.userId)
+            let post = Posts(context: PersistenceService.context)
+            post.title = item.title
+            post.body = item.body
+            post.postId = Int16(item.identification)
+            post.userID = Int16(item.userId)
             PersistenceService.saveContext()
         }
     }

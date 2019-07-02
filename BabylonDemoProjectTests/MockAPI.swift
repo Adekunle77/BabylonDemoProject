@@ -42,7 +42,7 @@ class MockAPI: API {
                 completion(.success(.comments(comments)))
             }
             if endPoint.path == .postsUrlPath {
-                let tiles = [PostsModel(userId: 1, identification: 1,
+                let postsArray = [PostsModel(userId: 1, identification: 1,
                                         body: """
                                             quia et suscipit\nsuscipit recusandae consequuntur expedita et
                                             cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum
@@ -52,7 +52,7 @@ class MockAPI: API {
                                             sunt aut facere repellat provident
                                             occaecati excepturi optio reprehenderit
                                             """)]
-                completion(.success(.posts(tiles)))
+                completion(.success(.posts(postsArray)))
             }
         }
     }

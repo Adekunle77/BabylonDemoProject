@@ -16,13 +16,42 @@ protocol ContentStateViewModelDelegate: class {
 
 class ContentStateViewModel {
     var postsArray = [Posts]()
-    let saveData = CoreDataLoadManager()
+    let saveData = LoadManager()
     weak var delegate: ContentStateViewModelDelegate?
 
     init() {
         saveData.delegate = self
     }
-
+    
+    func getPostsFromCoreData()throws -> [Posts] {
+        var postArray = [Posts]()
+        let entityName = String(describing: Posts.self)
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
+        do {
+            let fetchObject = try PersistenceService.context.fetch(fetchRequest) as? [Posts]
+            postArray = fetchObject ?? [Posts]()
+        } catch{
+            throw error
+        }
+       return postArray
+    }
+    
+    func getPost() {
+        do{
+           let posts = try getPostsFromCoreData()
+            if posts.count == 0 {
+                saveData.fetchData()
+            } else {
+                delegate?.didUpdateWithData()
+            }
+        }catch{
+            var errorsArray = [Error]()
+            errorsArray.append(error)
+            delegate?.didUpdateWithError(error: errorsArray)
+        }
+        
+    }
+    
     func getPosts() {
         let entityName = String(describing: Posts.self)
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(
