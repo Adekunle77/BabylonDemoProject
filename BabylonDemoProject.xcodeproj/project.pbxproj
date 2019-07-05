@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3313DC6B22CCBB8F00CD940A /* LoadManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3313DC6A22CCBB8F00CD940A /* LoadManagerTests.swift */; };
 		33360F94228720D000702A39 /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33360F93228720D000702A39 /* PersistenceService.swift */; };
-		33360F962287245200702A39 /* SaveManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33360F952287245200702A39 /* SaveManager.swift */; };
+		33360F962287245200702A39 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33360F952287245200702A39 /* NetworkManager.swift */; };
 		33360FB622872B3300702A39 /* Posts+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33360FB422872B3300702A39 /* Posts+CoreDataClass.swift */; };
 		33360FB722872B3300702A39 /* Posts+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33360FB522872B3300702A39 /* Posts+CoreDataProperties.swift */; };
 		33360FBB22872B7400702A39 /* Comment+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33360FB922872B7400702A39 /* Comment+CoreDataClass.swift */; };
@@ -25,7 +26,7 @@
 		3375C1D22285B67B0087E5F1 /* PostsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3375C1D12285B67B0087E5F1 /* PostsViewModel.swift */; };
 		3375C1D62285E8BE0087E5F1 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3375C1D42285E8BE0087E5F1 /* CollectionViewCell.swift */; };
 		3375C1D72285E8BE0087E5F1 /* CollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3375C1D52285E8BE0087E5F1 /* CollectionViewCell.xib */; };
-		33856CEF2289E99B00A9881D /* SavaDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33856CEE2289E99B00A9881D /* SavaDataTests.swift */; };
+		33856CEF2289E99B00A9881D /* NetworkManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33856CEE2289E99B00A9881D /* NetworkManagerTests.swift */; };
 		33856CF32289F02000A9881D /* MockAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33856CF22289F02000A9881D /* MockAPI.swift */; };
 		33A97289229443EC0021BBD4 /* ContentStateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A97288229443EC0021BBD4 /* ContentStateViewModel.swift */; };
 		33BC617C22B52B3E002AFEC2 /* ContentStateViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BC617B22B52B3E002AFEC2 /* ContentStateViewControllerTests.swift */; };
@@ -47,10 +48,9 @@
 		33DE3C6B22856E12006E5617 /* Comments.json in Resources */ = {isa = PBXBuildFile; fileRef = 33DE3C6822856E12006E5617 /* Comments.json */; };
 		33DE3C6C22856E12006E5617 /* Authors.json in Resources */ = {isa = PBXBuildFile; fileRef = 33DE3C6922856E12006E5617 /* Authors.json */; };
 		33E4B01122C8FAA6003F86BA /* TestProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E4B01022C8FAA6003F86BA /* TestProperties.swift */; };
-		33F11B1622C6076400509355 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F11B1522C6076400509355 /* CoreDataManager.swift */; };
+		33F11B1622C6076400509355 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F11B1522C6076400509355 /* StorageManager.swift */; };
 		33F11B1822C64FBF00509355 /* BabylonDemoProject.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 33DE3C3522856CCE006E5617 /* BabylonDemoProject.xcdatamodeld */; };
-		33F11B1C22C6530700509355 /* CoreDataManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F11B1B22C6530700509355 /* CoreDataManagerTests.swift */; };
-		33F11B2122C66A1400509355 /* Stubs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F11B2022C66A1400509355 /* Stubs.swift */; };
+		33F11B1C22C6530700509355 /* StorageManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F11B1B22C6530700509355 /* StorageManagerTests.swift */; };
 		33F11B2322C66EE100509355 /* MockPersistantContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F11B2222C66EE100509355 /* MockPersistantContainer.swift */; };
 		33F7E7CD228DA2140063B152 /* PostDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F7E7CC228DA2140063B152 /* PostDetailViewController.swift */; };
 /* End PBXBuildFile section */
@@ -66,8 +66,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3313DC6A22CCBB8F00CD940A /* LoadManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadManagerTests.swift; sourceTree = "<group>"; };
 		33360F93228720D000702A39 /* PersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
-		33360F952287245200702A39 /* SaveManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveManager.swift; sourceTree = "<group>"; };
+		33360F952287245200702A39 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		33360FB422872B3300702A39 /* Posts+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Posts+CoreDataClass.swift"; sourceTree = "<group>"; };
 		33360FB522872B3300702A39 /* Posts+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Posts+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		33360FB922872B7400702A39 /* Comment+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Comment+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -84,7 +85,7 @@
 		3375C1D12285B67B0087E5F1 /* PostsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsViewModel.swift; sourceTree = "<group>"; };
 		3375C1D42285E8BE0087E5F1 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		3375C1D52285E8BE0087E5F1 /* CollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionViewCell.xib; sourceTree = "<group>"; };
-		33856CEE2289E99B00A9881D /* SavaDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavaDataTests.swift; sourceTree = "<group>"; };
+		33856CEE2289E99B00A9881D /* NetworkManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerTests.swift; sourceTree = "<group>"; };
 		33856CF22289F02000A9881D /* MockAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAPI.swift; sourceTree = "<group>"; };
 		33A97288229443EC0021BBD4 /* ContentStateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentStateViewModel.swift; sourceTree = "<group>"; };
 		33BC617B22B52B3E002AFEC2 /* ContentStateViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentStateViewControllerTests.swift; sourceTree = "<group>"; };
@@ -110,9 +111,8 @@
 		33DE3C6822856E12006E5617 /* Comments.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Comments.json; sourceTree = "<group>"; };
 		33DE3C6922856E12006E5617 /* Authors.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Authors.json; sourceTree = "<group>"; };
 		33E4B01022C8FAA6003F86BA /* TestProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestProperties.swift; sourceTree = "<group>"; };
-		33F11B1522C6076400509355 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
-		33F11B1B22C6530700509355 /* CoreDataManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManagerTests.swift; sourceTree = "<group>"; };
-		33F11B2022C66A1400509355 /* Stubs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stubs.swift; sourceTree = "<group>"; };
+		33F11B1522C6076400509355 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
+		33F11B1B22C6530700509355 /* StorageManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManagerTests.swift; sourceTree = "<group>"; };
 		33F11B2222C66EE100509355 /* MockPersistantContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPersistantContainer.swift; sourceTree = "<group>"; };
 		33F7E7CC228DA2140063B152 /* PostDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -150,8 +150,8 @@
 			children = (
 				33DE3C3522856CCE006E5617 /* BabylonDemoProject.xcdatamodeld */,
 				33360F93228720D000702A39 /* PersistenceService.swift */,
-				33F11B1522C6076400509355 /* CoreDataManager.swift */,
-				33360F952287245200702A39 /* SaveManager.swift */,
+				33F11B1522C6076400509355 /* StorageManager.swift */,
+				33360F952287245200702A39 /* NetworkManager.swift */,
 				33360FC12288A65D00702A39 /* LoadManager.swift */,
 				33360FB822872B5300702A39 /* SubClass */,
 			);
@@ -245,11 +245,11 @@
 			isa = PBXGroup;
 			children = (
 				33DE3C4622856CCF006E5617 /* BabylonDemoProjectTests.swift */,
+				33E4B01022C8FAA6003F86BA /* TestProperties.swift */,
 				33F11B1D22C6535D00509355 /* PersistenceTests */,
 				33BC617A22B52B02002AFEC2 /* ViewsTests */,
 				3375C1C3228570590087E5F1 /* ParseTests.swift */,
 				33856CF22289F02000A9881D /* MockAPI.swift */,
-				33856CEE2289E99B00A9881D /* SavaDataTests.swift */,
 				33DE3C4822856CCF006E5617 /* Info.plist */,
 				33DE3C6622856DEB006E5617 /* JSONTestData */,
 			);
@@ -302,10 +302,10 @@
 		33F11B1D22C6535D00509355 /* PersistenceTests */ = {
 			isa = PBXGroup;
 			children = (
-				33F11B1B22C6530700509355 /* CoreDataManagerTests.swift */,
-				33F11B2022C66A1400509355 /* Stubs.swift */,
+				33F11B1B22C6530700509355 /* StorageManagerTests.swift */,
 				33F11B2222C66EE100509355 /* MockPersistantContainer.swift */,
-				33E4B01022C8FAA6003F86BA /* TestProperties.swift */,
+				33856CEE2289E99B00A9881D /* NetworkManagerTests.swift */,
+				3313DC6A22CCBB8F00CD940A /* LoadManagerTests.swift */,
 			);
 			path = PersistenceTests;
 			sourceTree = "<group>";
@@ -443,7 +443,7 @@
 				3375C1D62285E8BE0087E5F1 /* CollectionViewCell.swift in Sources */,
 				33360FC022872BA300702A39 /* Author+CoreDataProperties.swift in Sources */,
 				3375C1D022859EFA0087E5F1 /* UIViewControllerExtension.swift in Sources */,
-				33F11B1622C6076400509355 /* CoreDataManager.swift in Sources */,
+				33F11B1622C6076400509355 /* StorageManager.swift in Sources */,
 				33DE3C3122856CCE006E5617 /* PostsViewController.swift in Sources */,
 				33DE3C5A22856DBE006E5617 /* APIRequest.swift in Sources */,
 				33DE3C6422856DD9006E5617 /* ModelType.swift in Sources */,
@@ -457,7 +457,7 @@
 				33360FBF22872BA300702A39 /* Author+CoreDataClass.swift in Sources */,
 				33360FB622872B3300702A39 /* Posts+CoreDataClass.swift in Sources */,
 				33DE3C5E22856DBE006E5617 /* URLEndpoint.swift in Sources */,
-				33360F962287245200702A39 /* SaveManager.swift in Sources */,
+				33360F962287245200702A39 /* NetworkManager.swift in Sources */,
 				33360FB722872B3300702A39 /* Posts+CoreDataProperties.swift in Sources */,
 				3375C1D22285B67B0087E5F1 /* PostsViewModel.swift in Sources */,
 				33DE3C5C22856DBE006E5617 /* API.swift in Sources */,
@@ -472,14 +472,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				33F11B2322C66EE100509355 /* MockPersistantContainer.swift in Sources */,
-				33F11B2122C66A1400509355 /* Stubs.swift in Sources */,
+				3313DC6B22CCBB8F00CD940A /* LoadManagerTests.swift in Sources */,
 				33BC617E22B8D4EB002AFEC2 /* ContentStateViewModelTests.swift in Sources */,
 				33856CF32289F02000A9881D /* MockAPI.swift in Sources */,
-				33856CEF2289E99B00A9881D /* SavaDataTests.swift in Sources */,
+				33856CEF2289E99B00A9881D /* NetworkManagerTests.swift in Sources */,
 				33BC617C22B52B3E002AFEC2 /* ContentStateViewControllerTests.swift in Sources */,
 				33F11B1822C64FBF00509355 /* BabylonDemoProject.xcdatamodeld in Sources */,
 				33DE3C4722856CCF006E5617 /* BabylonDemoProjectTests.swift in Sources */,
-				33F11B1C22C6530700509355 /* CoreDataManagerTests.swift in Sources */,
+				33F11B1C22C6530700509355 /* StorageManagerTests.swift in Sources */,
 				3375C1C4228570590087E5F1 /* ParseTests.swift in Sources */,
 				33E4B01122C8FAA6003F86BA /* TestProperties.swift in Sources */,
 			);

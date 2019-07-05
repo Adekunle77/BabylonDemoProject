@@ -21,7 +21,7 @@ class ContentStateViewModelTests: XCTestCase {
         }
     }
     var postsArray = [Posts]()
-    var mockAPI = MockAPI()
+    // var mockAPI MockNetworkManagrser()
     weak var delegate: CoreDataLoadManagerDelegateSpy?
     //let saveData: CoreDataSaveManager
     override func setUp() {
@@ -31,7 +31,7 @@ class ContentStateViewModelTests: XCTestCase {
     }
     
     func testGetPostDidRecieveError() {
-        mockAPI.isReturningError = true
+    //    mockAPI.isReturningError = true
         //let saveData = CoreDataSaveManager
         let contentStateViewModel = ContentStateViewModel()
         

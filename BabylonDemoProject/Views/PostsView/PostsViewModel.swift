@@ -61,7 +61,6 @@ class PostsViewModel: NSObject {
     }
 
     private func deleteSavedCoreData<T: NSManagedObject>(with objectType: T.Type) {
-        print("delegate")
         let entityName = String(describing: objectType)
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)

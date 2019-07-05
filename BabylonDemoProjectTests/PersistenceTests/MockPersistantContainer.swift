@@ -18,7 +18,6 @@ class MockPersistantContainer {
         description.type = NSInMemoryStoreType
         description.shouldAddStoreAsynchronously = false
         container.persistentStoreDescriptions = [description]
-        print("test 5")
         container.loadPersistentStores {(description, error) in
             precondition(description.type == NSInMemoryStoreType)
             if let error = error {
@@ -27,16 +26,8 @@ class MockPersistantContainer {
         }
         return container
     }()
-    
     lazy var managedObjectModel: NSManagedObjectModel = {
         let managedObjectModel = NSManagedObjectModel.mergedModel(from: [Bundle(for: type(of: self))] )!
         return managedObjectModel
     }()
-    
-    
-//    lazy var managedObjectModel: NSManagedObjectModel = {
-//        let managedObjectModel = NSManagedObjectModel.mergedModel(
-//            from: [Bundle(for: type(of: self))])!
-//        return managedObjectModel
-//    }()
 }

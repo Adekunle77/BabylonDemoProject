@@ -16,11 +16,15 @@ protocol ContentStateViewModelDelegate: class {
 
 class ContentStateViewModel {
     var postsArray = [Posts]()
-    let saveData = LoadManager()
+    let loadManager: LoadManager
+    let storageManager = StorageManager()
     weak var delegate: ContentStateViewModelDelegate?
 
     init() {
-        saveData.delegate = self
+        let dataSource = APIRequest()
+        let networkManager = NetworkManager(dataSource: dataSource)
+        loadManager = LoadManager(networkManager: networkManager)
+        loadManager.delegate = self
     }
     
     func getPostsFromCoreData()throws -> [Posts] {
@@ -30,21 +34,21 @@ class ContentStateViewModel {
         do {
             let fetchObject = try PersistenceService.context.fetch(fetchRequest) as? [Posts]
             postArray = fetchObject ?? [Posts]()
-        } catch{
+        } catch {
             throw error
         }
        return postArray
     }
     
     func getPost() {
-        do{
+        do {
            let posts = try getPostsFromCoreData()
             if posts.count == 0 {
-                saveData.fetchData()
+                loadManager.fetchData()
             } else {
                 delegate?.didUpdateWithData()
             }
-        }catch{
+        } catch {
             var errorsArray = [Error]()
             errorsArray.append(error)
             delegate?.didUpdateWithError(error: errorsArray)
@@ -64,7 +68,7 @@ class ContentStateViewModel {
                 postsArray = fetchedPost
             }
             if postsArray.count == 0 {
-                saveData.fetchData()
+                loadManager.fetchData()
             } else {
                 delegate?.didUpdateWithData()
             }

@@ -10,6 +10,7 @@
 import XCTest
 
 class ParseTests: XCTestCase {
+    var coreDataManager: StorageManager!
     let properties = TestProperties()
     func testTitleData() {
         let modelType = ModelType.self

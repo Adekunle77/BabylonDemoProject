@@ -9,50 +9,59 @@
 @testable import BabylonDemoProject
 import Foundation
 
+class MockNetwork: Network {
+    let properties = TestProperties()
+    let networkManager: API 
+    var coreDataManager: StorageManager!
+    let mockPersistantContainer = MockPersistantContainer()
+    init(api: API) {
+        self.networkManager = MockAPI()
+        coreDataManager = StorageManager(persistentContainer: mockPersistantContainer.mockPersistantContainer)
+    }
+    func fetchAPIData(with path: URLEndpoint, completion: @escaping (Result<(), DataSourceError>) -> Void) {
+        networkManager.fetchJsonData(endPoint: path, completion: { [weak self] result in
+            switch result {
+            case let .failure(error):
+                completion(Result.failure(.network(error)))
+            case let .success(data):
+                switch data {
+                case let .authors(authors):
+                    for author in authors {
+                        _ = self?.coreDataManager.insertAuthorItem(author: author)
+                    }
+                case let .comments(comments):
+                    for comment in comments {
+                        _ = self?.coreDataManager.insertCommentItem(comment: comment)
+                    }
+                case let .posts(posts):
+                    for post in posts {
+                        _ = self?.coreDataManager.insertPostItem(posts: post)
+                    }
+                }
+                 completion(.success(()))
+            }
+        })
+    }
+}
+
 class MockAPI: API {
     var isReturningError = false
-    func fetchJSONdata(endPoint: URLEndpoint, completion: @escaping CompletionHandler) {
+    let properties = TestProperties()
+    func fetchJsonData(endPoint: URLEndpoint, completion: @escaping CompletionHandler) {
         if isReturningError {
             completion(.failure(DataSourceError.noData))
         } else {
             if endPoint.path == .authorUrlPath {
-                let geo = Geo(latitude: "-37.3159", longitude: "81.1496")
-                let address = Address(street: "Kulas Light", suite: "Apt. 556", city: "Gwenborough",
-                                      zipcode: "92998-3874",
-                                      geocode: geo)
-                let company = Company(name: "Romaguera-Crona",
-                                      catchPhrase: "Multi-layered client-server neural-net",
-                                      bachelorScience: "harness real-time e-markets")
-                let author = [AuthorModel(identification: 1,
-                                          name: "Bret", username: "Leanne Graham",
-                                          email: "Sincere@april.biz",
-                                          address: address, phone: "1-770-736-8031 x56442",
-                                          website: "hildegard.org",
-                                          company: company)]
-                completion(.success(.authors(author)))
+                let authors = [properties.authorItem()]
+                completion(.success(.authors(authors)))
             }
             if endPoint.path == .commentsUrlPath {
-                let comments = [CommentModel(postId: 1, identification: 1, name: "id labore ex et quam laborum",
-                                             email: "Eliseo@gardner.biz",
-                                             body: """
-                                                    laudantium enim quasi est quidem magnam voluptate
-                                                    ipsam eos\ntempora quo necessitatibus\ndolor quam autem
-                                                    quasi\nreiciendis et nam sapiente accusantium
-                                                    """)]
+                let comments = [properties.commentItem()]
                 completion(.success(.comments(comments)))
             }
             if endPoint.path == .postsUrlPath {
-                let postsArray = [PostsModel(userId: 1, identification: 1,
-                                        body: """
-                                            quia et suscipit\nsuscipit recusandae consequuntur expedita et
-                                            cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum
-                                            est autem sunt rem eveniet architecto
-                                            """,
-                                        title: """
-                                            sunt aut facere repellat provident
-                                            occaecati excepturi optio reprehenderit
-                                            """)]
-                completion(.success(.posts(postsArray)))
+                let posts = [properties.postItem()]
+                completion(.success(.posts(posts)))
             }
         }
     }

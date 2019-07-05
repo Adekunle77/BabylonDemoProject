@@ -1,5 +1,5 @@
 //
-//  LoadData.swift
+//  LoadManager.swift
 //  BabylonDemoProject
 //
 //  Created by Ade Adegoke on 12/05/2019.
@@ -16,11 +16,11 @@ protocol CoreDataLoadManagerDelegate: class {
 
 class LoadManager {
     var dataSource = APIRequest()
-    private var savedData: SaveManager?
+    var networkManager: Network
     weak var delegate: CoreDataLoadManagerDelegate?
 
-    init() {
-        savedData = SaveManager(dataSource: dataSource)
+    init(networkManager: Network) {
+        self.networkManager = networkManager
     }
 
     func fetchData() {
@@ -28,7 +28,7 @@ class LoadManager {
         var errorsArray = [Error]()
         let postsPath = URLEndpoint(path: Paths.postsUrlPath)
         dispatchGroup.enter()
-        savedData?.fetchAPIData(with: postsPath, completion: { result in
+        networkManager.fetchAPIData(with: postsPath, completion: { result in
             switch result {
             case let .failure(error):
                 errorsArray.append(error)
@@ -39,7 +39,7 @@ class LoadManager {
 
         let authorPath = URLEndpoint(path: Paths.authorUrlPath)
         dispatchGroup.enter()
-        savedData?.fetchAPIData(with: authorPath, completion: { result in
+       networkManager.fetchAPIData(with: authorPath, completion: { result in
             switch result {
             case let .failure(error):
                 errorsArray.append(error)
@@ -50,7 +50,7 @@ class LoadManager {
 
         let commentsPath = URLEndpoint(path: Paths.authorUrlPath)
         dispatchGroup.enter()
-        savedData?.fetchAPIData(with: commentsPath, completion: { result in
+        networkManager.fetchAPIData(with: commentsPath, completion: { result in
             switch result {
             case let .failure(error):
                 errorsArray.append(error)
@@ -60,7 +60,6 @@ class LoadManager {
         })
 
         dispatchGroup.notify(queue: .main) {
-            print(errorsArray.count)
             if errorsArray.count > 0 {
                 self.delegate?.didLoadCoreDataError(error: errorsArray)
             } else {

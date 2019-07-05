@@ -6,12 +6,11 @@
 //  Copyright © 2019 AKA. All rights reserved.
 //
 
-@testable import BabylonDemoProject
 import XCTest
+@testable import BabylonDemoProject
 
-class SavaDataTests: XCTestCase {
+class NetworkManagerTests: XCTestCase {
     var mockAPI = MockAPI()
-
     class CoreDataLoadManagerDelegateSpy: CoreDataLoadManagerDelegate {
         var spyModelDidUpdateData = false
         var spyModelDidUpdateDataWithError: [Error]?
@@ -26,7 +25,7 @@ class SavaDataTests: XCTestCase {
     func testSaveDataFetchDataReturnsError() {
         mockAPI.isReturningError = true
         let spy = CoreDataLoadManagerDelegateSpy()
-        let saveData = SaveManager(dataSource: mockAPI)
+        let saveData = NetworkManager(dataSource: mockAPI)
         let path = URLEndpoint(path: Paths.commentsUrlPath)
 
         saveData.fetchAPIData(with: path, completion: { result in
@@ -46,7 +45,7 @@ class SavaDataTests: XCTestCase {
     func testSaveDataFetchAuthorDataReturnsSuccess() {
         mockAPI.isReturningError = false
         let spy = CoreDataLoadManagerDelegateSpy()
-        let saveData = SaveManager(dataSource: mockAPI)
+        let saveData = NetworkManager(dataSource: mockAPI)
         let path = URLEndpoint(path: Paths.authorUrlPath)
 
         saveData.fetchAPIData(with: path, completion: { result in
@@ -55,7 +54,7 @@ class SavaDataTests: XCTestCase {
                 var errorArray = [Error]()
                 errorArray.append(error)
                 spy.didLoadCoreDataError(error: errorArray)
-            case .success:
+            case .success: 
                 spy.didLoadCoreData()
             }
         })
@@ -66,7 +65,7 @@ class SavaDataTests: XCTestCase {
     func testSaveDataFetchCommentsDataReturnsSuccess() {
         mockAPI.isReturningError = false
         let spy = CoreDataLoadManagerDelegateSpy()
-        let saveData = SaveManager(dataSource: mockAPI)
+        let saveData = NetworkManager(dataSource: mockAPI)
         let path = URLEndpoint(path: Paths.commentsUrlPath)
 
         saveData.fetchAPIData(with: path, completion: { result in
@@ -79,7 +78,6 @@ class SavaDataTests: XCTestCase {
                 spy.didLoadCoreData()
             }
         })
-
         XCTAssertTrue(spy.spyModelDidUpdateData)
         XCTAssertNil(spy.spyModelDidUpdateDataWithError)
     }
@@ -87,7 +85,7 @@ class SavaDataTests: XCTestCase {
     func testSaveDataFetchTitleDataReturnsSuccess() {
         mockAPI.isReturningError = false
         let spy = CoreDataLoadManagerDelegateSpy()
-        let saveData = SaveManager(dataSource: mockAPI)
+        let saveData = NetworkManager(dataSource: mockAPI)
         let path = URLEndpoint(path: Paths.postsUrlPath)
 
         saveData.fetchAPIData(with: path, completion: { result in

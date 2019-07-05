@@ -1,5 +1,5 @@
 //
-//  CoreDataManager.swift
+//  StorageManager.swift
 //  BabylonDemoProject
 //
 //  Created by Ade Adegoke on 28/06/2019.
@@ -9,7 +9,8 @@
 import Foundation
 import CoreData
 
-class CoreDataManager {
+class StorageManager {
+    
     let persistentContainer: NSPersistentContainer!
     lazy var backgroundContext: NSManagedObjectContext = {
         return self.persistentContainer.newBackgroundContext()
@@ -18,9 +19,11 @@ class CoreDataManager {
         self.persistentContainer = persistentContainer
         self.persistentContainer.viewContext.automaticallyMergesChangesFromParent = true
     }
+    
     convenience init() {
         self.init(persistentContainer: PersistenceService.persistentContainer)
     }
+
     func insertPostItem(posts: PostsModel) -> Posts? {
         guard let postEntity = NSEntityDescription.insertNewObject(
             forEntityName: "Posts",
@@ -29,7 +32,6 @@ class CoreDataManager {
         postEntity.title = posts.title
         postEntity.postId = Int16(posts.identification)
         postEntity.userID = Int16(posts.userId)
-        print(postEntity, "test test test")
         return postEntity
     }
     func insertCommentItem(comment: CommentModel) -> Comment? {
@@ -69,13 +71,9 @@ class CoreDataManager {
         let objcet = persistentContainer.viewContext.object(with: objectID)
         persistentContainer.viewContext.delete(objcet)
     }
-    func save() throws {
+    func save() {
         if persistentContainer.viewContext.hasChanges {
-            do {
-                try persistentContainer.viewContext.save()
-            } catch {
-                throw error
-            }
+            try? persistentContainer.viewContext.save()
         }
     }
 }

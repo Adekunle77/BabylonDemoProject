@@ -1,5 +1,5 @@
 //
-//  PersistenceService.swift
+//  NetworkManager.swift
 //  BabylonDemoProject
 //
 //  Created by Ade Adegoke on 11/05/2019.
@@ -9,14 +9,20 @@
 import CoreData
 import Foundation
 
-class SaveManager {
+protocol Network {
+    func fetchAPIData(with path: URLEndpoint, completion: @escaping (Result<(), DataSourceError>) -> Void)
+}
+
+class NetworkManager: Network {
     let dataSource: API
+    private let coreDataManager: StorageManager?
     init(dataSource: API) {
+        coreDataManager = StorageManager(persistentContainer: PersistenceService.persistentContainer)
         self.dataSource = dataSource
     }
 
     func fetchAPIData(with path: URLEndpoint, completion: @escaping (Result<(), DataSourceError>) -> Void) {
-        dataSource.fetchJSONdata(endPoint: path, completion: { [weak self] result in
+        dataSource.fetchJsonData(endPoint: path, completion: { [weak self] result in
             switch result {
             case let .failure(error):
                 completion(.failure(.network(error)))
@@ -36,31 +42,22 @@ class SaveManager {
 
     func savePostData(with dataArray: [PostsModel]) {
         for item in dataArray {
-            let post = Posts(context: PersistenceService.context)
-            post.title = item.title
-            post.body = item.body
-            post.postId = Int16(item.identification)
-            post.userID = Int16(item.userId)
-            PersistenceService.saveContext()
+            _ = coreDataManager?.insertPostItem(posts: item)
+            coreDataManager?.save()
         }
     }
 
     private func saveAuthorData(with dataArray: [AuthorModel]) {
         for item in dataArray {
-            let author = Author(context: PersistenceService.context)
-            author.name = item.name
-            author.authorID = Int16(item.identification)
-            PersistenceService.saveContext()
+            _ = coreDataManager?.insertAuthorItem(author: item)
+            coreDataManager?.save()
         }
     }
 
     private func saveCommentData(with dataArray: [CommentModel]) {
         for item in dataArray {
-            let comment = Comment(context: PersistenceService.context)
-            comment.comments = item.body
-            comment.postId = Int16(item.postId)
-            comment.commentId = Int16(item.identification)
-            PersistenceService.saveContext()
+            _ = coreDataManager?.insertCommentItem(comment: item)
+            coreDataManager?.save()
         }
     }
 }
