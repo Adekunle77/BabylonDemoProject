@@ -29,8 +29,6 @@
 		33856CEF2289E99B00A9881D /* NetworkManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33856CEE2289E99B00A9881D /* NetworkManagerTests.swift */; };
 		33856CF32289F02000A9881D /* MockAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33856CF22289F02000A9881D /* MockAPI.swift */; };
 		33A97289229443EC0021BBD4 /* ContentStateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A97288229443EC0021BBD4 /* ContentStateViewModel.swift */; };
-		33BC617C22B52B3E002AFEC2 /* ContentStateViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BC617B22B52B3E002AFEC2 /* ContentStateViewControllerTests.swift */; };
-		33BC617E22B8D4EB002AFEC2 /* ContentStateViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BC617D22B8D4EB002AFEC2 /* ContentStateViewModelTests.swift */; };
 		33DE3C2F22856CCE006E5617 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DE3C2E22856CCE006E5617 /* AppDelegate.swift */; };
 		33DE3C3122856CCE006E5617 /* PostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DE3C3022856CCE006E5617 /* PostsViewController.swift */; };
 		33DE3C3422856CCE006E5617 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33DE3C3222856CCE006E5617 /* Main.storyboard */; };
@@ -88,8 +86,6 @@
 		33856CEE2289E99B00A9881D /* NetworkManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerTests.swift; sourceTree = "<group>"; };
 		33856CF22289F02000A9881D /* MockAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAPI.swift; sourceTree = "<group>"; };
 		33A97288229443EC0021BBD4 /* ContentStateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentStateViewModel.swift; sourceTree = "<group>"; };
-		33BC617B22B52B3E002AFEC2 /* ContentStateViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentStateViewControllerTests.swift; sourceTree = "<group>"; };
-		33BC617D22B8D4EB002AFEC2 /* ContentStateViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentStateViewModelTests.swift; sourceTree = "<group>"; };
 		33DE3C2B22856CCE006E5617 /* BabylonDemoProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BabylonDemoProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		33DE3C2E22856CCE006E5617 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		33DE3C3022856CCE006E5617 /* PostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsViewController.swift; sourceTree = "<group>"; };
@@ -206,8 +202,6 @@
 		33BC617A22B52B02002AFEC2 /* ViewsTests */ = {
 			isa = PBXGroup;
 			children = (
-				33BC617B22B52B3E002AFEC2 /* ContentStateViewControllerTests.swift */,
-				33BC617D22B8D4EB002AFEC2 /* ContentStateViewModelTests.swift */,
 			);
 			path = ViewsTests;
 			sourceTree = "<group>";
@@ -473,10 +467,8 @@
 			files = (
 				33F11B2322C66EE100509355 /* MockPersistantContainer.swift in Sources */,
 				3313DC6B22CCBB8F00CD940A /* LoadManagerTests.swift in Sources */,
-				33BC617E22B8D4EB002AFEC2 /* ContentStateViewModelTests.swift in Sources */,
 				33856CF32289F02000A9881D /* MockAPI.swift in Sources */,
 				33856CEF2289E99B00A9881D /* NetworkManagerTests.swift in Sources */,
-				33BC617C22B52B3E002AFEC2 /* ContentStateViewControllerTests.swift in Sources */,
 				33F11B1822C64FBF00509355 /* BabylonDemoProject.xcdatamodeld in Sources */,
 				33DE3C4722856CCF006E5617 /* BabylonDemoProjectTests.swift in Sources */,
 				33F11B1C22C6530700509355 /* StorageManagerTests.swift in Sources */,

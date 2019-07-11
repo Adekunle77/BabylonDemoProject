@@ -15,7 +15,7 @@ protocol CoreDataLoadManagerDelegate: class {
 }
 
 class LoadManager {
-    var dataSource = APIRequest()
+  //  var dataSource = APIRequest()
     var networkManager: Network
     weak var delegate: CoreDataLoadManagerDelegate?
 
@@ -61,7 +61,7 @@ class LoadManager {
 
         dispatchGroup.notify(queue: .main) {
             if errorsArray.count > 0 {
-                self.delegate?.didLoadCoreDataError(error: errorsArray)
+                self.delegate?.didLoadCoreDataError(error: errorsArray)               
             } else {
                 self.delegate?.didLoadCoreData()
             }

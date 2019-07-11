@@ -13,22 +13,6 @@ import XCTest
 class LoadManagerTests: XCTestCase {
     var coreDataManager: StorageManager!
     let mockPersistantContainer = MockPersistantContainer()
-    class CoreDataLoadManagerDelegateSpy: CoreDataLoadManagerDelegate {
-        var spyModelDidUpdateData = false
-        var timesErrorCalled = 0
-        var timesModelDidUpdateCalled = 0
-        var spyModelDidUpdateDataWithError: [Error]?
-        
-        func didLoadCoreData() {
-            timesModelDidUpdateCalled += 1
-            spyModelDidUpdateData = true
-        }
-        func didLoadCoreDataError(error: [Error]) {
-             timesErrorCalled += 1
-            spyModelDidUpdateDataWithError = error
-        }
-    }
-    
     final class MockDelegate: CoreDataLoadManagerDelegate {
         var timesDidLoadDataCalled = 0
         var timesErrorCalled = 0
@@ -45,17 +29,18 @@ class LoadManagerTests: XCTestCase {
         coreDataManager = StorageManager(persistentContainer: mockPersistantContainer.mockPersistantContainer)
     }
     
-    func testFetchDataReturnsError() {
-        let spy = MockDelegate()
-        let mockAPI = MockAPI()
-        mockAPI.isReturningError = true
-        let dataSource = MockNetwork(api: mockAPI)
+    func testFetchDataReturnsData() {
+        let dataSource = MockNetworkManager()
         let loadManager = LoadManager(networkManager: dataSource)
+        let spy = MockDelegate()
         loadManager.delegate = spy
+        let mockAPI = MockAPI()
+        mockAPI.isReturningError = true 
         loadManager.fetchData()
-
-    
-        XCTAssertEqual(spy.timesErrorCalled, 1)
-         XCTAssertEqual(spy.timesDidLoadDataCalled, 1)
+ 
+       XCTAssertEqual(spy.timesDidLoadDataCalled, 1)
+       XCTAssertEqual(spy.timesDidLoadDataCalled, 1)
     }
+    
+
 }

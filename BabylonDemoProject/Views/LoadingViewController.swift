@@ -46,7 +46,7 @@ class LoadingViewController: UIViewController {
         ) as? ContentStateViewController else { return }
 
         present(viewController, animated: true, completion: {
-            viewController.model.getPosts()
+          //  viewController.model.getPosts()
         })
     }
 }

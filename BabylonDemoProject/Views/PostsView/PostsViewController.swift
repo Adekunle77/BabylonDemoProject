@@ -10,7 +10,7 @@ import CoreData
 import UIKit
 
 class PostsViewController: UIViewController {
-    private var stateViewController: ContentStateViewController?
+  //  private var stateViewController: ContentStateViewController?
     @IBOutlet private var collectionView: UICollectionView!
     private var viewModel = PostsViewModel()
 

@@ -9,13 +9,11 @@
 @testable import BabylonDemoProject
 import Foundation
 
-class MockNetwork: Network {
-    let properties = TestProperties()
-    let networkManager: API 
+class MockNetworkManager: Network {
+    let networkManager = MockAPI()
     var coreDataManager: StorageManager!
     let mockPersistantContainer = MockPersistantContainer()
-    init(api: API) {
-        self.networkManager = MockAPI()
+    init() {
         coreDataManager = StorageManager(persistentContainer: mockPersistantContainer.mockPersistantContainer)
     }
     func fetchAPIData(with path: URLEndpoint, completion: @escaping (Result<(), DataSourceError>) -> Void) {
@@ -28,14 +26,17 @@ class MockNetwork: Network {
                 case let .authors(authors):
                     for author in authors {
                         _ = self?.coreDataManager.insertAuthorItem(author: author)
+                        self?.coreDataManager?.save()
                     }
                 case let .comments(comments):
                     for comment in comments {
                         _ = self?.coreDataManager.insertCommentItem(comment: comment)
+                        self?.coreDataManager?.save()
                     }
                 case let .posts(posts):
                     for post in posts {
                         _ = self?.coreDataManager.insertPostItem(posts: post)
+                        self?.coreDataManager?.save()
                     }
                 }
                  completion(.success(()))
@@ -47,6 +48,7 @@ class MockNetwork: Network {
 class MockAPI: API {
     var isReturningError = false
     let properties = TestProperties()
+
     func fetchJsonData(endPoint: URLEndpoint, completion: @escaping CompletionHandler) {
         if isReturningError {
             completion(.failure(DataSourceError.noData))
@@ -66,3 +68,4 @@ class MockAPI: API {
         }
     }
 }
+

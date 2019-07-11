@@ -15,6 +15,7 @@ protocol Network {
 
 class NetworkManager: Network {
     let dataSource: API
+    var isReturningError = false
     private let coreDataManager: StorageManager?
     init(dataSource: API) {
         coreDataManager = StorageManager(persistentContainer: PersistenceService.persistentContainer)
@@ -23,6 +24,7 @@ class NetworkManager: Network {
 
     func fetchAPIData(with path: URLEndpoint, completion: @escaping (Result<(), DataSourceError>) -> Void) {
         dataSource.fetchJsonData(endPoint: path, completion: { [weak self] result in
+
             switch result {
             case let .failure(error):
                 completion(.failure(.network(error)))
