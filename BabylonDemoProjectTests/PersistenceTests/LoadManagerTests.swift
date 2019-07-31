@@ -11,36 +11,59 @@ import XCTest
 @testable import BabylonDemoProject
 
 class LoadManagerTests: XCTestCase {
-    var coreDataManager: StorageManager!
-    let mockPersistantContainer = MockPersistantContainer()
+
     final class MockDelegate: CoreDataLoadManagerDelegate {
         var timesDidLoadDataCalled = 0
         var timesErrorCalled = 0
+        
         func didLoadCoreData() {
             timesDidLoadDataCalled += 1
         }
+
         func didLoadCoreDataError(error: [Error]) {
             timesErrorCalled += 1
         }
     }
-    
-    override func setUp() {
-        super.setUp()
-        coreDataManager = StorageManager(persistentContainer: mockPersistantContainer.mockPersistantContainer)
-    }
-    
-    func testFetchDataReturnsData() {
-        let dataSource = MockNetworkManager()
-        let loadManager = LoadManager(networkManager: dataSource)
-        let spy = MockDelegate()
-        loadManager.delegate = spy
-        let mockAPI = MockAPI()
-        mockAPI.isReturningError = true 
-        loadManager.fetchData()
- 
-       XCTAssertEqual(spy.timesDidLoadDataCalled, 1)
-       XCTAssertEqual(spy.timesDidLoadDataCalled, 1)
-    }
-    
 
+    func testFetchDataReturnsData() {
+        let mockAPI = MockAPI(isReturningError: false)
+        let spy = MockDelegate()
+        let dataSource = MockNetworkManager(networkManager: mockAPI)
+        let loadManager = LoadManager(networkManager: dataSource)
+        let postsPath = URLEndpoint(path: Paths.postsUrlPath)
+        loadManager.networkManager.fetchAPIData(with: postsPath, completion: { result in
+            switch result {
+            case let .failure(error):
+                var errorsArray = [Error]()
+                errorsArray.append(error)
+                spy.didLoadCoreDataError(error: errorsArray)
+            case .success:
+                spy.didLoadCoreData()
+            }
+        })
+        loadManager.fetchData()
+        XCTAssertEqual(spy.timesErrorCalled, 0)
+        XCTAssertEqual(spy.timesDidLoadDataCalled, 1)
+    }
+    
+    func testFetchDataReturnsError() {
+        let mockAPI = MockAPI(isReturningError: true)
+        let spy = MockDelegate()
+        let dataSource = MockNetworkManager(networkManager: mockAPI)
+        let loadManager = LoadManager(networkManager: dataSource)
+        let postsPath = URLEndpoint(path: Paths.postsUrlPath)
+        loadManager.networkManager.fetchAPIData(with: postsPath, completion: { result in
+            switch result {
+            case let .failure(error):
+                var errorsArray = [Error]()
+                errorsArray.append(error)
+                spy.didLoadCoreDataError(error: errorsArray)
+            case .success:
+                spy.didLoadCoreData()
+            }
+        })
+        loadManager.fetchData()
+        XCTAssertEqual(spy.timesErrorCalled, 1)
+        XCTAssertEqual(spy.timesDidLoadDataCalled, 0)
+    }
 }

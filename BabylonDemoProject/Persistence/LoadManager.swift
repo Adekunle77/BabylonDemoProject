@@ -15,7 +15,8 @@ protocol CoreDataLoadManagerDelegate: class {
 }
 
 class LoadManager {
-  //  var dataSource = APIRequest()
+    
+    var dataSource = APIRequest()
     var networkManager: Network
     weak var delegate: CoreDataLoadManagerDelegate?
 
@@ -48,7 +49,7 @@ class LoadManager {
             dispatchGroup.leave()
         })
 
-        let commentsPath = URLEndpoint(path: Paths.authorUrlPath)
+        let commentsPath = URLEndpoint(path: Paths.commentsUrlPath)
         dispatchGroup.enter()
         networkManager.fetchAPIData(with: commentsPath, completion: { result in
             switch result {

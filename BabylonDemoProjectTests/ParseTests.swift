@@ -6,12 +6,13 @@
 //  Copyright © 2019 AKA. All rights reserved.
 //
 
-@testable import BabylonDemoProject
 import XCTest
+@testable import BabylonDemoProject
 
 class ParseTests: XCTestCase {
     var coreDataManager: StorageManager!
     let properties = TestProperties()
+
     func testTitleData() {
         let modelType = ModelType.self
         let posts = [properties.postItem()]
@@ -44,6 +45,7 @@ class ParseTests: XCTestCase {
             }
         }
     }
+    
     func testCommentsData() {
         let modelType = ModelType.self
         let comments = [properties.commentItem()]

@@ -9,6 +9,7 @@
 import UIKit
 
 class PostDetailViewController: UIViewController {
+    weak var coordinator: MainCoordinator?
     @IBOutlet private var authorName: UILabel!
     @IBOutlet private var postDescription: UILabel!
     @IBOutlet private var commentsCount: UILabel!
@@ -21,7 +22,13 @@ class PostDetailViewController: UIViewController {
         commentsCount?.text = postDetails?.commentsCount
     }
 
+    override func viewDidDisappear(_ animated: Bool) {
+        self.coordinator?.childDidFinish(self)
+    }
+
     @IBAction func backButton(_: Any) {
-        navigationController?.popViewController(animated: true)
+        self.coordinator?.pushPostVC()
     }
 }
+
+extension PostDetailViewController: Storyboarded {}

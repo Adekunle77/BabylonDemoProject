@@ -9,28 +9,41 @@
 import UIKit
 
 class ErrorViewController: UIViewController {
+    weak var coordinator: MainCoordinator? 
     @IBOutlet var errorUILabel: UILabel!
     var error: String?
+    var errors = [Error]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        displayError(error: error ?? "There is an Error")
+        let stringedError = convertLoclizedToString(error: errors)
+        displayError(error: stringedError)
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        self.coordinator?.childDidFinish(self)
+    }
+
+    @IBAction func returnToLoadingView(_: Any) {
+        self.coordinator?.pushLoadingVC()
+
+//        present(viewController, animated: true, completion: {
+//      //      viewController.hideObjectsInView()
+//        })
+    }
+
+    func convertLoclizedToString(error: [Error]) -> String {
+        var errorMessage = String()
+        for message in error {
+            errorMessage += "\(message.localizedDescription) \n"
+        }
+        return errorMessage
     }
 
     func displayError(error: String) {
         errorUILabel?.text = error
     }
 
-    @IBAction func returnToLoadingView(_: Any) {
-        guard let viewController = UIStoryboard(
-            name: "Main",
-            bundle: nil
-        ).instantiateViewController(
-            withIdentifier: "LoadingViewVC"
-        ) as? LoadingViewController else { return }
-
-        present(viewController, animated: true, completion: {
-            viewController.hideObjectsInView()
-        })
-    }
 }
+
+extension ErrorViewController: Storyboarded {}

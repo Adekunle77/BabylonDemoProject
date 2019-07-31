@@ -10,7 +10,8 @@ import CoreData
 import UIKit
 
 class PostsViewController: UIViewController {
-  //  private var stateViewController: ContentStateViewController?
+    weak var coordinator: MainCoordinator? 
+    private var stateViewController: ContentStateViewController?
     @IBOutlet private var collectionView: UICollectionView!
     private var viewModel = PostsViewModel()
 
@@ -19,16 +20,14 @@ class PostsViewController: UIViewController {
         viewModel.delegate = self
         collectionViewSetUp()
     }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        self.coordinator?.childDidFinish(self)
+    }
 
     @IBAction func refreshData(_: Any) {
         viewModel.refreshData()
-        guard let viewController = UIStoryboard(
-            name: "Main",
-            bundle: nil
-        ).instantiateViewController(
-            withIdentifier: "ContentStateVC"
-        ) as? ContentStateViewController else { return }
-        present(viewController, animated: true, completion: nil)
+        self.coordinator?.start()
     }
 
     private func collectionViewSetUp() {
@@ -45,17 +44,13 @@ extension PostsViewController: ViewModelDelegate {
     }
 
     func showPostDetails(post: PostTuple) {
-        performSegue(withIdentifier: "postDetail", sender: post)
+        self.coordinator?.pushPostDetailVC(with: post)
     }
 
     func modelDidUpdateWithError(error: Error) {
-        guard let viewController = UIStoryboard( name: "Main",
-                                                 bundle: nil ).instantiateViewController(
-                                                    withIdentifier: "ErrorViewVC"
-        ) as? ErrorViewController else { return }
-
-        viewController.error = error.localizedDescription
-        present(viewController, animated: false, completion: nil)
+        var arrayArray = [Error]()
+        arrayArray.append(error)
+        self.coordinator?.pushErrorVC(with: arrayArray)
     }
 }
 
@@ -70,11 +65,4 @@ extension PostsViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-extension PostsViewController {
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let detailPostVC = segue.destination as? PostDetailViewController,
-            let detailPost = sender as? PostTuple {
-            detailPostVC.postDetails = detailPost
-        }
-    }
-}
+extension PostsViewController: Storyboarded {}

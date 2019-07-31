@@ -10,7 +10,7 @@ import XCTest
 @testable import BabylonDemoProject
 
 class NetworkManagerTests: XCTestCase {
-    var mockAPI = MockAPI()
+
     class CoreDataLoadManagerDelegateSpy: CoreDataLoadManagerDelegate {
         var spyModelDidUpdateData = false
         var spyModelDidUpdateDataWithError: [Error]?
@@ -23,11 +23,10 @@ class NetworkManagerTests: XCTestCase {
     }
 
     func testSaveDataFetchDataReturnsError() {
-        mockAPI.isReturningError = true
+        let mockAPI = MockAPI(isReturningError: true)
         let spy = CoreDataLoadManagerDelegateSpy()
         let saveData = NetworkManager(dataSource: mockAPI)
         let path = URLEndpoint(path: Paths.commentsUrlPath)
-
         saveData.fetchAPIData(with: path, completion: { result in
             switch result {
             case .failure(let error):
@@ -43,18 +42,17 @@ class NetworkManagerTests: XCTestCase {
     }
 
     func testSaveDataFetchAuthorDataReturnsSuccess() {
-        mockAPI.isReturningError = false
+        let mockAPI = MockAPI(isReturningError: false)
         let spy = CoreDataLoadManagerDelegateSpy()
         let saveData = NetworkManager(dataSource: mockAPI)
         let path = URLEndpoint(path: Paths.authorUrlPath)
-
         saveData.fetchAPIData(with: path, completion: { result in
             switch result {
             case .failure(let error):
                 var errorArray = [Error]()
                 errorArray.append(error)
                 spy.didLoadCoreDataError(error: errorArray)
-            case .success: 
+            case .success:
                 spy.didLoadCoreData()
             }
         })
@@ -63,11 +61,10 @@ class NetworkManagerTests: XCTestCase {
     }
 
     func testSaveDataFetchCommentsDataReturnsSuccess() {
-        mockAPI.isReturningError = false
+        let mockAPI = MockAPI(isReturningError: false)
         let spy = CoreDataLoadManagerDelegateSpy()
         let saveData = NetworkManager(dataSource: mockAPI)
         let path = URLEndpoint(path: Paths.commentsUrlPath)
-
         saveData.fetchAPIData(with: path, completion: { result in
             switch result {
             case .failure(let error):
@@ -83,11 +80,10 @@ class NetworkManagerTests: XCTestCase {
     }
 
     func testSaveDataFetchTitleDataReturnsSuccess() {
-        mockAPI.isReturningError = false
+        let mockAPI = MockAPI(isReturningError: false)
         let spy = CoreDataLoadManagerDelegateSpy()
         let saveData = NetworkManager(dataSource: mockAPI)
         let path = URLEndpoint(path: Paths.postsUrlPath)
-
         saveData.fetchAPIData(with: path, completion: { result in
             switch result {
             case .failure(let error):

@@ -10,14 +10,17 @@
 import Foundation
 
 class MockNetworkManager: Network {
-    let networkManager = MockAPI()
+    let networkManager: MockAPI?
     var coreDataManager: StorageManager!
     let mockPersistantContainer = MockPersistantContainer()
-    init() {
+
+    init(networkManager: MockAPI) {
+        self.networkManager = networkManager
         coreDataManager = StorageManager(persistentContainer: mockPersistantContainer.mockPersistantContainer)
     }
+    
     func fetchAPIData(with path: URLEndpoint, completion: @escaping (Result<(), DataSourceError>) -> Void) {
-        networkManager.fetchJsonData(endPoint: path, completion: { [weak self] result in
+        networkManager?.fetchJsonData(endPoint: path, completion: { [weak self] result in
             switch result {
             case let .failure(error):
                 completion(Result.failure(.network(error)))
@@ -46,8 +49,11 @@ class MockNetworkManager: Network {
 }
 
 class MockAPI: API {
-    var isReturningError = false
+    var isReturningError: Bool
     let properties = TestProperties()
+    init(isReturningError: Bool) {
+        self.isReturningError = isReturningError
+    }
 
     func fetchJsonData(endPoint: URLEndpoint, completion: @escaping CompletionHandler) {
         if isReturningError {
@@ -68,4 +74,3 @@ class MockAPI: API {
         }
     }
 }
-

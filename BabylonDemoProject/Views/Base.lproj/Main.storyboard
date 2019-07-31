@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="kNX-Ft-Ueu">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -13,7 +13,7 @@
         <!--Loading View Controller-->
         <scene sceneID="GOk-wU-z4T">
             <objects>
-                <viewController storyboardIdentifier="LoadingViewVC" id="0ap-E2-CIR" customClass="LoadingViewController" customModule="BabylonDemoProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoadingViewController" id="0ap-E2-CIR" customClass="LoadingViewController" customModule="BabylonDemoProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sqk-Ny-s6y">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -45,18 +45,13 @@
         <!--Content State View Controller-->
         <scene sceneID="ZXy-KL-Jnp">
             <objects>
-                <viewController storyboardIdentifier="ContentStateVC" id="kNX-Ft-Ueu" customClass="ContentStateViewController" customModule="BabylonDemoProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ContentStateViewController" id="kNX-Ft-Ueu" customClass="ContentStateViewController" customModule="BabylonDemoProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xp8-6b-aUz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.5845266268" green="0.78617300420000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="qln-qM-vgn"/>
                     </view>
-                    <connections>
-                        <segue destination="0ap-E2-CIR" kind="show" identifier="loadingView" id="Zmw-wU-ric"/>
-                        <segue destination="BYZ-38-t0r" kind="show" identifier="postView" id="P2H-6R-IXa"/>
-                        <segue destination="3b4-cX-X8M" kind="show" identifier="errorView" id="pZk-iI-MPQ"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ukm-ot-sjr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -65,7 +60,7 @@
         <!--Posts View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="PostViewVC" id="BYZ-38-t0r" customClass="PostsViewController" customModule="BabylonDemoProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PostsViewController" id="BYZ-38-t0r" customClass="PostsViewController" customModule="BabylonDemoProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -113,17 +108,16 @@
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="9Oe-ba-G5l" id="voZ-nD-PD4"/>
-                        <segue destination="MON-H8-wLu" kind="show" identifier="postDetail" id="Bd1-jr-OVL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="748" y="6"/>
+            <point key="canvasLocation" x="674" y="6"/>
         </scene>
         <!--Error View Controller-->
         <scene sceneID="AA7-nV-jox">
             <objects>
-                <viewController storyboardIdentifier="ErrorViewVC" id="3b4-cX-X8M" customClass="ErrorViewController" customModule="BabylonDemoProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ErrorViewController" id="3b4-cX-X8M" customClass="ErrorViewController" customModule="BabylonDemoProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ovm-bK-wbX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -165,7 +159,7 @@
         <!--Post Detail View Controller-->
         <scene sceneID="AHb-aD-WJd">
             <objects>
-                <viewController id="MON-H8-wLu" customClass="PostDetailViewController" customModule="BabylonDemoProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PostDetailViewController" id="MON-H8-wLu" customClass="PostDetailViewController" customModule="BabylonDemoProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vng-eJ-7BS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -229,7 +223,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iEp-yw-fdk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="749.27536231884062" y="808.25892857142856"/>
+            <point key="canvasLocation" x="673" y="813"/>
         </scene>
     </scenes>
 </document>

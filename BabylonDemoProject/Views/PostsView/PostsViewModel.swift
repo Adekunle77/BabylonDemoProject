@@ -20,22 +20,12 @@ typealias PostTuple = (author: Author, post: Posts, commentsCount: String)
 
 class PostsViewModel: NSObject {
     weak var delegate: ViewModelDelegate?
+    var storageManager: StorageManager
     let reuseIdentifier = "Cell"
-    var postsArray = [Posts]()
-    var authorsArray = [Author]()
-    var commentsArray = [Comment]()
 
-    private func fetchSavedCoreData<T: NSManagedObject>(with objectType: T.Type) -> [T] {
-        var data = [T]()
-        let entityName = String(describing: objectType)
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
-        do {
-            let fetchObject = try PersistenceService.context.fetch(fetchRequest) as? [T]
-            data = fetchObject ?? [T]()
-        } catch {
-            delegate?.modelDidUpdateWithError(error: error)
-        }
-        return data
+    override init() {
+        storageManager = StorageManager(persistentContainer: PersistenceService.persistentContainer)
+        super.init()
     }
 
     private func getCommentsCount(using post: Posts, with array: [Comment]) -> String {
@@ -54,19 +44,11 @@ class PostsViewModel: NSObject {
     }
 
     func refreshData() {
-        deleteSavedCoreData(with: Posts.self)
-        deleteSavedCoreData(with: Author.self)
-        deleteSavedCoreData(with: Comment.self)
-        delegate?.modelDidUpdateWithData()
-    }
-
-    private func deleteSavedCoreData<T: NSManagedObject>(with objectType: T.Type) {
-        let entityName = String(describing: objectType)
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
-        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
         do {
-            try PersistenceService.context.execute(deleteRequest)
-            PersistenceService.saveContext()
+            try storageManager.deleteSavedData(with: Posts.self)
+            try storageManager.deleteSavedData(with: Author.self)
+            try storageManager.deleteSavedData(with: Comment.self)
+            delegate?.modelDidUpdateWithData()
         } catch {
             delegate?.modelDidUpdateWithError(error: error)
         }
@@ -79,9 +61,8 @@ extension PostsViewModel: UICollectionViewDataSource {
     }
 
     func collectionView(_: UICollectionView, numberOfItemsInSection _: Int) -> Int {
-        let fetchedposts = fetchSavedCoreData(with: Posts.self)
-        postsArray = fetchedposts
-        return postsArray.count
+        let posts = storageManager.fetchAllPosts()
+        return posts.count
     }
 
     func collectionView(_ collectionView: UICollectionView,
@@ -91,10 +72,10 @@ extension PostsViewModel: UICollectionViewDataSource {
                                                             for: indexPath) as? CollectionViewCell else {
             return UICollectionViewCell()
         }
-        let post = postsArray
+        let posts = storageManager.fetchAllPosts()
+        let post = posts
         let info = post[indexPath.item]
         cell.updateCell(with: info)
-
         return cell
     }
 }
@@ -102,17 +83,28 @@ extension PostsViewModel: UICollectionViewDataSource {
 extension PostsViewModel: UICollectionViewDelegate {
     func collectionView(_: UICollectionView,
                         didSelectItemAt indexPath: IndexPath) {
-        let posts = fetchSavedCoreData(with: Posts.self)
+        let posts = storageManager.fetchAllPosts()
         let postInfo = posts[indexPath.item]
-        let authorArray = fetchSavedCoreData(with: Author.self)
-        let author = getAuthorInfo(using: postInfo, with: authorArray)
-        let comments = fetchSavedCoreData(with: Comment.self)
-        let commentCount = getCommentsCount(
-            using: postInfo, with: comments
-        )
-
+        let authors = storageManager.fetchAllAuthors()
+        let author = getAuthorInfo(using: postInfo, with: authors)
+        let comments = storageManager.fetchAllComments()
+        let commentCount = getCommentsCount(using: postInfo, with: comments)
         delegate?.showPostDetails(post: (
             author: author, post: postInfo, commentsCount: commentCount
         ))
     }
 }
+
+#if DEBUG
+extension PostsViewModel {
+    func testGetCommentsCount(using post: Posts, with array: [Comment]) -> String {
+        let testObject = getCommentsCount(using: post, with: array)
+        return testObject
+    }
+
+    func testGetAuthorInfo(using title: Posts, with array: [Author]) -> Author {
+        let testObject = getAuthorInfo(using: title, with: array)
+        return testObject
+    }
+}
+#endif

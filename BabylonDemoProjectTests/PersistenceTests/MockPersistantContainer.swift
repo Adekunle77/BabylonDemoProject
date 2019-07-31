@@ -11,6 +11,7 @@ import CoreData
 @testable import BabylonDemoProject
 
 class MockPersistantContainer {
+    
     lazy var mockPersistantContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "BabylonDemoProject",
                                               managedObjectModel: self.managedObjectModel)
@@ -26,6 +27,7 @@ class MockPersistantContainer {
         }
         return container
     }()
+    
     lazy var managedObjectModel: NSManagedObjectModel = {
         let managedObjectModel = NSManagedObjectModel.mergedModel(from: [Bundle(for: type(of: self))] )!
         return managedObjectModel

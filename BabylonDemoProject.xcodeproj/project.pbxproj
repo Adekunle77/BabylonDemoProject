@@ -26,6 +26,8 @@
 		3375C1D22285B67B0087E5F1 /* PostsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3375C1D12285B67B0087E5F1 /* PostsViewModel.swift */; };
 		3375C1D62285E8BE0087E5F1 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3375C1D42285E8BE0087E5F1 /* CollectionViewCell.swift */; };
 		3375C1D72285E8BE0087E5F1 /* CollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3375C1D52285E8BE0087E5F1 /* CollectionViewCell.xib */; };
+		337CE23E22DF6404003CA06A /* ContentStateViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 337CE23D22DF6404003CA06A /* ContentStateViewModelTests.swift */; };
+		337CE24222E22C9F003CA06A /* PostsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 337CE24122E22C9F003CA06A /* PostsViewModelTests.swift */; };
 		33856CEF2289E99B00A9881D /* NetworkManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33856CEE2289E99B00A9881D /* NetworkManagerTests.swift */; };
 		33856CF32289F02000A9881D /* MockAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33856CF22289F02000A9881D /* MockAPI.swift */; };
 		33A97289229443EC0021BBD4 /* ContentStateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A97288229443EC0021BBD4 /* ContentStateViewModel.swift */; };
@@ -35,7 +37,6 @@
 		33DE3C3722856CCE006E5617 /* BabylonDemoProject.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 33DE3C3522856CCE006E5617 /* BabylonDemoProject.xcdatamodeld */; };
 		33DE3C3922856CCF006E5617 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33DE3C3822856CCF006E5617 /* Assets.xcassets */; };
 		33DE3C3C22856CCF006E5617 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33DE3C3A22856CCF006E5617 /* LaunchScreen.storyboard */; };
-		33DE3C4722856CCF006E5617 /* BabylonDemoProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DE3C4622856CCF006E5617 /* BabylonDemoProjectTests.swift */; };
 		33DE3C5A22856DBE006E5617 /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DE3C5522856DBE006E5617 /* APIRequest.swift */; };
 		33DE3C5B22856DBE006E5617 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DE3C5622856DBE006E5617 /* Model.swift */; };
 		33DE3C5C22856DBE006E5617 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DE3C5722856DBE006E5617 /* API.swift */; };
@@ -51,6 +52,9 @@
 		33F11B1C22C6530700509355 /* StorageManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F11B1B22C6530700509355 /* StorageManagerTests.swift */; };
 		33F11B2322C66EE100509355 /* MockPersistantContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F11B2222C66EE100509355 /* MockPersistantContainer.swift */; };
 		33F7E7CD228DA2140063B152 /* PostDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F7E7CC228DA2140063B152 /* PostDetailViewController.swift */; };
+		33FEB00222EF22580044F14B /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FEB00122EF22580044F14B /* Coordinator.swift */; };
+		33FEB00422EF352B0044F14B /* Storyboarded.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FEB00322EF352B0044F14B /* Storyboarded.swift */; };
+		33FEB00622EF385D0044F14B /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FEB00522EF385D0044F14B /* MainCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +87,8 @@
 		3375C1D12285B67B0087E5F1 /* PostsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsViewModel.swift; sourceTree = "<group>"; };
 		3375C1D42285E8BE0087E5F1 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		3375C1D52285E8BE0087E5F1 /* CollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionViewCell.xib; sourceTree = "<group>"; };
+		337CE23D22DF6404003CA06A /* ContentStateViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentStateViewModelTests.swift; sourceTree = "<group>"; };
+		337CE24122E22C9F003CA06A /* PostsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsViewModelTests.swift; sourceTree = "<group>"; };
 		33856CEE2289E99B00A9881D /* NetworkManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerTests.swift; sourceTree = "<group>"; };
 		33856CF22289F02000A9881D /* MockAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAPI.swift; sourceTree = "<group>"; };
 		33A97288229443EC0021BBD4 /* ContentStateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentStateViewModel.swift; sourceTree = "<group>"; };
@@ -95,7 +101,6 @@
 		33DE3C3B22856CCF006E5617 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		33DE3C3D22856CCF006E5617 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		33DE3C4222856CCF006E5617 /* BabylonDemoProjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BabylonDemoProjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		33DE3C4622856CCF006E5617 /* BabylonDemoProjectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabylonDemoProjectTests.swift; sourceTree = "<group>"; };
 		33DE3C4822856CCF006E5617 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		33DE3C5522856DBE006E5617 /* APIRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
 		33DE3C5622856DBE006E5617 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
@@ -111,6 +116,9 @@
 		33F11B1B22C6530700509355 /* StorageManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManagerTests.swift; sourceTree = "<group>"; };
 		33F11B2222C66EE100509355 /* MockPersistantContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPersistantContainer.swift; sourceTree = "<group>"; };
 		33F7E7CC228DA2140063B152 /* PostDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailViewController.swift; sourceTree = "<group>"; };
+		33FEB00122EF22580044F14B /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		33FEB00322EF352B0044F14B /* Storyboarded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboarded.swift; sourceTree = "<group>"; };
+		33FEB00522EF385D0044F14B /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,8 +142,8 @@
 		331240FF2292DAE600F64F92 /* PostsView */ = {
 			isa = PBXGroup;
 			children = (
-				3375C1D12285B67B0087E5F1 /* PostsViewModel.swift */,
 				33DE3C3022856CCE006E5617 /* PostsViewController.swift */,
+				3375C1D12285B67B0087E5F1 /* PostsViewModel.swift */,
 				33F7E7CC228DA2140063B152 /* PostDetailViewController.swift */,
 			);
 			path = PostsView;
@@ -202,6 +210,8 @@
 		33BC617A22B52B02002AFEC2 /* ViewsTests */ = {
 			isa = PBXGroup;
 			children = (
+				337CE23D22DF6404003CA06A /* ContentStateViewModelTests.swift */,
+				337CE24122E22C9F003CA06A /* PostsViewModelTests.swift */,
 			);
 			path = ViewsTests;
 			sourceTree = "<group>";
@@ -227,6 +237,7 @@
 		33DE3C2D22856CCE006E5617 /* BabylonDemoProject */ = {
 			isa = PBXGroup;
 			children = (
+				33FEB00022EF222B0044F14B /* Coordinator  */,
 				3375C1CB22859A320087E5F1 /* Views */,
 				33360F922287205B00702A39 /* Persistence */,
 				33DE3C5422856D92006E5617 /* APIRequest */,
@@ -238,7 +249,6 @@
 		33DE3C4522856CCF006E5617 /* BabylonDemoProjectTests */ = {
 			isa = PBXGroup;
 			children = (
-				33DE3C4622856CCF006E5617 /* BabylonDemoProjectTests.swift */,
 				33E4B01022C8FAA6003F86BA /* TestProperties.swift */,
 				33F11B1D22C6535D00509355 /* PersistenceTests */,
 				33BC617A22B52B02002AFEC2 /* ViewsTests */,
@@ -296,12 +306,22 @@
 		33F11B1D22C6535D00509355 /* PersistenceTests */ = {
 			isa = PBXGroup;
 			children = (
-				33F11B1B22C6530700509355 /* StorageManagerTests.swift */,
 				33F11B2222C66EE100509355 /* MockPersistantContainer.swift */,
+				33F11B1B22C6530700509355 /* StorageManagerTests.swift */,
 				33856CEE2289E99B00A9881D /* NetworkManagerTests.swift */,
 				3313DC6A22CCBB8F00CD940A /* LoadManagerTests.swift */,
 			);
 			path = PersistenceTests;
+			sourceTree = "<group>";
+		};
+		33FEB00022EF222B0044F14B /* Coordinator  */ = {
+			isa = PBXGroup;
+			children = (
+				33FEB00122EF22580044F14B /* Coordinator.swift */,
+				33FEB00322EF352B0044F14B /* Storyboarded.swift */,
+				33FEB00522EF385D0044F14B /* MainCoordinator.swift */,
+			);
+			path = "Coordinator ";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -444,13 +464,16 @@
 				33360FBB22872B7400702A39 /* Comment+CoreDataClass.swift in Sources */,
 				3375C1CA22859A1B0087E5F1 /* ContentStateViewController.swift in Sources */,
 				33DE3C3722856CCE006E5617 /* BabylonDemoProject.xcdatamodeld in Sources */,
+				33FEB00622EF385D0044F14B /* MainCoordinator.swift in Sources */,
 				3375C1CD22859D140087E5F1 /* ErrorViewController.swift in Sources */,
 				33360FBC22872B7400702A39 /* Comment+CoreDataProperties.swift in Sources */,
 				33F7E7CD228DA2140063B152 /* PostDetailViewController.swift in Sources */,
 				33360FC22288A65D00702A39 /* LoadManager.swift in Sources */,
 				33360FBF22872BA300702A39 /* Author+CoreDataClass.swift in Sources */,
 				33360FB622872B3300702A39 /* Posts+CoreDataClass.swift in Sources */,
+				33FEB00422EF352B0044F14B /* Storyboarded.swift in Sources */,
 				33DE3C5E22856DBE006E5617 /* URLEndpoint.swift in Sources */,
+				33FEB00222EF22580044F14B /* Coordinator.swift in Sources */,
 				33360F962287245200702A39 /* NetworkManager.swift in Sources */,
 				33360FB722872B3300702A39 /* Posts+CoreDataProperties.swift in Sources */,
 				3375C1D22285B67B0087E5F1 /* PostsViewModel.swift in Sources */,
@@ -465,12 +488,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				337CE23E22DF6404003CA06A /* ContentStateViewModelTests.swift in Sources */,
 				33F11B2322C66EE100509355 /* MockPersistantContainer.swift in Sources */,
 				3313DC6B22CCBB8F00CD940A /* LoadManagerTests.swift in Sources */,
 				33856CF32289F02000A9881D /* MockAPI.swift in Sources */,
 				33856CEF2289E99B00A9881D /* NetworkManagerTests.swift in Sources */,
 				33F11B1822C64FBF00509355 /* BabylonDemoProject.xcdatamodeld in Sources */,
-				33DE3C4722856CCF006E5617 /* BabylonDemoProjectTests.swift in Sources */,
+				337CE24222E22C9F003CA06A /* PostsViewModelTests.swift in Sources */,
 				33F11B1C22C6530700509355 /* StorageManagerTests.swift in Sources */,
 				3375C1C4228570590087E5F1 /* ParseTests.swift in Sources */,
 				33E4B01122C8FAA6003F86BA /* TestProperties.swift in Sources */,

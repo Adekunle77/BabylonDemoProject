@@ -15,6 +15,7 @@ class StorageManager {
     lazy var backgroundContext: NSManagedObjectContext = {
         return self.persistentContainer.newBackgroundContext()
     }()
+
     init(persistentContainer: NSPersistentContainer) {
         self.persistentContainer = persistentContainer
         self.persistentContainer.viewContext.automaticallyMergesChangesFromParent = true
@@ -34,6 +35,7 @@ class StorageManager {
         postEntity.userID = Int16(posts.userId)
         return postEntity
     }
+
     func insertCommentItem(comment: CommentModel) -> Comment? {
         guard let commentEntity = NSEntityDescription.insertNewObject(
             forEntityName: "Comment",
@@ -43,6 +45,7 @@ class StorageManager {
         commentEntity.postId = Int16(comment.postId)
         return commentEntity
     }
+
     func insertAuthorItem(author: AuthorModel) -> Author? {
         guard let authorEntity = NSEntityDescription.insertNewObject(
             forEntityName: "Author",
@@ -51,26 +54,42 @@ class StorageManager {
         authorEntity.authorID = Int16(author.identification)
         return authorEntity
     }
+
     func fetchAllPosts() -> [Posts] {
         let request: NSFetchRequest<Posts> = Posts.fetchRequest()
         let result = try? persistentContainer.viewContext.fetch(request)
-        
         return result ?? [Posts]()
     }
+
     func fetchAllComments() -> [Comment] {
         let request: NSFetchRequest<Comment> = Comment.fetchRequest()
         let result = try? persistentContainer.viewContext.fetch(request)
         return result ?? [Comment]()
     }
+
     func fetchAllAuthors() -> [Author] {
         let request: NSFetchRequest<Author> = Author.fetchRequest()
         let result = try? persistentContainer.viewContext.fetch(request)
         return result ?? [Author]()
     }
+
+    func deleteSavedData<T: NSManagedObject>(with objectType: T.Type) throws {
+        let entityName = String(describing: objectType)
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        do {
+            try PersistenceService.context.execute(deleteRequest)
+            self.save()
+        } catch {
+            throw error
+        }
+    }
+
     func remove(objectID: NSManagedObjectID) {
         let objcet = persistentContainer.viewContext.object(with: objectID)
         persistentContainer.viewContext.delete(objcet)
     }
+
     func save() {
         if persistentContainer.viewContext.hasChanges {
             try? persistentContainer.viewContext.save()

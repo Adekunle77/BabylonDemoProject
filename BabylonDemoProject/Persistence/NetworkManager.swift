@@ -16,15 +16,14 @@ protocol Network {
 class NetworkManager: Network {
     let dataSource: API
     var isReturningError = false
-    private let coreDataManager: StorageManager?
+    private let storageManager: StorageManager?
     init(dataSource: API) {
-        coreDataManager = StorageManager(persistentContainer: PersistenceService.persistentContainer)
+        storageManager = StorageManager(persistentContainer: PersistenceService.persistentContainer)
         self.dataSource = dataSource
     }
 
     func fetchAPIData(with path: URLEndpoint, completion: @escaping (Result<(), DataSourceError>) -> Void) {
         dataSource.fetchJsonData(endPoint: path, completion: { [weak self] result in
-
             switch result {
             case let .failure(error):
                 completion(.failure(.network(error)))
@@ -44,22 +43,22 @@ class NetworkManager: Network {
 
     func savePostData(with dataArray: [PostsModel]) {
         for item in dataArray {
-            _ = coreDataManager?.insertPostItem(posts: item)
-            coreDataManager?.save()
+            _ = storageManager?.insertPostItem(posts: item)
+            storageManager?.save()
         }
     }
 
     private func saveAuthorData(with dataArray: [AuthorModel]) {
         for item in dataArray {
-            _ = coreDataManager?.insertAuthorItem(author: item)
-            coreDataManager?.save()
+            _ = storageManager?.insertAuthorItem(author: item)
+            storageManager?.save()
         }
     }
 
     private func saveCommentData(with dataArray: [CommentModel]) {
         for item in dataArray {
-            _ = coreDataManager?.insertCommentItem(comment: item)
-            coreDataManager?.save()
+            _ = storageManager?.insertCommentItem(comment: item)
+            storageManager?.save()
         }
     }
 }
