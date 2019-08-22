@@ -28,7 +28,7 @@ class TestProperties {
                                  company: company)
         return author
     }
-    
+
     func commentItem() -> CommentModel {
         let comments = CommentModel(postId: 1, identification: 1,
                                      name: "id labore ex et quam laborum",
@@ -41,7 +41,7 @@ class TestProperties {
                                         """)
         return comments
     }
-    
+
     func postItem() -> PostsModel {
         let posts = PostsModel(userId: 1,
                                 identification: 1,

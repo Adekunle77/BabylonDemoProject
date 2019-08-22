@@ -9,6 +9,7 @@
 import CoreData
 import Foundation
 
+// This class is final with static properties to avoid inheritance
 final class PersistenceService {
     static var context: NSManagedObjectContext {
         return persistentContainer.viewContext
@@ -29,6 +30,7 @@ final class PersistenceService {
         if context.hasChanges {
             do {
                 try context.save()
+                print("save rewal")
             } catch {
                 let nserror = error as NSError
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")

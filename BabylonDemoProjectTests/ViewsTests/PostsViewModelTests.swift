@@ -12,8 +12,7 @@ import XCTest
 class PostsViewModelTests: XCTestCase {
     let testProperties = TestProperties()
 
-
-    final class MockViewModelDelegate: ViewModelDelegate {
+    class MockViewModelDelegate: ViewModelDelegate {
         var timesDidLoadDataCalled = 0
         var timesErrorCalled = 0
         var showPostDetails = 0
@@ -29,15 +28,6 @@ class PostsViewModelTests: XCTestCase {
         func showPostDetails(post: PostTuple) {
             showPostDetails += 1
         }
-
-    }
-
-    override func setUp() {
-
-    }
-
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
     func testGetCommentsCount() {
@@ -45,10 +35,10 @@ class PostsViewModelTests: XCTestCase {
         let post = testProperties.postItem()
         let comments = testProperties.commentItem()
         var storageManager: StorageManager!
-        let mockPersistantContainer = MockPersistantContainer()
-        storageManager = StorageManager(persistentContainer: mockPersistantContainer.mockPersistantContainer)
-        _ = storageManager.insertPostItem(posts: post)
-        _ = storageManager.insertCommentItem(comment: comments)
+        let mockPersistentContainer = MockPersistentContainer()
+        storageManager = StorageManager(persistentContainer: mockPersistentContainer.mockPersistentContainer)
+        _ = storageManager.insert(post)
+        _ = storageManager.insert(comments)
         let fetchPosts = storageManager.fetchAllPosts()
         let fetchComments = storageManager.fetchAllComments()
 
@@ -62,10 +52,10 @@ class PostsViewModelTests: XCTestCase {
         let posts = testProperties.postItem()
         let authors = testProperties.authorItem()
         var storageManager: StorageManager!
-        let mockPersistantContainer = MockPersistantContainer()
-        storageManager = StorageManager(persistentContainer: mockPersistantContainer.mockPersistantContainer)
-        _ = storageManager.insertPostItem(posts: posts)
-        _ = storageManager.insertAuthorItem(author: authors)
+        let mockPersistentContainer = MockPersistentContainer()
+        storageManager = StorageManager(persistentContainer: mockPersistentContainer.mockPersistentContainer)
+        _ = storageManager.insert(posts)
+        _ = storageManager.insert(authors)
         let fetchPosts = storageManager.fetchAllPosts()
         let fetchAuthors = storageManager.fetchAllAuthors()
 
@@ -75,7 +65,7 @@ class PostsViewModelTests: XCTestCase {
 
     }
 
-    func testRefreshData() {
+    func testRefreshDataReturnsData() {
         let mockDelegate = MockViewModelDelegate()
         let postViewModel = PostsViewModel()
         postViewModel.delegate = mockDelegate
@@ -84,11 +74,11 @@ class PostsViewModelTests: XCTestCase {
         let authors = testProperties.authorItem()
         let comments = testProperties.commentItem()
         var storageManager: StorageManager!
-        let mockPersistantContainer = MockPersistantContainer()
-        storageManager = StorageManager(persistentContainer: mockPersistantContainer.mockPersistantContainer)
-        _ = storageManager.insertPostItem(posts: posts)
-        _ = storageManager.insertAuthorItem(author: authors)
-        _ = storageManager.insertCommentItem(comment: comments)
+        let mockPersistentContainer = MockPersistentContainer()
+        storageManager = StorageManager(persistentContainer: mockPersistentContainer.mockPersistentContainer)
+        _ = storageManager.insert(posts)
+        _ = storageManager.insert(authors)
+        _ = storageManager.insert(comments)
 
         postViewModel.refreshData()
 
@@ -101,19 +91,17 @@ class PostsViewModelTests: XCTestCase {
         let postViewModel = PostsViewModel()
         postViewModel.delegate = mockDelegate
 
-        let posts = testProperties.postItem()
-        let authors = testProperties.authorItem()
-        let comments = testProperties.commentItem()
-        var storageManager: StorageManager!
-        let mockPersistantContainer = MockPersistantContainer()
-        storageManager = StorageManager(persistentContainer: mockPersistantContainer.mockPersistantContainer)
-        _ = storageManager.insertPostItem(posts: posts)
-        _ = storageManager.insertAuthorItem(author: authors)
-        _ = storageManager.insertCommentItem(comment: comments)
-
-        postViewModel.refreshData()
-
-        XCTAssertEqual(mockDelegate.timesDidLoadDataCalled, 1)
-        XCTAssertEqual(mockDelegate.timesErrorCalled, 0)
+        let mockAPI = MockAPI(isReturningError: true)
+        let path = URLEndpoint(path: Paths.postsUrlPath)
+        mockAPI.fetchJsonData(endPoint: path, completion: {result in
+            switch result {
+            case .failure(let error):
+                mockDelegate.modelDidUpdateWithError(error: error)
+            case .success:
+                mockDelegate.modelDidUpdateWithData()
+            }
+        })
+        XCTAssertEqual(mockDelegate.timesDidLoadDataCalled, 0)
+        XCTAssertEqual(mockDelegate.timesErrorCalled, 1)
     }
 }

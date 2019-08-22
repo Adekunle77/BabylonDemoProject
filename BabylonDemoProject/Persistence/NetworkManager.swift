@@ -15,8 +15,8 @@ protocol Network {
 
 class NetworkManager: Network {
     let dataSource: API
-    var isReturningError = false
     private let storageManager: StorageManager?
+
     init(dataSource: API) {
         storageManager = StorageManager(persistentContainer: PersistenceService.persistentContainer)
         self.dataSource = dataSource
@@ -30,35 +30,32 @@ class NetworkManager: Network {
             case let .success(data):
                 switch data {
                 case let .authors(author):
-                    self?.saveAuthorData(with: author)
+                    self?.insert(authors: author)
                 case let .comments(comment):
-                    self?.saveCommentData(with: comment)
+                    self?.insert(comments: comment)
                 case let .posts(post):
-                    self?.savePostData(with: post)
+                    self?.insert(posts: post)
                 }
                 completion(.success(()))
             }
         })
     }
 
-    func savePostData(with dataArray: [PostsModel]) {
-        for item in dataArray {
-            _ = storageManager?.insertPostItem(posts: item)
-            storageManager?.save()
+    func insert(posts: [PostsModel]) {
+        for post in posts {
+            _ = storageManager?.insert(post)
         }
     }
 
-    private func saveAuthorData(with dataArray: [AuthorModel]) {
-        for item in dataArray {
-            _ = storageManager?.insertAuthorItem(author: item)
-            storageManager?.save()
+    private func insert(authors: [AuthorModel]) {
+        for author in authors {
+            _ = storageManager?.insert(author)
         }
     }
 
-    private func saveCommentData(with dataArray: [CommentModel]) {
-        for item in dataArray {
-            _ = storageManager?.insertCommentItem(comment: item)
-            storageManager?.save()
+    private func insert(comments: [CommentModel]) {
+        for comment in comments {
+            _ = storageManager?.insert(comment)
         }
     }
 }

@@ -10,9 +10,9 @@ import Foundation
 import CoreData
 
 class StorageManager {
-    
-    let persistentContainer: NSPersistentContainer!
-    lazy var backgroundContext: NSManagedObjectContext = {
+
+    private let persistentContainer: NSPersistentContainer
+    private lazy var backgroundContext: NSManagedObjectContext = {
         return self.persistentContainer.newBackgroundContext()
     }()
 
@@ -20,38 +20,37 @@ class StorageManager {
         self.persistentContainer = persistentContainer
         self.persistentContainer.viewContext.automaticallyMergesChangesFromParent = true
     }
-    
-    convenience init() {
-        self.init(persistentContainer: PersistenceService.persistentContainer)
-    }
 
-    func insertPostItem(posts: PostsModel) -> Posts? {
+    func insert(_ post: PostsModel) -> Posts? {
         guard let postEntity = NSEntityDescription.insertNewObject(
             forEntityName: "Posts",
             into: persistentContainer.viewContext) as? Posts else { return nil }
-        postEntity.body = posts.body
-        postEntity.title = posts.title
-        postEntity.postId = Int16(posts.identification)
-        postEntity.userID = Int16(posts.userId)
+        postEntity.body = post.body
+        postEntity.title = post.title
+        postEntity.postId = Int16(post.identification)
+        postEntity.userID = Int16(post.userId)
+        self.save()
         return postEntity
     }
 
-    func insertCommentItem(comment: CommentModel) -> Comment? {
+    func insert(_ comment: CommentModel) -> Comment? {
         guard let commentEntity = NSEntityDescription.insertNewObject(
             forEntityName: "Comment",
             into: persistentContainer.viewContext) as? Comment else { return nil }
         commentEntity.commentId = Int16(comment.identification)
         commentEntity.comments = comment.body
         commentEntity.postId = Int16(comment.postId)
+        self.save()
         return commentEntity
     }
 
-    func insertAuthorItem(author: AuthorModel) -> Author? {
+    func insert(_ author: AuthorModel) -> Author? {
         guard let authorEntity = NSEntityDescription.insertNewObject(
             forEntityName: "Author",
             into: persistentContainer.viewContext) as? Author else { return nil }
         authorEntity.name = author.name
         authorEntity.authorID = Int16(author.identification)
+        self.save()
         return authorEntity
     }
 
@@ -88,9 +87,10 @@ class StorageManager {
     func remove(objectID: NSManagedObjectID) {
         let objcet = persistentContainer.viewContext.object(with: objectID)
         persistentContainer.viewContext.delete(objcet)
+        self.save()
     }
 
-    func save() {
+    private func save() {
         if persistentContainer.viewContext.hasChanges {
             try? persistentContainer.viewContext.save()
         }

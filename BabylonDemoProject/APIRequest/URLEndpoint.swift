@@ -27,17 +27,3 @@ extension URLEndpoint {
         return components.url
     }
 }
-
-extension URLEndpoint {
-    func parse(_ data: Data) throws -> ModelType {
-        let decoder = JSONDecoder()
-        switch path {
-        case .postsUrlPath:
-            return try .posts(decoder.decode([PostsModel].self, from: data))
-        case .authorUrlPath:
-            return try .authors(decoder.decode([AuthorModel].self, from: data))
-        case .commentsUrlPath:
-            return try .comments(decoder.decode([CommentModel].self, from: data))
-        }
-    }
-}

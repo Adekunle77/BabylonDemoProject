@@ -12,13 +12,13 @@ import Foundation
 class MockNetworkManager: Network {
     let networkManager: MockAPI?
     var coreDataManager: StorageManager!
-    let mockPersistantContainer = MockPersistantContainer()
+    let mockPersistentContainer = MockPersistentContainer()
 
     init(networkManager: MockAPI) {
         self.networkManager = networkManager
-        coreDataManager = StorageManager(persistentContainer: mockPersistantContainer.mockPersistantContainer)
+        coreDataManager = StorageManager(persistentContainer: mockPersistentContainer.mockPersistentContainer)
     }
-    
+
     func fetchAPIData(with path: URLEndpoint, completion: @escaping (Result<(), DataSourceError>) -> Void) {
         networkManager?.fetchJsonData(endPoint: path, completion: { [weak self] result in
             switch result {
@@ -28,18 +28,15 @@ class MockNetworkManager: Network {
                 switch data {
                 case let .authors(authors):
                     for author in authors {
-                        _ = self?.coreDataManager.insertAuthorItem(author: author)
-                        self?.coreDataManager?.save()
+                        _ = self?.coreDataManager.insert(author)
                     }
                 case let .comments(comments):
                     for comment in comments {
-                        _ = self?.coreDataManager.insertCommentItem(comment: comment)
-                        self?.coreDataManager?.save()
+                        _ = self?.coreDataManager.insert(comment)
                     }
                 case let .posts(posts):
                     for post in posts {
-                        _ = self?.coreDataManager.insertPostItem(posts: post)
-                        self?.coreDataManager?.save()
+                        _ = self?.coreDataManager.insert(post)
                     }
                 }
                  completion(.success(()))

@@ -15,7 +15,7 @@ class LoadManagerTests: XCTestCase {
     final class MockDelegate: CoreDataLoadManagerDelegate {
         var timesDidLoadDataCalled = 0
         var timesErrorCalled = 0
-        
+
         func didLoadCoreData() {
             timesDidLoadDataCalled += 1
         }
@@ -45,7 +45,7 @@ class LoadManagerTests: XCTestCase {
         XCTAssertEqual(spy.timesErrorCalled, 0)
         XCTAssertEqual(spy.timesDidLoadDataCalled, 1)
     }
-    
+
     func testFetchDataReturnsError() {
         let mockAPI = MockAPI(isReturningError: true)
         let spy = MockDelegate()

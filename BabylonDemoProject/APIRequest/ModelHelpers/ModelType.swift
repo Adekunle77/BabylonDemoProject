@@ -12,4 +12,5 @@ enum ModelType {
     case comments([CommentModel])
 }
 
+// ModelType confirms to Equatable for the purpose of testing.
 extension ModelType: Equatable {}
