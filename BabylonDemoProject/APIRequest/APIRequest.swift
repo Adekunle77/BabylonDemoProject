@@ -9,15 +9,15 @@
 import Foundation
 
 class APIRequest: API {
-    func fetchJsonData(endPoint: URLEndpoint, completion: @escaping CompletionHandler) {
-        guard let url = endPoint.url else { return }
+    func fetchJsonData(endpoint: URLEndpoint, completion: @escaping CompletionHandler) {
+        guard let url = endpoint.url else { return }
         let task = URLSession.shared.dataTask(with: url) { data, _, error in
             DispatchQueue.main.async {
                 switch (error, data) {
                 case let (error?, _):
                     completion(.failure(DataSourceError.network(error)))
                 case let (_, data?):
-                    completion(Result { try endPoint.parse(data) })
+                    completion(Result { try endpoint.parse(data) })
                 default:
                     completion(.failure(DataSourceError.noData))
                 }

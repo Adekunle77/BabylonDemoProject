@@ -23,7 +23,7 @@ class NetworkManager: Network {
     }
 
     func fetchAPIData(with path: URLEndpoint, completion: @escaping (Result<(), DataSourceError>) -> Void) {
-        dataSource.fetchJsonData(endPoint: path, completion: { [weak self] result in
+        dataSource.fetchJsonData(endpoint: path, completion: { [weak self] result in
             switch result {
             case let .failure(error):
                 completion(.failure(.network(error)))

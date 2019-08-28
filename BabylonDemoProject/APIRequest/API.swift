@@ -11,5 +11,5 @@ import Foundation
 typealias CompletionHandler = (_ results: Result<ModelType, Error>) -> Void
 
 protocol API {
-    func fetchJsonData(endPoint: URLEndpoint, completion: @escaping CompletionHandler)
+    func fetchJsonData(endpoint: URLEndpoint, completion: @escaping CompletionHandler)
 }
