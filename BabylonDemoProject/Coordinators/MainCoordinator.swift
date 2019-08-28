@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 
 // The Coordinator Pattern is used avoid views being coupled togethier.
-
 class MainCoordinator: NSObject, Coordinator, UINavigationControllerDelegate {
     // childcoordinator an UIViewController array to add and remove UIViewController
     private var childcoordinator = [UIViewController]()

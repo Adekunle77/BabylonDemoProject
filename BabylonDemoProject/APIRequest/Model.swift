@@ -77,7 +77,7 @@ struct CommentModel: Codable {
     }
 }
 
-// These structs have been to confirm to Equatable for the purpose of testing.
+// These structs have been to conforms to Equatable for the purpose of testing.
 
 extension PostsModel: Equatable {
     static func == (lhs: PostsModel, rhs: PostsModel) -> Bool {

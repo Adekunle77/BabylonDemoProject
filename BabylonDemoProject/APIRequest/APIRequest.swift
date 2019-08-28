@@ -9,7 +9,7 @@
 import Foundation
 
 class APIRequest: API {
-    func fetchJsonData(endpoint: URLEndpoint, completion: @escaping CompletionHandler) {
+    func fetchJSONData(endpoint: URLEndpoint, completion: @escaping CompletionHandler) {
         guard let url = endpoint.url else { return }
         let task = URLSession.shared.dataTask(with: url) { data, _, error in
             DispatchQueue.main.async {

@@ -20,7 +20,7 @@ class MockNetworkManager: Network {
     }
 
     func fetchAPIData(with path: URLEndpoint, completion: @escaping (Result<(), DataSourceError>) -> Void) {
-        networkManager?.fetchJsonData(endpoint: path, completion: { [weak self] result in
+        networkManager?.fetchJSONData(endpoint: path, completion: { [weak self] result in
             switch result {
             case let .failure(error):
                 completion(Result.failure(.network(error)))
@@ -52,7 +52,7 @@ class MockAPI: API {
         self.isReturningError = isReturningError
     }
 
-    func fetchJsonData(endpoint: URLEndpoint, completion: @escaping CompletionHandler) {
+    func fetchJSONData(endpoint: URLEndpoint, completion: @escaping CompletionHandler) {
         if isReturningError {
             completion(.failure(DataSourceError.noData))
         } else {
