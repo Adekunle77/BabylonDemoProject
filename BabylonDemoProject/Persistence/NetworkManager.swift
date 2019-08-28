@@ -29,7 +29,7 @@ class NetworkManager: Network {
                 completion(.failure(.network(error)))
             case let .success(data):
                 switch data {
-                case let .authors(author):
+                case let .users(author):
                     self?.insert(authors: author)
                 case let .comments(comment):
                     self?.insert(comments: comment)
@@ -47,7 +47,7 @@ class NetworkManager: Network {
         }
     }
 
-    private func insert(authors: [AuthorModel]) {
+    private func insert(authors: [UserModel]) {
         for author in authors {
             _ = storageManager?.insert(author)
         }

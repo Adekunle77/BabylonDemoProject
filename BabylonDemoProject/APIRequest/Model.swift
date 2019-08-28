@@ -19,7 +19,7 @@ struct PostsModel: Codable {
     }
 }
 
-struct AuthorModel: Codable {
+struct UserModel: Codable {
     let identification: Int
     let name: String
     let username: String
@@ -77,6 +77,8 @@ struct CommentModel: Codable {
     }
 }
 
+// These structs have been to confirm to Equatable for the purpose of testing.
+
 extension PostsModel: Equatable {
     static func == (lhs: PostsModel, rhs: PostsModel) -> Bool {
         return lhs.identification == rhs.identification &&
@@ -86,8 +88,8 @@ extension PostsModel: Equatable {
     }
 }
 
-extension AuthorModel: Equatable {
-    static func == (lhs: AuthorModel, rhs: AuthorModel) -> Bool {
+extension UserModel: Equatable {
+    static func == (lhs: UserModel, rhs: UserModel) -> Bool {
         return lhs.identification == rhs.identification &&
             lhs.name == rhs.name &&
             lhs.username == rhs.username &&

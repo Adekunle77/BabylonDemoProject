@@ -27,7 +27,7 @@ class LoadManager {
     func fetchData() {
         let dispatchGroup = DispatchGroup()
         var errorsArray = [Error]()
-        let postsPath = URLEndpoint(path: Paths.postsUrlPath)
+        let postsPath = URLEndpoint.posts
         dispatchGroup.enter()
         networkManager.fetchAPIData(with: postsPath, completion: { result in
             switch result {
@@ -38,7 +38,7 @@ class LoadManager {
             dispatchGroup.leave()
         })
 
-        let authorPath = URLEndpoint(path: Paths.authorUrlPath)
+        let authorPath = URLEndpoint.users
         dispatchGroup.enter()
        networkManager.fetchAPIData(with: authorPath, completion: { result in
             switch result {
@@ -49,7 +49,7 @@ class LoadManager {
             dispatchGroup.leave()
         })
 
-        let commentsPath = URLEndpoint(path: Paths.commentsUrlPath)
+        let commentsPath = URLEndpoint.comments
         dispatchGroup.enter()
         networkManager.fetchAPIData(with: commentsPath, completion: { result in
             switch result {

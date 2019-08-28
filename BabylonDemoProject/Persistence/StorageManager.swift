@@ -44,7 +44,7 @@ class StorageManager {
         return commentEntity
     }
 
-    func insert(_ author: AuthorModel) -> Author? {
+    func insert(_ author: UserModel) -> Author? {
         guard let authorEntity = NSEntityDescription.insertNewObject(
             forEntityName: "Author",
             into: persistentContainer.viewContext) as? Author else { return nil }

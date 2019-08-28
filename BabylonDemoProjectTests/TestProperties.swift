@@ -12,7 +12,7 @@ import CoreData
 
 class TestProperties {
 
-    func authorItem() -> AuthorModel {
+    func authorItem() -> UserModel {
         let geo = Geo(latitude: "-37.3159", longitude: "81.1496")
         let address = Address(street: "Kulas Light", suite: "Apt. 556", city: "Gwenborough",
                               zipcode: "92998-3874",
@@ -20,7 +20,7 @@ class TestProperties {
         let company = Company(name: "Romaguera-Crona",
                               catchPhrase: "Multi-layered client-server neural-net",
                               bachelorScience: "harness real-time e-markets")
-        let author = AuthorModel(identification: 1,
+        let author = UserModel(identification: 1,
                                  name: "Bret", username: "Leanne Graham",
                                  email: "Sincere@april.biz",
                                  address: address, phone: "1-770-736-8031 x56442",

@@ -62,7 +62,7 @@ class MainCoordinatorTests: XCTestCase {
     }
 
     func testDidPushLoadingVC() {
-        mainCooordinator?.pushLoadingVC(delay: 0.0)
+        mainCooordinator?.pushLoadingVC()
 
         XCTAssertEqual(mainCooordinator?.count, 1)
     }

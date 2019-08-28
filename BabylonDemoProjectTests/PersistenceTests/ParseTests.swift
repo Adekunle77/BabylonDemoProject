@@ -7,21 +7,20 @@
 //
 
 import XCTest
+import CoreData
 @testable import BabylonDemoProject
 
 class ParseTests: XCTestCase {
     var coreDataManager: StorageManager!
     let properties = TestProperties()
-
     func testTitleData() {
         let modelType = ModelType.self
         let posts = [properties.postItem()]
-        let item = Parse()
         if let path = Bundle.main.path(forResource: "Titles", ofType: "json") {
             do {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
-                let endPoint = URLEndpoint(path: .postsUrlPath)
-                guard let jsonRequest = try? item.parseObject(with: data, from: endPoint)  else { return }
+                let endpoint = URLEndpoint.posts
+                guard let jsonRequest = try? endpoint.parse(data) else { return }
                 let parseData = modelType.posts(posts)
                 XCTAssertEqual(parseData, jsonRequest)
             } catch {
@@ -33,29 +32,26 @@ class ParseTests: XCTestCase {
     func testAuthorData() {
         let modelType = ModelType.self
         let author = [properties.authorItem()]
-        let item = Parse()
         if let path = Bundle.main.path(forResource: "Authors", ofType: "json") {
             do {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
-                let endPoint = URLEndpoint(path: .authorUrlPath)
-                guard let jsonRequest = try?  item.parseObject(with: data, from: endPoint) else { return }
-                let parseData = modelType.authors(author)
+                let endPoint = URLEndpoint.users
+                guard let jsonRequest = try? endPoint.parse(data) else { return }
+                let parseData = modelType.users(author)
                 XCTAssertEqual(parseData, jsonRequest)
             } catch {
                 print("failed")
             }
         }
     }
-
     func testCommentsData() {
         let modelType = ModelType.self
         let comments = [properties.commentItem()]
-        let item = Parse()
         if let path = Bundle.main.path(forResource: "Comments", ofType: "json") {
             do {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
-                let endPoint = URLEndpoint(path: .commentsUrlPath)
-                guard let jsonRequest = try? item.parseObject(with: data, from: endPoint) else { return }
+                let endPoint = URLEndpoint.comments
+                guard let jsonRequest = try? endPoint.parse(data) else { return }
                 let parseData = modelType.comments(comments)
                 XCTAssertEqual(parseData, jsonRequest)
             } catch {

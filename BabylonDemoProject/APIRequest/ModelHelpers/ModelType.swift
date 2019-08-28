@@ -8,7 +8,7 @@
 
 enum ModelType {
     case posts([PostsModel])
-    case authors([AuthorModel])
+    case users([UserModel])
     case comments([CommentModel])
 }
 
