@@ -1,2 +1,2 @@
 # BabylonDemoProject
-Swift demo project, using Core Data, that also makes anAPI Request.
+Swift demo project, using Core Data and making an API request.
