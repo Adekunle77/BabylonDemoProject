@@ -26,7 +26,7 @@ class MockNetworkManager: Network {
                 completion(Result.failure(.network(error)))
             case let .success(data):
                 switch data {
-                case let .authors(authors):
+                case let .users(authors):
                     for author in authors {
                         _ = self?.coreDataManager.insert(author)
                     }
@@ -56,15 +56,15 @@ class MockAPI: API {
         if isReturningError {
             completion(.failure(DataSourceError.noData))
         } else {
-            if endpoint.path == .authorUrlPath {
+            if endpoint.rawValue == URLEndpoint.users.rawValue {
                 let authors = [properties.authorItem()]
-                completion(.success(.authors(authors)))
+                completion(.success(.users(authors)))
             }
-            if endpoint.path == .commentsUrlPath {
+            if endpoint.rawValue == URLEndpoint.comments.rawValue {
                 let comments = [properties.commentItem()]
                 completion(.success(.comments(comments)))
             }
-            if endpoint.path == .postsUrlPath {
+            if endpoint.rawValue == URLEndpoint.posts.rawValue {
                 let posts = [properties.postItem()]
                 completion(.success(.posts(posts)))
             }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct PostsModel: Codable {
+struct PostsModel: Codable, Equatable {
     let userId: Int
     let identification: Int
     let body: String
@@ -19,7 +19,7 @@ struct PostsModel: Codable {
     }
 }
 
-struct UserModel: Codable {
+struct UserModel: Codable, Equatable {
     let identification: Int
     let name: String
     let username: String
@@ -34,19 +34,19 @@ struct UserModel: Codable {
     }
 }
 
-struct Address: Codable {
+struct Address: Codable, Equatable {
     let street: String
     let suite: String
     let city: String
     let zipcode: String
     let geocode: Geo
-    enum CodingKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey, Equatable {
         case street, suite, city, zipcode
         case geocode = "geo"
     }
 }
 
-struct Geo: Codable {
+struct Geo: Codable, Equatable {
     let latitude: String
     let longitude: String
     enum CodingKeys: String, CodingKey {
@@ -55,7 +55,7 @@ struct Geo: Codable {
     }
 }
 
-struct Company: Codable {
+struct Company: Codable, Equatable {
     let name: String
     let catchPhrase: String
     let bachelorScience: String
@@ -65,7 +65,7 @@ struct Company: Codable {
     }
 }
 
-struct CommentModel: Codable {
+struct CommentModel: Codable, Equatable {
     let postId: Int
     let identification: Int
     let name: String
@@ -78,33 +78,33 @@ struct CommentModel: Codable {
 }
 
 // These structs have been to conforms to Equatable for the purpose of testing.
-
-extension PostsModel: Equatable {
-    static func == (lhs: PostsModel, rhs: PostsModel) -> Bool {
-        return lhs.identification == rhs.identification &&
-            lhs.userId == rhs.userId &&
-            lhs.body == rhs.body &&
-            lhs.title == rhs.title
-    }
-}
-
-extension UserModel: Equatable {
-    static func == (lhs: UserModel, rhs: UserModel) -> Bool {
-        return lhs.identification == rhs.identification &&
-            lhs.name == rhs.name &&
-            lhs.username == rhs.username &&
-            lhs.email == rhs.email &&
-            lhs.phone == rhs.phone &&
-            lhs.website == rhs.website
-    }
-}
-
-extension CommentModel: Equatable {
-    static func == (lhs: CommentModel, rhs: CommentModel) -> Bool {
-        return lhs.postId == rhs.postId &&
-            lhs.identification == rhs.identification &&
-            lhs.name == rhs.name &&
-            lhs.email == rhs.email &&
-            lhs.body == rhs.body
-    }
-}
+//
+//extension PostsModel: Equatable {
+//    static func == (lhs: PostsModel, rhs: PostsModel) -> Bool {
+//        return lhs.identification == rhs.identification &&
+//            lhs.userId == rhs.userId &&
+//            lhs.body == rhs.body &&
+//            lhs.title == rhs.title
+//    }
+//}
+//
+//extension UserModel: Equatable {
+//    static func == (lhs: UserModel, rhs: UserModel) -> Bool {
+//        return lhs.identification == rhs.identification &&
+//            lhs.name == rhs.name &&
+//            lhs.username == rhs.username &&
+//            lhs.email == rhs.email &&
+//            lhs.phone == rhs.phone &&
+//            lhs.website == rhs.website
+//    }
+//}
+//
+//extension CommentModel: Equatable {
+//    static func == (lhs: CommentModel, rhs: CommentModel) -> Bool {
+//        return lhs.postId == rhs.postId &&
+//            lhs.identification == rhs.identification &&
+//            lhs.name == rhs.name &&
+//            lhs.email == rhs.email &&
+//            lhs.body == rhs.body
+//    }
+//}

@@ -26,7 +26,7 @@ class NetworkManagerTests: XCTestCase {
         let mockAPI = MockAPI(isReturningError: true)
         let spy = CoreDataLoadManagerDelegateSpy()
         let saveData = NetworkManager(dataSource: mockAPI)
-        let path = URLEndpoint(path: Paths.commentsUrlPath)
+        let path = URLEndpoint.comments
         saveData.fetchAPIData(with: path, completion: { result in
             switch result {
             case .failure(let error):
@@ -45,7 +45,7 @@ class NetworkManagerTests: XCTestCase {
         let mockAPI = MockAPI(isReturningError: false)
         let spy = CoreDataLoadManagerDelegateSpy()
         let saveData = NetworkManager(dataSource: mockAPI)
-        let path = URLEndpoint(path: Paths.authorUrlPath)
+        let path = URLEndpoint.users
         saveData.fetchAPIData(with: path, completion: { result in
             switch result {
             case .failure(let error):
@@ -64,7 +64,7 @@ class NetworkManagerTests: XCTestCase {
         let mockAPI = MockAPI(isReturningError: false)
         let spy = CoreDataLoadManagerDelegateSpy()
         let saveData = NetworkManager(dataSource: mockAPI)
-        let path = URLEndpoint(path: Paths.commentsUrlPath)
+        let path = URLEndpoint.comments
         saveData.fetchAPIData(with: path, completion: { result in
             switch result {
             case .failure(let error):
@@ -83,7 +83,7 @@ class NetworkManagerTests: XCTestCase {
         let mockAPI = MockAPI(isReturningError: false)
         let spy = CoreDataLoadManagerDelegateSpy()
         let saveData = NetworkManager(dataSource: mockAPI)
-        let path = URLEndpoint(path: Paths.postsUrlPath)
+        let path = URLEndpoint.posts
         saveData.fetchAPIData(with: path, completion: { result in
             switch result {
             case .failure(let error):

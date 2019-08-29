@@ -64,19 +64,19 @@ class MainCoordinator: NSObject, Coordinator, UINavigationControllerDelegate {
 
     // This function append and removes viewControllers
     func childDidFinish(_ child: UIViewController) {
-        // this checks if the first element in the array is a viewController
-        // that is a of Coordinator if it is then it removes it.
+    // this checks if the first element in the array is a viewController
+    // that is a of Coordinator if it is then it removes it.
         if let index = childcoordinator.firstIndex(where: { (coordinator) -> Bool in coordinator == child }) {
+            print(self.count, "one")
             childcoordinator.remove(at: index)
+            print(self.count, "two")
         }
     }
 }
 
-// This property is for the purpose of testing.
 #if DEBUG
 extension MainCoordinator {
     var count: Int {
-        print(childcoordinator.count)
         return childcoordinator.count
     }
 }

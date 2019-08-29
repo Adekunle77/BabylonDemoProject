@@ -21,7 +21,6 @@
 		333FAB7022F4BDC800AA3882 /* MainCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333FAB6F22F4BDC800AA3882 /* MainCoordinatorTests.swift */; };
 		333FAB7222F9C11D00AA3882 /* ErrorViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333FAB7122F9C11D00AA3882 /* ErrorViewControllerTests.swift */; };
 		333FAB7422FB16FC00AA3882 /* LoadingViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333FAB7322FB16FC00AA3882 /* LoadingViewControllerTests.swift */; };
-		333FAB7622FB26B800AA3882 /* ContentStateViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333FAB7522FB26B800AA3882 /* ContentStateViewControllerTests.swift */; };
 		33538EAD230D53DC00CA0D2B /* String Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33538EAC230D53DC00CA0D2B /* String Extension.swift */; };
 		335D283A23154CF50023A7E6 /* ParseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335D283823154CF50023A7E6 /* ParseTests.swift */; };
 		3375C1C6228570CB0087E5F1 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3375C1C5228570CB0087E5F1 /* Default-568h@2x.png */; };
@@ -89,7 +88,6 @@
 		333FAB6F22F4BDC800AA3882 /* MainCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinatorTests.swift; sourceTree = "<group>"; };
 		333FAB7122F9C11D00AA3882 /* ErrorViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorViewControllerTests.swift; sourceTree = "<group>"; };
 		333FAB7322FB16FC00AA3882 /* LoadingViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewControllerTests.swift; sourceTree = "<group>"; };
-		333FAB7522FB26B800AA3882 /* ContentStateViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentStateViewControllerTests.swift; sourceTree = "<group>"; };
 		33538EAC230D53DC00CA0D2B /* String Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String Extension.swift"; sourceTree = "<group>"; };
 		335D283823154CF50023A7E6 /* ParseTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseTests.swift; sourceTree = "<group>"; };
 		3375C1C5228570CB0087E5F1 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -223,7 +221,6 @@
 		33BC617A22B52B02002AFEC2 /* ViewsTests */ = {
 			isa = PBXGroup;
 			children = (
-				333FAB7522FB26B800AA3882 /* ContentStateViewControllerTests.swift */,
 				337CE23D22DF6404003CA06A /* ContentStateViewModelTests.swift */,
 				333FAB6F22F4BDC800AA3882 /* MainCoordinatorTests.swift */,
 				33FEB00F22F222860044F14B /* PostsViewControllerTests.swift */,
@@ -523,7 +520,6 @@
 				335D283A23154CF50023A7E6 /* ParseTests.swift in Sources */,
 				33FEB01022F222860044F14B /* PostsViewControllerTests.swift in Sources */,
 				33F11B1C22C6530700509355 /* StorageManagerTests.swift in Sources */,
-				333FAB7622FB26B800AA3882 /* ContentStateViewControllerTests.swift in Sources */,
 				33E4B01122C8FAA6003F86BA /* TestProperties.swift in Sources */,
 				333FAB7222F9C11D00AA3882 /* ErrorViewControllerTests.swift in Sources */,
 			);

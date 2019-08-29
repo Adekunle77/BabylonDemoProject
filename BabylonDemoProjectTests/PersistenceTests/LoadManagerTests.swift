@@ -30,7 +30,7 @@ class LoadManagerTests: XCTestCase {
         let spy = MockDelegate()
         let dataSource = MockNetworkManager(networkManager: mockAPI)
         let loadManager = LoadManager(networkManager: dataSource)
-        let postsPath = URLEndpoint(path: Paths.postsUrlPath)
+        let postsPath = URLEndpoint.posts
         loadManager.networkManager.fetchAPIData(with: postsPath, completion: { result in
             switch result {
             case let .failure(error):
@@ -51,7 +51,7 @@ class LoadManagerTests: XCTestCase {
         let spy = MockDelegate()
         let dataSource = MockNetworkManager(networkManager: mockAPI)
         let loadManager = LoadManager(networkManager: dataSource)
-        let postsPath = URLEndpoint(path: Paths.postsUrlPath)
+        let postsPath = URLEndpoint.posts
         loadManager.networkManager.fetchAPIData(with: postsPath, completion: { result in
             switch result {
             case let .failure(error):

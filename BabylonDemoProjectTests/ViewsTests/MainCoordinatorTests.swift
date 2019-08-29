@@ -31,12 +31,11 @@ class MainCoordinatorTests: XCTestCase {
         let navigationController = MockNavigationController(rootViewController: viewController)
         UIApplication.shared.keyWindow?.rootViewController = navigationController
 
-        //mainCooordinator?.childcoordinator.append(viewController)
         mainCooordinator?.pushPostVC()
-        XCTAssertEqual(mainCooordinator?.count, 0)
+        XCTAssertEqual(mainCooordinator?.count, 1)
 
         mainCooordinator?.popPostVC()
-        XCTAssertEqual(mainCooordinator?.count, 0)
+        XCTAssertEqual(mainCooordinator?.count, 1)
     }
 
     func testStartDidPushContentStateVC() {
