@@ -11,7 +11,7 @@ import UIKit
 import CoreData
 
 // This ViewModel checks if data is available via Core Data. If there is
-// no data it makes an API request to get data.
+// no data it makes an API request to get data via the LoadManager class.
 protocol ContentStateViewModelDelegate: class {
     func didUpdateWithData()
     func didUpdateWithError(error: [Error])
