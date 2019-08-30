@@ -10,12 +10,8 @@ import Foundation
 
 // This extension capitalizes the first character in a string.
 extension String {
-    func capitalizingFirstLetter() -> String {
-        return prefix(1).uppercased() + self.lowercased().dropFirst()
-    }
-
-    mutating func capitalizeFirstLetter() {
-        self = self.capitalizingFirstLetter()
+    var capitalizedFirstLetter: String {
+        return prefix(1).localizedUppercase + localizedLowercase.dropFirst()
     }
 }
 

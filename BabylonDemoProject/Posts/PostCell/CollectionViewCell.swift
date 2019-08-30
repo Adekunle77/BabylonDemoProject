@@ -24,6 +24,6 @@ final class CollectionViewCell: UICollectionViewCell {
     }
 
     func updateCell(with info: Posts) {
-        title?.text = info.title.capitalizingFirstLetter().addFullStop()
+        title?.text = info.title.capitalizedFirstLetter.addFullStop()
     }
 }

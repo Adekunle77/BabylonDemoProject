@@ -12,7 +12,7 @@ import UIKit
 // The Coordinator Pattern is used avoid views being coupled togethier.
 final class MainCoordinator: NSObject, Coordinator, UINavigationControllerDelegate {
     // childcoordinator an UIViewController array to add and remove UIViewController
-    private var childcoordinator = [UIViewController]()
+    private var childCoordinator = [UIViewController]()
     var navigationController: UINavigationController
 
     init(navigationController: UINavigationController) {
@@ -23,14 +23,14 @@ final class MainCoordinator: NSObject, Coordinator, UINavigationControllerDelega
         navigationController.delegate = self
         let constateVC = ContentStateViewController.instantiate()
         constateVC.coordinator = self
-        childcoordinator.append(constateVC)
+        childCoordinator.append(constateVC)
         navigationController.pushViewController(constateVC, animated: false)
     }
 
     func pushPostVC() {
         let postVC = PostsViewController.instantiate()
         postVC.coordinator = self
-        childcoordinator.append(postVC)
+        childCoordinator.append(postVC)
         navigationController.pushViewController(postVC, animated: true)
     }
 
@@ -44,14 +44,14 @@ final class MainCoordinator: NSObject, Coordinator, UINavigationControllerDelega
         let errorVC = ErrorViewController.instantiate()
         errorVC.errors = error
         errorVC.coordinator = self
-        childcoordinator.append(errorVC)
+        childCoordinator.append(errorVC)
         navigationController.pushViewController(errorVC, animated: false)
     }
 
     func pushLoadingVC() {
         let loadingVC = LoadingViewController.instantiate()
         loadingVC.coordinator = self
-        childcoordinator.append(loadingVC)
+        childCoordinator.append(loadingVC)
         navigationController.pushViewController(loadingVC, animated: false)
     }
 
@@ -66,8 +66,8 @@ final class MainCoordinator: NSObject, Coordinator, UINavigationControllerDelega
     func childDidFinish(_ child: UIViewController) {
     // This checks if the first element in the array is a viewController
     // that is a of Coordinator if it is then it removes it.
-        if let index = childcoordinator.firstIndex(where: { (coordinator) -> Bool in coordinator == child }) {
-            childcoordinator.remove(at: index)
+        if let index = childCoordinator.firstIndex(where: { (coordinator) -> Bool in coordinator == child }) {
+            childCoordinator.remove(at: index)
         }
     }
 }
@@ -75,7 +75,7 @@ final class MainCoordinator: NSObject, Coordinator, UINavigationControllerDelega
 #if DEBUG
 extension MainCoordinator {
     var count: Int {
-        return childcoordinator.count
+        return childCoordinator.count
     }
 }
 #endif
