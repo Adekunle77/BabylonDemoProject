@@ -10,7 +10,6 @@ import XCTest
 @testable import BabylonDemoProject
 
 class ErrorViewControllerTests: XCTestCase {
-
     var errorVC: ErrorViewController?
     var mainCooordinator: MainCoordinator?
 

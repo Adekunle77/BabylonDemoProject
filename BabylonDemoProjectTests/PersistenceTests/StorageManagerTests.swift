@@ -11,7 +11,6 @@ import CoreData
 @testable import BabylonDemoProject
 
 class StorageManagerTests: XCTestCase {
-
     var storageManager: StorageManager!
     var saveNotificationCompleteHandler: ((Notification) -> Void)?
     let mockPersistentContainer = MockPersistentContainer()

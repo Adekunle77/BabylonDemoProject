@@ -10,7 +10,6 @@ import XCTest
 @testable import BabylonDemoProject
 
 class NetworkManagerTests: XCTestCase {
-
     class CoreDataLoadManagerDelegateSpy: CoreDataLoadManagerDelegate {
         var spyModelDidUpdateData = false
         var spyModelDidUpdateDataWithError: [Error]?

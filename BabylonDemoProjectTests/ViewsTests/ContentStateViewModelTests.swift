@@ -10,7 +10,6 @@ import XCTest
 @testable import BabylonDemoProject
 
 class ContentStateViewModelTests: XCTestCase {
-
     var storageManager: StorageManager!
     let mockPersistentContainer = MockPersistentContainer()
     let contentStateViewModel = ContentStateViewModel()

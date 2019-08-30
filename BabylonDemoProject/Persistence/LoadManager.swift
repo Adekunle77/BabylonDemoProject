@@ -15,7 +15,6 @@ protocol CoreDataLoadManagerDelegate: class {
 }
 
 final class LoadManager {
-
     var dataSource = APIRequest()
     var networkManager: Network
     weak var delegate: CoreDataLoadManagerDelegate?

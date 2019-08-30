@@ -9,7 +9,6 @@
 import UIKit
 
 final class PostDetailViewController: UIViewController {
-
     @IBOutlet private var authorName: UILabel!
     @IBOutlet private var postDescription: UILabel!
     @IBOutlet private var commentsCount: UILabel!

@@ -9,7 +9,6 @@
 import UIKit
 
 final class CollectionViewCell: UICollectionViewCell {
-
     @IBOutlet var title: UILabel!
     @IBOutlet var cellBackgroundView: UIView!
     static let reuseIdentifier = "Cell"

@@ -10,7 +10,6 @@ import XCTest
 @testable import BabylonDemoProject
 
 class MainCoordinatorTests: XCTestCase {
-
     var mainCooordinator: MainCoordinator?
     class MockNavigationController: UINavigationController {
         var pushedViewContreoller: UIViewController?

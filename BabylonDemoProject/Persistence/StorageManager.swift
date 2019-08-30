@@ -10,7 +10,6 @@ import Foundation
 import CoreData
 
 final class StorageManager {
-
     private let persistentContainer: NSPersistentContainer
     private lazy var backgroundContext: NSManagedObjectContext = {
         return self.persistentContainer.newBackgroundContext()

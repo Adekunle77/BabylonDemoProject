@@ -11,7 +11,6 @@ import XCTest
 @testable import BabylonDemoProject
 
 class LoadManagerTests: XCTestCase {
-
     final class MockDelegate: CoreDataLoadManagerDelegate {
         var timesDidLoadDataCalled = 0
         var timesErrorCalled = 0

@@ -10,7 +10,6 @@ import CoreData
 import UIKit
 
 final class PostsViewController: UIViewController {
-
     @IBOutlet private var collectionView: UICollectionView!
     @IBOutlet weak var refreshDataButton: UIButton!
     private var viewModel = PostsViewModel()

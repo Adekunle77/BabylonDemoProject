@@ -11,7 +11,6 @@ import CoreData
 @testable import BabylonDemoProject
 
 class TestProperties {
-
     func authorItem() -> UserModel {
         let geo = Geo(latitude: "-37.3159", longitude: "81.1496")
         let address = Address(street: "Kulas Light", suite: "Apt. 556", city: "Gwenborough",

@@ -10,7 +10,6 @@ import XCTest
 @testable import BabylonDemoProject
 
 class LoadingViewControllerTests: XCTestCase {
-
     var loadingVC: LoadingViewController?
     var mainCooordinator: MainCoordinator?
 
