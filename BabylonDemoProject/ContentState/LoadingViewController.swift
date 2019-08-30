@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LoadingViewController: UIViewController {
+final class LoadingViewController: UIViewController {
     weak var coordinator: MainCoordinator?
     @IBOutlet private var babylonLogo: UIImageView!
     private lazy var activityIndicator = UIActivityIndicatorView(style: .gray)

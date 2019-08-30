@@ -13,7 +13,7 @@ protocol Network {
     func fetchAPIData(with path: URLEndpoint, completion: @escaping (Result<(), DataSourceError>) -> Void)
 }
 
-class NetworkManager: Network {
+final class NetworkManager: Network {
     let dataSource: API
     private let storageManager: StorageManager?
 

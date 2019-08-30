@@ -14,7 +14,7 @@ protocol CoreDataLoadManagerDelegate: class {
     func didLoadCoreDataError(error: [Error])
 }
 
-class LoadManager {
+final class LoadManager {
 
     var dataSource = APIRequest()
     var networkManager: Network

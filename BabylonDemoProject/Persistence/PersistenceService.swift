@@ -33,7 +33,6 @@ final class PersistenceService {
         if context.hasChanges {
             do {
                 try context.save()
-                print("save rewal")
             } catch {
                 let nserror = error as NSError
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")

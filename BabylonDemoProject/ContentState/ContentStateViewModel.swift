@@ -18,7 +18,7 @@ protocol ContentStateViewModelDelegate: class {
     func dataIsLoading()
 }
 
-class ContentStateViewModel {
+final class ContentStateViewModel {
     private var loadManager: LoadManager?
     private let storageManager: StorageManager?
     weak var delegate: ContentStateViewModelDelegate?

@@ -10,7 +10,7 @@ import UIKit
 
 // This controls which view is to be displayed. Depending on the state of
 // the app. The state of the app is provided by the viewModel.
-class ContentStateViewController: UIViewController {
+final class ContentStateViewController: UIViewController {
     weak var coordinator: MainCoordinator?
     private var viewModel = ContentStateViewModel()
 

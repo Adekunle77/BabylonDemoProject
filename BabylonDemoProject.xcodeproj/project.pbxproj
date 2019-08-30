@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		330CA5B5230EA7DB00037B1F /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330CA5B4230EA7DB00037B1F /* UIViewExtension.swift */; };
+		330CA5B5230EA7DB00037B1F /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330CA5B4230EA7DB00037B1F /* ViewExtension.swift */; };
 		3313DC6B22CCBB8F00CD940A /* LoadManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3313DC6A22CCBB8F00CD940A /* LoadManagerTests.swift */; };
 		33360F94228720D000702A39 /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33360F93228720D000702A39 /* PersistenceService.swift */; };
 		33360F962287245200702A39 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33360F952287245200702A39 /* NetworkManager.swift */; };
@@ -21,13 +21,12 @@
 		333FAB7022F4BDC800AA3882 /* MainCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333FAB6F22F4BDC800AA3882 /* MainCoordinatorTests.swift */; };
 		333FAB7222F9C11D00AA3882 /* ErrorViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333FAB7122F9C11D00AA3882 /* ErrorViewControllerTests.swift */; };
 		333FAB7422FB16FC00AA3882 /* LoadingViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333FAB7322FB16FC00AA3882 /* LoadingViewControllerTests.swift */; };
-		33538EAD230D53DC00CA0D2B /* String Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33538EAC230D53DC00CA0D2B /* String Extension.swift */; };
+		33538EAD230D53DC00CA0D2B /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33538EAC230D53DC00CA0D2B /* StringExtension.swift */; };
 		335D283A23154CF50023A7E6 /* ParseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335D283823154CF50023A7E6 /* ParseTests.swift */; };
 		3375C1C6228570CB0087E5F1 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3375C1C5228570CB0087E5F1 /* Default-568h@2x.png */; };
 		3375C1C82285994A0087E5F1 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3375C1C72285994A0087E5F1 /* LoadingViewController.swift */; };
 		3375C1CA22859A1B0087E5F1 /* ContentStateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3375C1C922859A1B0087E5F1 /* ContentStateViewController.swift */; };
 		3375C1CD22859D140087E5F1 /* ErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3375C1CC22859D140087E5F1 /* ErrorViewController.swift */; };
-		3375C1D022859EFA0087E5F1 /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3375C1CF22859EFA0087E5F1 /* ArrayExtension.swift */; };
 		3375C1D22285B67B0087E5F1 /* PostsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3375C1D12285B67B0087E5F1 /* PostsViewModel.swift */; };
 		3375C1D62285E8BE0087E5F1 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3375C1D42285E8BE0087E5F1 /* CollectionViewCell.swift */; };
 		3375C1D72285E8BE0087E5F1 /* CollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3375C1D52285E8BE0087E5F1 /* CollectionViewCell.xib */; };
@@ -74,7 +73,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		330CA5B4230EA7DB00037B1F /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		330CA5B4230EA7DB00037B1F /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
 		3313DC6A22CCBB8F00CD940A /* LoadManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadManagerTests.swift; sourceTree = "<group>"; };
 		33360F93228720D000702A39 /* PersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
 		33360F952287245200702A39 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
@@ -88,13 +87,12 @@
 		333FAB6F22F4BDC800AA3882 /* MainCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinatorTests.swift; sourceTree = "<group>"; };
 		333FAB7122F9C11D00AA3882 /* ErrorViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorViewControllerTests.swift; sourceTree = "<group>"; };
 		333FAB7322FB16FC00AA3882 /* LoadingViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewControllerTests.swift; sourceTree = "<group>"; };
-		33538EAC230D53DC00CA0D2B /* String Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String Extension.swift"; sourceTree = "<group>"; };
+		33538EAC230D53DC00CA0D2B /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		335D283823154CF50023A7E6 /* ParseTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseTests.swift; sourceTree = "<group>"; };
 		3375C1C5228570CB0087E5F1 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		3375C1C72285994A0087E5F1 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		3375C1C922859A1B0087E5F1 /* ContentStateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentStateViewController.swift; sourceTree = "<group>"; };
 		3375C1CC22859D140087E5F1 /* ErrorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorViewController.swift; sourceTree = "<group>"; };
-		3375C1CF22859EFA0087E5F1 /* ArrayExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtension.swift; sourceTree = "<group>"; };
 		3375C1D12285B67B0087E5F1 /* PostsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsViewModel.swift; sourceTree = "<group>"; };
 		3375C1D42285E8BE0087E5F1 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		3375C1D52285E8BE0087E5F1 /* CollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionViewCell.xib; sourceTree = "<group>"; };
@@ -202,9 +200,8 @@
 		3375C1CE22859EA10087E5F1 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				33538EAC230D53DC00CA0D2B /* String Extension.swift */,
-				3375C1CF22859EFA0087E5F1 /* ArrayExtension.swift */,
-				330CA5B4230EA7DB00037B1F /* UIViewExtension.swift */,
+				33538EAC230D53DC00CA0D2B /* StringExtension.swift */,
+				330CA5B4230EA7DB00037B1F /* ViewExtension.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -473,9 +470,8 @@
 				33DE3C5B22856DBE006E5617 /* Model.swift in Sources */,
 				33DE3C6322856DD9006E5617 /* DataSourceError.swift in Sources */,
 				3375C1D62285E8BE0087E5F1 /* CollectionViewCell.swift in Sources */,
-				33538EAD230D53DC00CA0D2B /* String Extension.swift in Sources */,
+				33538EAD230D53DC00CA0D2B /* StringExtension.swift in Sources */,
 				33360FC022872BA300702A39 /* Author+CoreDataProperties.swift in Sources */,
-				3375C1D022859EFA0087E5F1 /* ArrayExtension.swift in Sources */,
 				33F11B1622C6076400509355 /* StorageManager.swift in Sources */,
 				33DE3C3122856CCE006E5617 /* PostsViewController.swift in Sources */,
 				33DE3C5A22856DBE006E5617 /* APIRequest.swift in Sources */,
@@ -492,7 +488,7 @@
 				33360FB622872B3300702A39 /* Posts+CoreDataClass.swift in Sources */,
 				33FEB00422EF352B0044F14B /* Storyboarded.swift in Sources */,
 				33DE3C5E22856DBE006E5617 /* URLEndpoint.swift in Sources */,
-				330CA5B5230EA7DB00037B1F /* UIViewExtension.swift in Sources */,
+				330CA5B5230EA7DB00037B1F /* ViewExtension.swift in Sources */,
 				33FEB00222EF22580044F14B /* Coordinator.swift in Sources */,
 				33360F962287245200702A39 /* NetworkManager.swift in Sources */,
 				33360FB722872B3300702A39 /* Posts+CoreDataProperties.swift in Sources */,

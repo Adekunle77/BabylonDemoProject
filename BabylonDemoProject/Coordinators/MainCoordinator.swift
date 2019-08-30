@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 // The Coordinator Pattern is used avoid views being coupled togethier.
-class MainCoordinator: NSObject, Coordinator, UINavigationControllerDelegate {
+final class MainCoordinator: NSObject, Coordinator, UINavigationControllerDelegate {
     // childcoordinator an UIViewController array to add and remove UIViewController
     private var childcoordinator = [UIViewController]()
     var navigationController: UINavigationController
@@ -64,12 +64,10 @@ class MainCoordinator: NSObject, Coordinator, UINavigationControllerDelegate {
 
     // This function append and removes viewControllers
     func childDidFinish(_ child: UIViewController) {
-    // this checks if the first element in the array is a viewController
+    // This checks if the first element in the array is a viewController
     // that is a of Coordinator if it is then it removes it.
         if let index = childcoordinator.firstIndex(where: { (coordinator) -> Bool in coordinator == child }) {
-            print(self.count, "one")
             childcoordinator.remove(at: index)
-            print(self.count, "two")
         }
     }
 }

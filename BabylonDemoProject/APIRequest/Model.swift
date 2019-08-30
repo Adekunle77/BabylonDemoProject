@@ -8,6 +8,7 @@
 
 import Foundation
 
+// The struct conforms to Equatable for the purpose of testing. 
 struct PostsModel: Codable, Equatable {
     let userId: Int
     let identification: Int
@@ -76,35 +77,3 @@ struct CommentModel: Codable, Equatable {
         case identification = "id"
     }
 }
-
-// These structs have been to conforms to Equatable for the purpose of testing.
-//
-//extension PostsModel: Equatable {
-//    static func == (lhs: PostsModel, rhs: PostsModel) -> Bool {
-//        return lhs.identification == rhs.identification &&
-//            lhs.userId == rhs.userId &&
-//            lhs.body == rhs.body &&
-//            lhs.title == rhs.title
-//    }
-//}
-//
-//extension UserModel: Equatable {
-//    static func == (lhs: UserModel, rhs: UserModel) -> Bool {
-//        return lhs.identification == rhs.identification &&
-//            lhs.name == rhs.name &&
-//            lhs.username == rhs.username &&
-//            lhs.email == rhs.email &&
-//            lhs.phone == rhs.phone &&
-//            lhs.website == rhs.website
-//    }
-//}
-//
-//extension CommentModel: Equatable {
-//    static func == (lhs: CommentModel, rhs: CommentModel) -> Bool {
-//        return lhs.postId == rhs.postId &&
-//            lhs.identification == rhs.identification &&
-//            lhs.name == rhs.name &&
-//            lhs.email == rhs.email &&
-//            lhs.body == rhs.body
-//    }
-//}

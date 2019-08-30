@@ -1,5 +1,5 @@
 //
-//  UIViewExtension.swift
+//  ViewExtension.swift
 //  BabylonDemoProject
 //
 //  Created by Ade Adegoke on 22/08/2019.

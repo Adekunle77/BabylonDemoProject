@@ -18,7 +18,7 @@ protocol ViewModelDelegate: class {
 
 typealias PostTuple = (author: Author, post: Posts, commentsCount: String)
 
-class PostsViewModel: NSObject {
+final class PostsViewModel: NSObject {
     weak var delegate: ViewModelDelegate?
     var storageManager: StorageManager
 
@@ -29,7 +29,7 @@ class PostsViewModel: NSObject {
 
     private func getCommentsCount(using post: Posts, with array: [Comment]) -> String {
         let userID = post.postId
-        let comments = array.all(where: { $0.postId == userID })
+        let comments = array.filter { $0.postId == userID }
         return String(comments.count)
     }
 
@@ -43,19 +43,6 @@ class PostsViewModel: NSObject {
     }
 
     func refreshData() {
-//        let posts = storageManager.fetchAllPosts()
-//        for post in posts {
-//            storageManager.remove(objectID: post.objectID)
-//        }
-//        let comments = storageManager.fetchAllPosts()
-//        for comment in comments {
-//            storageManager.remove(objectID: comment.objectID)
-//        }
-//        let authors = storageManager.fetchAllPosts()
-//        for author in authors {
-//            storageManager.remove(objectID: author.objectID)
-//        }
-       // storageManager.save()
         do {
             try storageManager.deleteSavedData(with: Posts.self)
             try storageManager.deleteSavedData(with: Author.self)

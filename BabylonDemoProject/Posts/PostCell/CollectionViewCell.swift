@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CollectionViewCell: UICollectionViewCell {
+final class CollectionViewCell: UICollectionViewCell {
 
     @IBOutlet var title: UILabel!
     @IBOutlet var cellBackgroundView: UIView!
