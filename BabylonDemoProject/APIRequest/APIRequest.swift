@@ -10,7 +10,10 @@ import Foundation
 
 final class APIRequest: API {
     func fetchJSONData(endpoint: URLEndpoint, completion: @escaping CompletionHandler) {
-        guard let url = endpoint.url else { return }
+        guard let url = endpoint.url else {
+            completion(.failure(DataSourceError.fatal("Connection Error!")))
+            return
+        }
         let task = URLSession.shared.dataTask(with: url) { data, _, error in
             DispatchQueue.main.async {
                 switch (error, data) {
