@@ -13,10 +13,8 @@ extension String {
     var capitalizedFirstLetter: String {
         return prefix(1).localizedUppercase + localizedLowercase.dropFirst()
     }
-}
 
-extension String {
-    func addFullStop() -> String {
+    var addFullStop: String {
         return self + "."
     }
 }

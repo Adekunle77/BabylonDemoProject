@@ -8,8 +8,8 @@
 
 import UIKit
 
-// This controls which view is to be displayed. Depending on the state of
-// the app. The state of the app is provided by the viewModel.
+// This class controls which view is to be displayed depending if is any data, errors
+// or if loading is required.
 final class ContentStateViewController: UIViewController {
     weak var coordinator: MainCoordinator?
     private var viewModel = ContentStateViewModel()

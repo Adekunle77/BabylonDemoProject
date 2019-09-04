@@ -103,8 +103,8 @@ extension PostsViewModel {
         return testObject
     }
 
-    func testGetAuthorInfo(using title: Posts, with array: [Author]) -> Author {
-        let testObject = getAuthorInfo(using: title, with: array)
+    func testGetAuthorInfo(using titleLabel: Posts, with array: [Author]) -> Author {
+        let testObject = getAuthorInfo(using: titleLabel, with: array)
         return testObject
     }
 }

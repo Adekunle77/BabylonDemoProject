@@ -8,14 +8,14 @@
 
 import UIKit
 
-// Create protocol to instantiate ViewController from storyboard's
+// Create protocol to instantiate a view controller from the storyboard.
 protocol Storyboarded {
     static func instantiate() -> Self
 }
 
 extension Storyboarded where Self: UIViewController {
-    //  This function returns the instantiate ViewController from the storyboard.
-    //  This is done to save repeating instantiating every ViewController
+    //  This function returns the instantiate view controller from the storyboard.
+    //  To save repeated instantiation of view controllers from the main storyboard
     static func instantiate() -> Self {
         let name = String(describing: self)
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)

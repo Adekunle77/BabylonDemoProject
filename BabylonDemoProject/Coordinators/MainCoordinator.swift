@@ -11,7 +11,6 @@ import UIKit
 
 // The Coordinator Pattern is used avoid views being coupled togethier.
 final class MainCoordinator: NSObject, Coordinator, UINavigationControllerDelegate {
-    // childcoordinator an UIViewController array to add and remove UIViewController
     private var childCoordinator = [UIViewController]()
     var navigationController: UINavigationController
 
@@ -21,10 +20,10 @@ final class MainCoordinator: NSObject, Coordinator, UINavigationControllerDelega
 
     func start() {
         navigationController.delegate = self
-        let constateVC = ContentStateViewController.instantiate()
-        constateVC.coordinator = self
-        childCoordinator.append(constateVC)
-        navigationController.pushViewController(constateVC, animated: false)
+        let contentStateVC = ContentStateViewController.instantiate()
+        contentStateVC.coordinator = self
+        childCoordinator.append(contentStateVC)
+        navigationController.pushViewController(contentStateVC, animated: false)
     }
 
     func pushPostVC() {
@@ -62,10 +61,10 @@ final class MainCoordinator: NSObject, Coordinator, UINavigationControllerDelega
         navigationController.pushViewController(postDetailVC, animated: true)
     }
 
-    // This function append and removes viewControllers
+    // This function appends and removes view controllers.
     func childDidFinish(_ child: UIViewController) {
-    // This checks if the first element in the array is a viewController
-    // that is a of Coordinator if it is then it removes it.
+    // This checks if the first element in the array is a view controller that
+    // is a of type Coordinator. If true then it removes it.
         if let index = childCoordinator.firstIndex(where: { (coordinator) -> Bool in coordinator == child }) {
             childCoordinator.remove(at: index)
         }

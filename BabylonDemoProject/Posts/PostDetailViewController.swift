@@ -32,7 +32,7 @@ final class PostDetailViewController: UIViewController {
 
     private func labelsSetup() {
         self.authorName?.text = postDetails?.author.name
-        self.postDescription?.text = postDetails?.post.body.capitalizedFirstLetter.addFullStop()
+        self.postDescription?.text = postDetails?.post.body.capitalizedFirstLetter.addFullStop
         self.commentsCount?.text = postDetails?.commentsCount
     }
 

@@ -9,7 +9,7 @@
 import UIKit
 
 final class CollectionViewCell: UICollectionViewCell {
-    @IBOutlet var title: UILabel!
+    @IBOutlet var titleLabel: UILabel!
     @IBOutlet var cellBackgroundView: UIView!
     static let reuseIdentifier = "Cell"
 
@@ -23,6 +23,6 @@ final class CollectionViewCell: UICollectionViewCell {
     }
 
     func updateCell(with info: Posts) {
-        title?.text = info.title.capitalizedFirstLetter.addFullStop()
+        titleLabel?.text = info.title.capitalizedFirstLetter.addFullStop
     }
 }

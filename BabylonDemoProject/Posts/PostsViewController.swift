@@ -11,7 +11,7 @@ import UIKit
 
 final class PostsViewController: UIViewController {
     @IBOutlet private var collectionView: UICollectionView!
-    @IBOutlet weak var refreshDataButton: UIButton!
+    @IBOutlet weak var refreshButton: UIButton!
     private var viewModel = PostsViewModel()
     weak var coordinator: MainCoordinator?
 
@@ -27,7 +27,7 @@ final class PostsViewController: UIViewController {
     }
 
     func buttonSetup() {
-        self.refreshDataButton.layer.cornerRadius = 20
+        self.refreshButton.layer.cornerRadius = 20
     }
 
     @IBAction func didTapRefreshButton(_: Any) {

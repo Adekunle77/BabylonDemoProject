@@ -9,10 +9,6 @@
 import CoreData
 import Foundation
 
-// This class is declared as final to avoid inheritance. The reason
-// for this is becuase this delicate part of the app and I do not want
-// it to be tampered with.
-
 final class PersistenceService {
     static var context: NSManagedObjectContext {
         return persistentContainer.viewContext

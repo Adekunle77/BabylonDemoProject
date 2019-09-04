@@ -50,7 +50,7 @@
             <size key="customSize" width="487" height="280"/>
             <connections>
                 <outlet property="cellBackgroundView" destination="gOO-VO-qBt" id="qNL-qW-SSc"/>
-                <outlet property="title" destination="u5L-r0-hMl" id="D9g-ga-8qN"/>
+                <outlet property="titleLabel" destination="u5L-r0-hMl" id="D9g-ga-8qN"/>
             </connections>
             <point key="canvasLocation" x="-212.31884057971016" y="-42.1875"/>
         </collectionViewCell>
