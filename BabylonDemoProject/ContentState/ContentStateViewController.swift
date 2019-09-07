@@ -8,7 +8,7 @@
 
 import UIKit
 
-// This class controls which view is to be displayed depending if is any data, errors
+// This class controls which view is to be displayed depending if is any is any data, errors
 // or if loading is required.
 final class ContentStateViewController: UIViewController {
     weak var coordinator: MainCoordinator?

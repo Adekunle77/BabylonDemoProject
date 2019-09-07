@@ -8,7 +8,6 @@
 
 import UIKit
 
-// Create protocol to instantiate a view controller from the storyboard.
 protocol Storyboarded {
     static func instantiate() -> Self
 }
