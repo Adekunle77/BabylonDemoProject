@@ -41,19 +41,19 @@ final class NetworkManager: Network {
         })
     }
 
-    private func insert(posts: [PostsModel]) {
+    private func insert(posts: [Posts]) {
         for post in posts {
             _ = storageManager?.insert(post)
         }
     }
 
-    private func insert(authors: [UserModel]) {
+    private func insert(authors: [User]) {
         for author in authors {
             _ = storageManager?.insert(author)
         }
     }
 
-    private func insert(comments: [CommentModel]) {
+    private func insert(comments: [Comment]) {
         for comment in comments {
             _ = storageManager?.insert(comment)
         }

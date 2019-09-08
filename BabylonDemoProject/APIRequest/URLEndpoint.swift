@@ -29,11 +29,11 @@ enum URLEndpoint: String {
         let decoder = JSONDecoder()
         switch self {
         case .posts:
-            return try .posts(decoder.decode([PostsModel].self, from: data))
+            return try .posts(decoder.decode([Posts].self, from: data))
         case .users:
-            return try .users(decoder.decode([UserModel].self, from: data))
+            return try .users(decoder.decode([User].self, from: data))
         case .comments:
-            return try .comments(decoder.decode([CommentModel].self, from: data))
+            return try .comments(decoder.decode([Comment].self, from: data))
         }
     }
 }

@@ -58,7 +58,7 @@ class PostsViewControllerTests: XCTestCase {
     }
 
     func testRefreshDataButtonCallsRefreshDataFunction() {
-        let posts = PostsModel(userId: 1, identification: 1, body: "Test1", title: "TestOne")
+        let posts = Posts(userId: 1, identification: 1, body: "Test1", title: "TestOne")
 
         _ = storageManager.insert(posts)
 

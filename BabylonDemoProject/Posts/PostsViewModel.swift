@@ -98,12 +98,12 @@ extension PostsViewModel: UICollectionViewDelegate {
 
 #if DEBUG
 extension PostsViewModel {
-    func testGetCommentsCount(using post: Posts, with array: [Comment]) -> String {
+    func testGetCommentsCount(using post: PostsModel, with array: [Comment]) -> String {
         let testObject = getCommentsCount(using: post, with: array)
         return testObject
     }
 
-    func testGetAuthorInfo(using titleLabel: Posts, with array: [Author]) -> Author {
+    func testGetAuthorInfo(using titleLabel: PostsModel, with array: [Author]) -> Author {
         let testObject = getAuthorInfo(using: titleLabel, with: array)
         return testObject
     }
