@@ -20,7 +20,7 @@ struct PostsModel: Codable, Equatable {
     }
 }
 
-struct User: Codable, Equatable {
+struct UserModel: Codable, Equatable {
     let identification: Int
     let name: String
     let username: String
@@ -59,14 +59,14 @@ struct Geo: Codable, Equatable {
 struct Company: Codable, Equatable {
     let name: String
     let catchPhrase: String
-    let business: String
+    let bachelorScience: String
     enum CodingKeys: String, CodingKey {
         case name, catchPhrase
-        case business = "bs"
+        case bachelorScience = "bs"
     }
 }
 
-struct Comment: Codable, Equatable {
+struct CommentModel: Codable, Equatable {
     let postId: Int
     let identification: Int
     let name: String

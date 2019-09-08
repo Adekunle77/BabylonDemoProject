@@ -11,7 +11,7 @@ import CoreData
 @testable import BabylonDemoProject
 
 class TestProperties {
-    func authorItem() -> User {
+    func authorItem() -> UserModel {
         let geo = Geo(latitude: "-37.3159", longitude: "81.1496")
         let address = Address(street: "Kulas Light", suite: "Apt. 556", city: "Gwenborough",
                               zipcode: "92998-3874",
@@ -19,7 +19,7 @@ class TestProperties {
         let company = Company(name: "Romaguera-Crona",
                               catchPhrase: "Multi-layered client-server neural-net",
                               bachelorScience: "harness real-time e-markets")
-        let author = User(identification: 1,
+        let author = UserModel(identification: 1,
                                  name: "Bret", username: "Leanne Graham",
                                  email: "Sincere@april.biz",
                                  address: address, phone: "1-770-736-8031 x56442",
@@ -28,8 +28,8 @@ class TestProperties {
         return author
     }
 
-    func commentItem() -> Comment {
-        let comments = Comment(postId: 1, identification: 1,
+    func commentItem() -> CommentModel {
+        let comments = CommentModel(postId: 1, identification: 1,
                                      name: "id labore ex et quam laborum",
                                      email: "Eliseo@gardner.biz",
                                      body: """
@@ -41,8 +41,8 @@ class TestProperties {
         return comments
     }
 
-    func postItem() -> Posts {
-        let posts = Posts(userId: 1,
+    func postItem() -> PostsModel {
+        let posts = PostsModel(userId: 1,
                                 identification: 1,
                                 body: """
                                     quia et suscipit\nsuscipit recusandae consequuntur expedita et

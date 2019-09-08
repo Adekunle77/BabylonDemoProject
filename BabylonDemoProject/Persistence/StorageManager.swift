@@ -20,7 +20,7 @@ final class StorageManager {
         self.persistentContainer.viewContext.automaticallyMergesChangesFromParent = true
     }
 
-    func insert(_ post: Posts) -> Posts? {
+    func insert(_ post: PostsModel) -> Posts? {
         guard let postEntity = NSEntityDescription.insertNewObject(
             forEntityName: "Posts",
             into: persistentContainer.viewContext) as? Posts else { return nil }
@@ -32,7 +32,7 @@ final class StorageManager {
         return postEntity
     }
 
-    func insert(_ comment: Comment) -> Comment? {
+    func insert(_ comment: CommentModel) -> Comment? {
         guard let commentEntity = NSEntityDescription.insertNewObject(
             forEntityName: "Comment",
             into: persistentContainer.viewContext) as? Comment else { return nil }
@@ -43,7 +43,7 @@ final class StorageManager {
         return commentEntity
     }
 
-    func insert(_ author: User) -> Author? {
+    func insert(_ author: UserModel) -> Author? {
         guard let authorEntity = NSEntityDescription.insertNewObject(
             forEntityName: "Author",
             into: persistentContainer.viewContext) as? Author else { return nil }

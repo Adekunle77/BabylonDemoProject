@@ -7,9 +7,9 @@
 //
 
 enum ModelType {
-    case posts([Posts])
-    case users([User])
-    case comments([Comment])
+    case posts([PostsModel])
+    case users([UserModel])
+    case comments([CommentModel])
 }
 
 // ModelType conforms to Equatable for the purpose of testing.

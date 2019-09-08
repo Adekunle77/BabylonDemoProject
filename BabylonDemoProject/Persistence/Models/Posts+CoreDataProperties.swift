@@ -10,7 +10,7 @@
 import CoreData
 import Foundation
 
-extension PostsModel {
+extension Posts {
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Posts> {
         return NSFetchRequest<Posts>(entityName: "Posts")
     }
