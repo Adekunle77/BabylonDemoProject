@@ -15,8 +15,7 @@ protocol CoreDataLoadManagerDelegate: class {
 }
 
 final class LoadManager {
-    var dataSource = APIRequest()
-    var networkManager: Network
+    private let networkManager: Network
     weak var delegate: CoreDataLoadManagerDelegate?
 
     init(networkManager: Network) {
@@ -39,7 +38,7 @@ final class LoadManager {
 
         let authorPath = URLEndpoint.users
         dispatchGroup.enter()
-       networkManager.fetchAPIData(with: authorPath, completion: { result in
+        networkManager.fetchAPIData(with: authorPath, completion: { result in
             switch result {
             case let .failure(error):
                 errorsArray.append(error)

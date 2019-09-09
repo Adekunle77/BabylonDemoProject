@@ -1,5 +1,5 @@
 //
-//  PostCell.swift
+//  CollectionViewCell.swift
 //  BabylonDemoProject
 //
 //  Created by Ade Adegoke on 10/05/2019.
@@ -19,7 +19,7 @@ final class PostCell: UICollectionViewCell {
     }
 
     static func nib() -> UINib {
-        return UINib(nibName: "PostCell", bundle: nil)
+        return UINib(nibName: "CollectionViewCell", bundle: nil)
     }
 
     func updateCell(with info: Posts) {

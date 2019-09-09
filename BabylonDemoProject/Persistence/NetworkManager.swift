@@ -14,7 +14,7 @@ protocol Network {
 }
 
 final class NetworkManager: Network {
-    let dataSource: API
+    private let dataSource: API
     private let storageManager: StorageManager?
 
     init(dataSource: API) {

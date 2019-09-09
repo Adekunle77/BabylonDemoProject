@@ -12,7 +12,7 @@ import UIKit
 final class PostsViewController: UIViewController {
     @IBOutlet private var collectionView: UICollectionView!
     @IBOutlet weak var refreshButton: UIButton!
-    private var viewModel = PostsViewModel()
+    private let viewModel = PostsDataSource()
     weak var coordinator: MainCoordinator?
 
     override func viewDidLoad() {
@@ -38,8 +38,8 @@ final class PostsViewController: UIViewController {
     private func collectionViewSetUp() {
         collectionView?.delegate = viewModel
         collectionView?.dataSource = viewModel
-        collectionView?.register(CollectionViewCell.nib(),
-                                 forCellWithReuseIdentifier: CollectionViewCell.reuseIdentifier)
+        collectionView?.register(PostCell.nib(),
+                                 forCellWithReuseIdentifier: PostCell.reuseIdentifier)
     }
 }
 

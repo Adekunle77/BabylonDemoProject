@@ -31,7 +31,7 @@ class PostsViewModelTests: XCTestCase {
     }
 
     func testGetCommentsCount() {
-        let postViewModel = PostsViewModel()
+        let postViewModel = PostsDataSource()
         let post = testProperties.postItem()
         let comments = testProperties.commentItem()
         var storageManager: StorageManager!
@@ -48,7 +48,7 @@ class PostsViewModelTests: XCTestCase {
     }
 
     func testGetAuthorInfo() {
-        let postViewModel = PostsViewModel()
+        let postViewModel = PostsDataSource()
         let posts = testProperties.postItem()
         let authors = testProperties.authorItem()
         var storageManager: StorageManager!
@@ -67,7 +67,7 @@ class PostsViewModelTests: XCTestCase {
 
     func testRefreshDataReturnsData() {
         let mockDelegate = MockViewModelDelegate()
-        let postViewModel = PostsViewModel()
+        let postViewModel = PostsDataSource()
         postViewModel.delegate = mockDelegate
 
         let posts = testProperties.postItem()
@@ -88,7 +88,7 @@ class PostsViewModelTests: XCTestCase {
 
     func testRefreshDataReturnsError() {
         let mockDelegate = MockViewModelDelegate()
-        let postViewModel = PostsViewModel()
+        let postViewModel = PostsDataSource()
         postViewModel.delegate = mockDelegate
 
         let mockAPI = MockAPI(isReturningError: true)

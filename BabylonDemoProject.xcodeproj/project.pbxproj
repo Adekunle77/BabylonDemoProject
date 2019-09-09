@@ -27,9 +27,9 @@
 		3375C1C82285994A0087E5F1 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3375C1C72285994A0087E5F1 /* LoadingViewController.swift */; };
 		3375C1CA22859A1B0087E5F1 /* ContentStateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3375C1C922859A1B0087E5F1 /* ContentStateViewController.swift */; };
 		3375C1CD22859D140087E5F1 /* ErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3375C1CC22859D140087E5F1 /* ErrorViewController.swift */; };
-		3375C1D22285B67B0087E5F1 /* PostsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3375C1D12285B67B0087E5F1 /* PostsViewModel.swift */; };
-		3375C1D62285E8BE0087E5F1 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3375C1D42285E8BE0087E5F1 /* CollectionViewCell.swift */; };
-		3375C1D72285E8BE0087E5F1 /* CollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3375C1D52285E8BE0087E5F1 /* CollectionViewCell.xib */; };
+		3375C1D22285B67B0087E5F1 /* PostsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3375C1D12285B67B0087E5F1 /* PostsDataSource.swift */; };
+		3375C1D62285E8BE0087E5F1 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3375C1D42285E8BE0087E5F1 /* PostCell.swift */; };
+		3375C1D72285E8BE0087E5F1 /* PostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3375C1D52285E8BE0087E5F1 /* PostCell.xib */; };
 		337CE23E22DF6404003CA06A /* ContentStateViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 337CE23D22DF6404003CA06A /* ContentStateViewModelTests.swift */; };
 		337CE24222E22C9F003CA06A /* PostsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 337CE24122E22C9F003CA06A /* PostsViewModelTests.swift */; };
 		33856CEF2289E99B00A9881D /* NetworkManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33856CEE2289E99B00A9881D /* NetworkManagerTests.swift */; };
@@ -93,9 +93,9 @@
 		3375C1C72285994A0087E5F1 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		3375C1C922859A1B0087E5F1 /* ContentStateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentStateViewController.swift; sourceTree = "<group>"; };
 		3375C1CC22859D140087E5F1 /* ErrorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorViewController.swift; sourceTree = "<group>"; };
-		3375C1D12285B67B0087E5F1 /* PostsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsViewModel.swift; sourceTree = "<group>"; };
-		3375C1D42285E8BE0087E5F1 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
-		3375C1D52285E8BE0087E5F1 /* CollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionViewCell.xib; sourceTree = "<group>"; };
+		3375C1D12285B67B0087E5F1 /* PostsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsDataSource.swift; sourceTree = "<group>"; };
+		3375C1D42285E8BE0087E5F1 /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
+		3375C1D52285E8BE0087E5F1 /* PostCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostCell.xib; sourceTree = "<group>"; };
 		337CE23D22DF6404003CA06A /* ContentStateViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentStateViewModelTests.swift; sourceTree = "<group>"; };
 		337CE24122E22C9F003CA06A /* PostsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsViewModelTests.swift; sourceTree = "<group>"; };
 		33856CEE2289E99B00A9881D /* NetworkManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerTests.swift; sourceTree = "<group>"; };
@@ -154,7 +154,7 @@
 			children = (
 				3375C1D32285E8520087E5F1 /* PostCell */,
 				33DE3C3022856CCE006E5617 /* PostsViewController.swift */,
-				3375C1D12285B67B0087E5F1 /* PostsViewModel.swift */,
+				3375C1D12285B67B0087E5F1 /* PostsDataSource.swift */,
 				33F7E7CC228DA2140063B152 /* PostDetailViewController.swift */,
 			);
 			path = Posts;
@@ -209,8 +209,8 @@
 		3375C1D32285E8520087E5F1 /* PostCell */ = {
 			isa = PBXGroup;
 			children = (
-				3375C1D42285E8BE0087E5F1 /* CollectionViewCell.swift */,
-				3375C1D52285E8BE0087E5F1 /* CollectionViewCell.xib */,
+				3375C1D42285E8BE0087E5F1 /* PostCell.swift */,
+				3375C1D52285E8BE0087E5F1 /* PostCell.xib */,
 			);
 			path = PostCell;
 			sourceTree = "<group>";
@@ -425,7 +425,7 @@
 				3375C1C6228570CB0087E5F1 /* Default-568h@2x.png in Resources */,
 				33DE3C3922856CCF006E5617 /* Assets.xcassets in Resources */,
 				33DE3C3422856CCE006E5617 /* Main.storyboard in Resources */,
-				3375C1D72285E8BE0087E5F1 /* CollectionViewCell.xib in Resources */,
+				3375C1D72285E8BE0087E5F1 /* PostCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -469,7 +469,7 @@
 				33A97289229443EC0021BBD4 /* ContentStateViewModel.swift in Sources */,
 				33DE3C5B22856DBE006E5617 /* Model.swift in Sources */,
 				33DE3C6322856DD9006E5617 /* DataSourceError.swift in Sources */,
-				3375C1D62285E8BE0087E5F1 /* CollectionViewCell.swift in Sources */,
+				3375C1D62285E8BE0087E5F1 /* PostCell.swift in Sources */,
 				33538EAD230D53DC00CA0D2B /* StringExtension.swift in Sources */,
 				33360FC022872BA300702A39 /* Author+CoreDataProperties.swift in Sources */,
 				33F11B1622C6076400509355 /* StorageManager.swift in Sources */,
@@ -492,7 +492,7 @@
 				33FEB00222EF22580044F14B /* Coordinator.swift in Sources */,
 				33360F962287245200702A39 /* NetworkManager.swift in Sources */,
 				33360FB722872B3300702A39 /* Posts+CoreDataProperties.swift in Sources */,
-				3375C1D22285B67B0087E5F1 /* PostsViewModel.swift in Sources */,
+				3375C1D22285B67B0087E5F1 /* PostsDataSource.swift in Sources */,
 				33DE3C5C22856DBE006E5617 /* API.swift in Sources */,
 				33360F94228720D000702A39 /* PersistenceService.swift in Sources */,
 				33DE3C2F22856CCE006E5617 /* AppDelegate.swift in Sources */,

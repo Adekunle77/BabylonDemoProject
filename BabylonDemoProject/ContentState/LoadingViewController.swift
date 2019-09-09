@@ -23,7 +23,7 @@ final class LoadingViewController: UIViewController {
     }
 
     override func viewDidDisappear(_ animated: Bool) {
-       self.coordinator?.childDidFinish(self)
+        self.coordinator?.childDidFinish(self)
     }
 
     func delayPushToContentVC() {
@@ -33,11 +33,11 @@ final class LoadingViewController: UIViewController {
     private func activityIndicatorSetting() {
         self.activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .white
-        view.addSubview(activityIndicator)
+        view.addSubview(self.activityIndicator)
         NSLayoutConstraint.activate([
             activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-            ])
+        ])
     }
 }
 

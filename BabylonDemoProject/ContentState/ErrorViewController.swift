@@ -21,15 +21,15 @@ final class ErrorViewController: UIViewController {
     }
 
     override func viewDidDisappear(_ animated: Bool) {
-        self.coordinator?.childDidFinish(self)
+        coordinator?.childDidFinish(self)
     }
 
     @IBAction private func didTapPushLoadingVC() {
-       self.coordinator?.start()
+        coordinator?.start()
     }
 
     func buttonSetup() {
-        self.errorButton.layer.cornerRadius = 20
+        errorButton.layer.cornerRadius = 20
     }
 
     private func getLocalizedDescription(from errors: [Error]) -> String {
