@@ -71,11 +71,11 @@ final class StorageManager {
         return result ?? [Author]()
     }
 
-    func deleteSavedData<T: NSManagedObject>(with objectType: T.Type) {
+    func deleteSavedData<T: NSManagedObject>(with objectType: T.Type) throws {
         let entityName = String(describing: objectType)
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-        _ = try? PersistenceService.context.execute(deleteRequest) 
+        try PersistenceService.context.execute(deleteRequest)
         self.save()
     }
 
