@@ -18,9 +18,9 @@ protocol ViewModelDelegate: class {
 
 typealias PostTuple = (author: Author, post: Posts, commentsCount: String)
 
-final class PostsViewModel: NSObject {
+final class PostsDataSource: NSObject {
     weak var delegate: ViewModelDelegate?
-    var storageManager: StorageManager
+    private let storageManager: StorageManager
 
     override init() {
         storageManager = StorageManager(persistentContainer: PersistenceService.persistentContainer)
@@ -54,7 +54,7 @@ final class PostsViewModel: NSObject {
     }
 }
 
-extension PostsViewModel: UICollectionViewDataSource {
+extension PostsDataSource: UICollectionViewDataSource {
     func numberOfSections(in _: UICollectionView) -> Int {
         return 1
     }
@@ -69,8 +69,8 @@ extension PostsViewModel: UICollectionViewDataSource {
 
         guard let cell = collectionView.dequeueReusableCell(
             withReuseIdentifier:
-            CollectionViewCell.reuseIdentifier,
-            for: indexPath) as? CollectionViewCell else {
+            PostCell.reuseIdentifier,
+            for: indexPath) as? PostCell else {
             return UICollectionViewCell()
         }
         let posts = storageManager.fetchAllPosts()
@@ -81,7 +81,7 @@ extension PostsViewModel: UICollectionViewDataSource {
     }
 }
 
-extension PostsViewModel: UICollectionViewDelegate {
+extension PostsDataSource: UICollectionViewDelegate {
     func collectionView(_: UICollectionView,
                         didSelectItemAt indexPath: IndexPath) {
         let posts = storageManager.fetchAllPosts()
@@ -97,7 +97,7 @@ extension PostsViewModel: UICollectionViewDelegate {
 }
 
 #if DEBUG
-extension PostsViewModel {
+extension PostsDataSource {
     func testGetCommentsCount(using post: Posts, with array: [Comment]) -> String {
         let testObject = getCommentsCount(using: post, with: array)
         return testObject

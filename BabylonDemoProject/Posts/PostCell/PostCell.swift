@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class CollectionViewCell: UICollectionViewCell {
+final class PostCell: UICollectionViewCell {
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var cellBackgroundView: UIView!
     static let reuseIdentifier = "Cell"
