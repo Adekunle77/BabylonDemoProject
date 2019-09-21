@@ -9,7 +9,7 @@
 @testable import BabylonDemoProject
 import Foundation
 
-class MockNetworkManager: Network {
+final class MockNetworkManager: Network {
     let networkManager: MockAPI?
     var coreDataManager: StorageManager!
     let mockPersistentContainer = MockPersistentContainer()
@@ -45,7 +45,7 @@ class MockNetworkManager: Network {
     }
 }
 
-class MockAPI: API {
+final class MockAPI: API {
     var isReturningError: Bool
     let properties = TestProperties()
     init(isReturningError: Bool) {

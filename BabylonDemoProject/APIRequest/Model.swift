@@ -59,10 +59,10 @@ struct Geo: Codable, Equatable {
 struct Company: Codable, Equatable {
     let name: String
     let catchPhrase: String
-    let bachelorScience: String
+    let business: String
     enum CodingKeys: String, CodingKey {
         case name, catchPhrase
-        case bachelorScience = "bs"
+        case business = "bs"
     }
 }
 

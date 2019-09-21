@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class APIRequest: API {
+final class APIDataSource: API {
     func fetchJSONData(endpoint: URLEndpoint, completion: @escaping CompletionHandler) {
         guard let url = endpoint.url else {
             completion(.failure(DataSourceError.fatal("Connection Error!")))

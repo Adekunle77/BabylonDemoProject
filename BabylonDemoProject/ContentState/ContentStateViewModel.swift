@@ -23,7 +23,7 @@ final class ContentStateViewModel {
     private let storageManager: StorageManager?
     weak var delegate: ContentStateViewModelDelegate?
     init() {
-        let dataSource = APIRequest()
+        let dataSource = APIDataSource()
         let networkManager = NetworkManager(dataSource: dataSource)
         loadManager = LoadManager(networkManager: networkManager)
         storageManager = StorageManager(persistentContainer: PersistenceService.persistentContainer)

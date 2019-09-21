@@ -41,7 +41,7 @@
 		33DE3C3722856CCE006E5617 /* BabylonDemoProject.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 33DE3C3522856CCE006E5617 /* BabylonDemoProject.xcdatamodeld */; };
 		33DE3C3922856CCF006E5617 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33DE3C3822856CCF006E5617 /* Assets.xcassets */; };
 		33DE3C3C22856CCF006E5617 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33DE3C3A22856CCF006E5617 /* LaunchScreen.storyboard */; };
-		33DE3C5A22856DBE006E5617 /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DE3C5522856DBE006E5617 /* APIRequest.swift */; };
+		33DE3C5A22856DBE006E5617 /* APIDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DE3C5522856DBE006E5617 /* APIDataSource.swift */; };
 		33DE3C5B22856DBE006E5617 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DE3C5622856DBE006E5617 /* Model.swift */; };
 		33DE3C5C22856DBE006E5617 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DE3C5722856DBE006E5617 /* API.swift */; };
 		33DE3C5E22856DBE006E5617 /* URLEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DE3C5922856DBE006E5617 /* URLEndpoint.swift */; };
@@ -111,7 +111,7 @@
 		33DE3C3D22856CCF006E5617 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		33DE3C4222856CCF006E5617 /* BabylonDemoProjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BabylonDemoProjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		33DE3C4822856CCF006E5617 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		33DE3C5522856DBE006E5617 /* APIRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
+		33DE3C5522856DBE006E5617 /* APIDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIDataSource.swift; sourceTree = "<group>"; };
 		33DE3C5622856DBE006E5617 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		33DE3C5722856DBE006E5617 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		33DE3C5922856DBE006E5617 /* URLEndpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLEndpoint.swift; sourceTree = "<group>"; };
@@ -289,7 +289,7 @@
 		33DE3C5422856D92006E5617 /* APIRequest */ = {
 			isa = PBXGroup;
 			children = (
-				33DE3C5522856DBE006E5617 /* APIRequest.swift */,
+				33DE3C5522856DBE006E5617 /* APIDataSource.swift */,
 				33DE3C5922856DBE006E5617 /* URLEndpoint.swift */,
 				33DE3C5722856DBE006E5617 /* API.swift */,
 				33DE3C5622856DBE006E5617 /* Model.swift */,
@@ -474,7 +474,7 @@
 				33360FC022872BA300702A39 /* Author+CoreDataProperties.swift in Sources */,
 				33F11B1622C6076400509355 /* StorageManager.swift in Sources */,
 				33DE3C3122856CCE006E5617 /* PostsViewController.swift in Sources */,
-				33DE3C5A22856DBE006E5617 /* APIRequest.swift in Sources */,
+				33DE3C5A22856DBE006E5617 /* APIDataSource.swift in Sources */,
 				33DE3C6422856DD9006E5617 /* ModelType.swift in Sources */,
 				33360FBB22872B7400702A39 /* Comment+CoreDataClass.swift in Sources */,
 				3375C1CA22859A1B0087E5F1 /* ContentStateViewController.swift in Sources */,
