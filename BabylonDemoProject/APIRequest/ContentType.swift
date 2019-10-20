@@ -22,11 +22,11 @@ extension ContentType {
     private var path: String {
         switch self {
         case .posts:
-            return "posts"
+            return "/posts"
         case .users:
-            return "users"
+            return "/users"
         case .comments:
-            return "comments"
+            return "/comments"
         }
     }
 

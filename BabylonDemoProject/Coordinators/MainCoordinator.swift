@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-protocol ContentCoordinator: Coordinator {
+protocol ContentPresentationCoordinator: Coordinator {
     func showPosts()
     func showPostDetail(_ post: PostTuple)
     func showErrors(_ :[Error])
@@ -17,7 +17,7 @@ protocol ContentCoordinator: Coordinator {
 }
 
 // The Coordinator Pattern is used avoid views being coupled togethier.
-final class MainCoordinator: NSObject, ContentCoordinator {
+final class MainCoordinator: NSObject, ContentPresentationCoordinator {
     private var childCoordinator = [UIViewController]()
     private let navigationController: UINavigationController
 
@@ -33,14 +33,14 @@ final class MainCoordinator: NSObject, ContentCoordinator {
         let contentStateVC = ContentStateViewController.instantiate()
         contentStateVC.coordinator = self
         childCoordinator.append(contentStateVC)
-        navigationController.pushViewController(contentStateVC, animated: false)
+        navigationController.setViewControllers([contentStateVC], animated: false)
     }
 
     func showPosts() {
         let postVC = PostsViewController.instantiate()
         postVC.coordinator = self
         childCoordinator.append(postVC)
-        navigationController.pushViewController(postVC, animated: true)
+        navigationController.setViewControllers([postVC], animated: false)
     }
 
     func popPostVC() {
@@ -54,14 +54,14 @@ final class MainCoordinator: NSObject, ContentCoordinator {
         errorVC.errors = errors
         errorVC.coordinator = self
         childCoordinator.append(errorVC)
-        navigationController.pushViewController(errorVC, animated: false)
+        navigationController.setViewControllers([errorVC], animated: false)
     }
 
     func showLoading() {
         let loadingVC = LoadingViewController.instantiate()
         loadingVC.coordinator = self
         childCoordinator.append(loadingVC)
-        navigationController.pushViewController(loadingVC, animated: false)
+        navigationController.setViewControllers([loadingVC], animated: false)
     }
 
     func showPostDetail(_ post: PostTuple) {

@@ -6,14 +6,13 @@
 //  Copyright © 2019 AKA. All rights reserved.
 //
 
-import CoreData
 import UIKit
 
 final class PostsViewController: UIViewController {
     @IBOutlet private var collectionView: UICollectionView!
     @IBOutlet weak var refreshButton: UIButton!
     private let viewModel = PostsDataSource()
-    weak var coordinator: ContentCoordinator?
+    weak var coordinator: ContentPresentationCoordinator?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,8 +37,6 @@ final class PostsViewController: UIViewController {
     private func collectionViewSetUp() {
         collectionView?.delegate = viewModel
         collectionView?.dataSource = viewModel
-        collectionView?.register(PostCell.nib(),
-                                 forCellWithReuseIdentifier: PostCell.reuseIdentifier)
     }
 }
 

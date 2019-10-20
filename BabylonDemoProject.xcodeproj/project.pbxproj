@@ -28,12 +28,11 @@
 		3375C1CD22859D140087E5F1 /* ErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3375C1CC22859D140087E5F1 /* ErrorViewController.swift */; };
 		3375C1D22285B67B0087E5F1 /* PostsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3375C1D12285B67B0087E5F1 /* PostsDataSource.swift */; };
 		3375C1D62285E8BE0087E5F1 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3375C1D42285E8BE0087E5F1 /* PostCell.swift */; };
-		3375C1D72285E8BE0087E5F1 /* PostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3375C1D52285E8BE0087E5F1 /* PostCell.xib */; };
 		337CE23E22DF6404003CA06A /* ContentStateViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 337CE23D22DF6404003CA06A /* ContentStateViewModelTests.swift */; };
 		337CE24222E22C9F003CA06A /* PostsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 337CE24122E22C9F003CA06A /* PostsViewModelTests.swift */; };
 		33856CEF2289E99B00A9881D /* NetworkManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33856CEE2289E99B00A9881D /* NetworkManagerTests.swift */; };
 		33856CF32289F02000A9881D /* MockAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33856CF22289F02000A9881D /* MockAPI.swift */; };
-		33A97289229443EC0021BBD4 /* ContentStateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A97288229443EC0021BBD4 /* ContentStateViewModel.swift */; };
+		33A97289229443EC0021BBD4 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A97288229443EC0021BBD4 /* ContentViewModel.swift */; };
 		33DE3C2F22856CCE006E5617 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DE3C2E22856CCE006E5617 /* AppDelegate.swift */; };
 		33DE3C3122856CCE006E5617 /* PostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DE3C3022856CCE006E5617 /* PostsViewController.swift */; };
 		33DE3C3422856CCE006E5617 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33DE3C3222856CCE006E5617 /* Main.storyboard */; };
@@ -93,12 +92,11 @@
 		3375C1CC22859D140087E5F1 /* ErrorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorViewController.swift; sourceTree = "<group>"; };
 		3375C1D12285B67B0087E5F1 /* PostsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsDataSource.swift; sourceTree = "<group>"; };
 		3375C1D42285E8BE0087E5F1 /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
-		3375C1D52285E8BE0087E5F1 /* PostCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostCell.xib; sourceTree = "<group>"; };
 		337CE23D22DF6404003CA06A /* ContentStateViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentStateViewModelTests.swift; sourceTree = "<group>"; };
 		337CE24122E22C9F003CA06A /* PostsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsViewModelTests.swift; sourceTree = "<group>"; };
 		33856CEE2289E99B00A9881D /* NetworkManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerTests.swift; sourceTree = "<group>"; };
 		33856CF22289F02000A9881D /* MockAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAPI.swift; sourceTree = "<group>"; };
-		33A97288229443EC0021BBD4 /* ContentStateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentStateViewModel.swift; sourceTree = "<group>"; };
+		33A97288229443EC0021BBD4 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 		33DE3C2B22856CCE006E5617 /* BabylonDemoProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BabylonDemoProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		33DE3C2E22856CCE006E5617 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		33DE3C3022856CCE006E5617 /* PostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsViewController.swift; sourceTree = "<group>"; };
@@ -163,7 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				3375C1C922859A1B0087E5F1 /* ContentStateViewController.swift */,
-				33A97288229443EC0021BBD4 /* ContentStateViewModel.swift */,
+				33A97288229443EC0021BBD4 /* ContentViewModel.swift */,
 				3375C1CC22859D140087E5F1 /* ErrorViewController.swift */,
 				3375C1C72285994A0087E5F1 /* LoadingViewController.swift */,
 			);
@@ -209,7 +207,6 @@
 			isa = PBXGroup;
 			children = (
 				3375C1D42285E8BE0087E5F1 /* PostCell.swift */,
-				3375C1D52285E8BE0087E5F1 /* PostCell.xib */,
 			);
 			path = PostCell;
 			sourceTree = "<group>";
@@ -423,7 +420,6 @@
 				33DE3C3C22856CCF006E5617 /* LaunchScreen.storyboard in Resources */,
 				33DE3C3922856CCF006E5617 /* Assets.xcassets in Resources */,
 				33DE3C3422856CCE006E5617 /* Main.storyboard in Resources */,
-				3375C1D72285E8BE0087E5F1 /* PostCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -464,7 +460,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				33A97289229443EC0021BBD4 /* ContentStateViewModel.swift in Sources */,
+				33A97289229443EC0021BBD4 /* ContentViewModel.swift in Sources */,
 				33DE3C5B22856DBE006E5617 /* Model.swift in Sources */,
 				33DE3C6322856DD9006E5617 /* DataSourceError.swift in Sources */,
 				3375C1D62285E8BE0087E5F1 /* PostCell.swift in Sources */,
