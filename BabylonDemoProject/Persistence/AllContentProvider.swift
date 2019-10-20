@@ -6,28 +6,28 @@
 //  Copyright © 2019 AKA. All rights reserved.
 //
 
-import CoreData
 import Foundation
 
-protocol CoreDataLoadManagerDelegate: class {
-    func didLoadCoreData()
-    func didLoadCoreDataError(error: [Error])
-}
+final class AllContentProvider {
+    private let contentProvider: PersistedContentProvider
+    private weak var delegate: ContentFetchingStateDelegate?
 
-final class LoadManager {
-    private let networkManager: Network
-    weak var delegate: CoreDataLoadManagerDelegate?
-
-    init(networkManager: Network) {
-        self.networkManager = networkManager
+    init(contentProvider: PersistedContentProvider,
+         delegate: ContentFetchingStateDelegate?) {
+        self.contentProvider = contentProvider
+        self.delegate = delegate
     }
 
-    func fetchData() {
+    func fetch() {
+        self.delegate?.isLoading()
+
         let dispatchGroup = DispatchGroup()
+
         var errorsArray = [Error]()
-        let postsPath = URLEndpoint.posts
+
         dispatchGroup.enter()
-        networkManager.fetchAPIData(with: postsPath, completion: { result in
+
+        contentProvider.fetch(.posts, completion: { result in
             switch result {
             case let .failure(error):
                 errorsArray.append(error)
@@ -36,9 +36,8 @@ final class LoadManager {
             dispatchGroup.leave()
         })
 
-        let authorPath = URLEndpoint.users
         dispatchGroup.enter()
-        networkManager.fetchAPIData(with: authorPath, completion: { result in
+        contentProvider.fetch(.users, completion: { result in
             switch result {
             case let .failure(error):
                 errorsArray.append(error)
@@ -47,9 +46,8 @@ final class LoadManager {
             dispatchGroup.leave()
         })
 
-        let commentsPath = URLEndpoint.comments
         dispatchGroup.enter()
-        networkManager.fetchAPIData(with: commentsPath, completion: { result in
+        contentProvider.fetch(.comments, completion: { result in
             switch result {
             case let .failure(error):
                 errorsArray.append(error)
@@ -60,9 +58,9 @@ final class LoadManager {
 
         dispatchGroup.notify(queue: .main) {
             if errorsArray.count > 0 {
-                self.delegate?.didLoadCoreDataError(error: errorsArray)
+                self.delegate?.didFailWithErrors(errorsArray)
             } else {
-                self.delegate?.didLoadCoreData()
+                self.delegate?.didUpdateWithData()
             }
         }
     }

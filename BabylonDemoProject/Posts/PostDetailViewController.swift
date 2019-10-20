@@ -42,4 +42,4 @@ final class PostDetailViewController: UIViewController {
     }
 }
 
-extension PostDetailViewController: Storyboarded {}
+extension PostDetailViewController: Instantiatable {}

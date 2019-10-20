@@ -6,11 +6,11 @@
 //  Copyright © 2019 AKA. All rights reserved.
 //
 
-enum ModelType {
+enum ModelCollection {
     case posts([PostsModel])
     case users([UserModel])
     case comments([CommentModel])
 }
 
 // ModelType conforms to Equatable for the purpose of testing.
-extension ModelType: Equatable {}
+extension ModelCollection: Equatable {}

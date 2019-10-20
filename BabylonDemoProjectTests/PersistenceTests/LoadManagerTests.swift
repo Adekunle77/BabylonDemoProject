@@ -11,7 +11,7 @@ import XCTest
 @testable import BabylonDemoProject
 
 class LoadManagerTests: XCTestCase {
-    final class MockDelegate: CoreDataLoadManagerDelegate {
+    final class MockDelegate: AllContentProviderDelegate {
         var timesDidLoadDataCalled = 0
         var timesErrorCalled = 0
 
@@ -28,8 +28,8 @@ class LoadManagerTests: XCTestCase {
         let mockAPI = MockAPI(isReturningError: false)
         let spy = MockDelegate()
         let dataSource = MockNetworkManager(networkManager: mockAPI)
-        let loadManager = LoadManager(networkManager: dataSource)
-        let postsPath = URLEndpoint.posts
+        let loadManager = AllContentProvider(networkManager: dataSource)
+        let postsPath = ContentType.posts
         loadManager.networkManager.fetchAPIData(with: postsPath, completion: { result in
             switch result {
             case let .failure(error):
@@ -40,7 +40,7 @@ class LoadManagerTests: XCTestCase {
                 spy.didLoadCoreData()
             }
         })
-        loadManager.fetchData()
+        loadManager.fetchAllContent()
         XCTAssertEqual(spy.timesErrorCalled, 0)
         XCTAssertEqual(spy.timesDidLoadDataCalled, 1)
     }
@@ -49,8 +49,8 @@ class LoadManagerTests: XCTestCase {
         let mockAPI = MockAPI(isReturningError: true)
         let spy = MockDelegate()
         let dataSource = MockNetworkManager(networkManager: mockAPI)
-        let loadManager = LoadManager(networkManager: dataSource)
-        let postsPath = URLEndpoint.posts
+        let loadManager = AllContentProvider(networkManager: dataSource)
+        let postsPath = ContentType.posts
         loadManager.networkManager.fetchAPIData(with: postsPath, completion: { result in
             switch result {
             case let .failure(error):
@@ -61,7 +61,7 @@ class LoadManagerTests: XCTestCase {
                 spy.didLoadCoreData()
             }
         })
-        loadManager.fetchData()
+        loadManager.fetchAllContent()
         XCTAssertEqual(spy.timesErrorCalled, 1)
         XCTAssertEqual(spy.timesDidLoadDataCalled, 0)
     }

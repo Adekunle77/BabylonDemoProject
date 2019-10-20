@@ -20,8 +20,8 @@ final class ErrorViewController: UIViewController {
         buttonSetup()
     }
 
-    override func viewDidDisappear(_ animated: Bool) {
-        coordinator?.childDidFinish(self)
+    deinit {
+        self.coordinator?.childDidFinish(self)
     }
 
     @IBAction private func didTapPushLoadingVC() {
@@ -50,4 +50,4 @@ final class ErrorViewController: UIViewController {
     }
 }
 
-extension ErrorViewController: Storyboarded {}
+extension ErrorViewController: Instantiatable {}

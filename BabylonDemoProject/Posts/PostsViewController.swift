@@ -13,7 +13,7 @@ final class PostsViewController: UIViewController {
     @IBOutlet private var collectionView: UICollectionView!
     @IBOutlet weak var refreshButton: UIButton!
     private let viewModel = PostsDataSource()
-    weak var coordinator: MainCoordinator?
+    weak var coordinator: ContentCoordinator?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +22,7 @@ final class PostsViewController: UIViewController {
         buttonSetup()
     }
 
-    override func viewDidDisappear(_ animated: Bool) {
+    deinit {
         self.coordinator?.childDidFinish(self)
     }
 
@@ -49,13 +49,13 @@ extension PostsViewController: ViewModelDelegate {
     }
 
     func showPostDetails(post: PostTuple) {
-        self.coordinator?.pushPostDetailVC(with: post)
+        self.coordinator?.showPostDetail(post)
     }
 
     func modelDidUpdateWithError(error: Error) {
         var errorArray = [Error]()
         errorArray.append(error)
-        self.coordinator?.pushErrorVC(with: errorArray)
+        self.coordinator?.showErrors(errorArray)
     }
 }
 
@@ -70,4 +70,4 @@ extension PostsViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-extension PostsViewController: Storyboarded {}
+extension PostsViewController: Instantiatable {}

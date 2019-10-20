@@ -12,49 +12,40 @@ import CoreData
 
 // This ViewModel checks if data is available via Core Data. If there is
 // no data it makes an API request to get data via the LoadManager class.
-protocol ContentStateViewModelDelegate: class {
+protocol ContentFetchingStateDelegate: class {
     func didUpdateWithData()
-    func didUpdateWithError(error: [Error])
-    func dataIsLoading()
+    func didFailWithErrors(_ errors: [Error])
+    func isLoading()
 }
 
-final class ContentStateViewModel {
-    private var loadManager: LoadManager?
-    private let storageManager: StorageManager?
-    weak var delegate: ContentStateViewModelDelegate?
-    init() {
-        let dataSource = APIDataSource()
-        let networkManager = NetworkManager(dataSource: dataSource)
-        loadManager = LoadManager(networkManager: networkManager)
-        storageManager = StorageManager(persistentContainer: PersistenceService.persistentContainer)
-        loadManager?.delegate = self
+final class ContentViewModel {
+    private let persistedContentProvider: PersistedContentProvider!
+    private let contentProvider: AllContentProvider!
+    private weak var delegate: ContentFetchingStateDelegate?
+
+    init(delegate: ContentFetchingStateDelegate) {
+        self.delegate = delegate
+
+        self.persistedContentProvider = PersistedContentProvider(dataSource: APIContentProvider())
+        self.contentProvider = AllContentProvider(contentProvider: persistedContentProvider,
+                                                 delegate: delegate)
+
+        self.refresh()
     }
 
     private func numberOfSavedPosts() -> Int? {
-        let posts = storageManager?.fetchAllPosts()
-        return posts?.count
+        return self.persistedContentProvider.fetchAllPosts().count
     }
 
     private func isEmpty() -> Bool {
         return numberOfSavedPosts() == 0
     }
 
-    func loadData() {
+    func refresh() {
         if isEmpty() {
-            loadManager?.fetchData()
-            delegate?.dataIsLoading()
+            contentProvider.fetch()
         } else {
             delegate?.didUpdateWithData()
         }
-    }
-}
-
-extension ContentStateViewModel: CoreDataLoadManagerDelegate {
-    func didLoadCoreData() {
-        delegate?.didUpdateWithData()
-    }
-
-    func didLoadCoreDataError(error: [Error]) {
-        delegate?.didUpdateWithError(error: error)
     }
 }

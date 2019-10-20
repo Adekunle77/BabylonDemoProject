@@ -9,24 +9,34 @@
 import Foundation
 import UIKit
 
+protocol ContentCoordinator: Coordinator {
+    func showPosts()
+    func showPostDetail(_ post: PostTuple)
+    func showErrors(_ :[Error])
+    func showLoading()
+}
+
 // The Coordinator Pattern is used avoid views being coupled togethier.
-final class MainCoordinator: NSObject, Coordinator, UINavigationControllerDelegate {
+final class MainCoordinator: NSObject, ContentCoordinator {
     private var childCoordinator = [UIViewController]()
-    var navigationController: UINavigationController
+    private let navigationController: UINavigationController
 
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
 
     func start() {
-        navigationController.delegate = self
+        self.showDefaultContentState()
+    }
+
+    private func showDefaultContentState() {
         let contentStateVC = ContentStateViewController.instantiate()
         contentStateVC.coordinator = self
         childCoordinator.append(contentStateVC)
         navigationController.pushViewController(contentStateVC, animated: false)
     }
 
-    func pushPostVC() {
+    func showPosts() {
         let postVC = PostsViewController.instantiate()
         postVC.coordinator = self
         childCoordinator.append(postVC)
@@ -39,22 +49,22 @@ final class MainCoordinator: NSObject, Coordinator, UINavigationControllerDelega
         }
     }
 
-    func pushErrorVC(with error: [Error]) {
+    func showErrors(_ errors: [Error]) {
         let errorVC = ErrorViewController.instantiate()
-        errorVC.errors = error
+        errorVC.errors = errors
         errorVC.coordinator = self
         childCoordinator.append(errorVC)
         navigationController.pushViewController(errorVC, animated: false)
     }
 
-    func pushLoadingVC() {
+    func showLoading() {
         let loadingVC = LoadingViewController.instantiate()
         loadingVC.coordinator = self
         childCoordinator.append(loadingVC)
         navigationController.pushViewController(loadingVC, animated: false)
     }
 
-    func pushPostDetailVC(with post: PostTuple) {
+    func showPostDetail(_ post: PostTuple) {
         let postDetailVC = PostDetailViewController.instantiate()
         postDetailVC.coordinator = self
         postDetailVC.postDetails = post

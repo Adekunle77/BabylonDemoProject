@@ -8,11 +8,11 @@
 
 import UIKit
 
-protocol Storyboarded {
+internal protocol Instantiatable {
     static func instantiate() -> Self
 }
 
-extension Storyboarded where Self: UIViewController {
+extension Instantiatable where Self: UIViewController {
     //  This function returns the instantiate view controller from the storyboard.
     //  To save repeated instantiation of view controllers from the main storyboard
     static func instantiate() -> Self {

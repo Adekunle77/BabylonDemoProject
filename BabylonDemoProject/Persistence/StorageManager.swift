@@ -9,7 +9,19 @@
 import Foundation
 import CoreData
 
-final class StorageManager {
+protocol MutableContentStore: ContentStore {
+    func insert(_ post: PostsModel) -> Posts?
+    func insert(_ comment: CommentModel) -> Comment?
+    func insert(_ author: UserModel) -> Author?
+}
+
+protocol ContentStore {
+    func fetchAllPosts() -> [Posts]
+    func fetchAllComments() -> [Comment]
+    func fetchAllAuthors() -> [Author]
+}
+
+final class StorageManager: MutableContentStore {
     private let persistentContainer: NSPersistentContainer
     private lazy var backgroundContext: NSManagedObjectContext = {
         return self.persistentContainer.newBackgroundContext()

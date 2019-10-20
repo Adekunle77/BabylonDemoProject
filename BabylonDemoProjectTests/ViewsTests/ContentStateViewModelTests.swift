@@ -15,7 +15,7 @@ class ContentStateViewModelTests: XCTestCase {
     let contentStateViewModel = ContentStateViewModel()
     let properties = TestProperties()
     var convertedString = String()
-    class MockContentStateDelegate: ContentStateViewModelDelegate {
+    class MockContentStateDelegate: ContentFetchingStateDelegate {
         var timesDidLoadDataCalled = 0
         var timesErrorCalled = 0
         var timesDataIsLoadingCalled = 0
@@ -41,11 +41,11 @@ class ContentStateViewModelTests: XCTestCase {
     func testLoadData() {
         let mockAPI = MockAPI(isReturningError: true)
         let mockNetworkManager = MockNetworkManager(networkManager: mockAPI)
-        let loadManager = LoadManager(networkManager: mockNetworkManager)
+        let loadManager = AllContentProvider(networkManager: mockNetworkManager)
         let mockDelegate = MockContentStateDelegate()
         contentStateViewModel.delegate = mockDelegate
 
-        loadManager.fetchData()
+        loadManager.fetchAllContent()
         contentStateViewModel.loadData()
 
         XCTAssertEqual(mockDelegate.timesDataIsLoadingCalled, 1)
