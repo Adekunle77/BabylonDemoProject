@@ -18,6 +18,11 @@ protocol ViewModelDelegate: class {
 
 typealias PostTuple = (author: Author, post: Posts, commentsCount: String)
 
+// the issue here is that the PostsDataSource creates it's own dependencies
+// meaning, again, you cannot mock/stub anything for testing
+// a better approach would be to have the take a content source init(source: MutableContentStore)
+// if you passed somerhing like AllContentProvider conforming to ContentStore then you would
+// always have the latest content to inspect and use here 
 final class PostsDataSource: NSObject {
     weak var delegate: ViewModelDelegate?
     private let storageManager: StorageManager
@@ -42,6 +47,7 @@ final class PostsDataSource: NSObject {
         return author
     }
 
+    // this doesn't make sense as it doesn't refresh any data, it just clears it
     func refreshData() {
         do {
             try storageManager.deleteSavedData(with: Posts.self)

@@ -11,5 +11,6 @@ import UIKit
 
 protocol Coordinator: AnyObject {
     func start()
+    // not sure childDidFinish really makes much sense
     func childDidFinish(_ child: UIViewController)
 }

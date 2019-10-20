@@ -43,12 +43,6 @@ final class MainCoordinator: NSObject, ContentPresentationCoordinator {
         navigationController.setViewControllers([postVC], animated: false)
     }
 
-    func popPostVC() {
-        if let popVC = navigationController.popViewController(animated: true) {
-            childDidFinish(popVC)
-        }
-    }
-
     func showErrors(_ errors: [Error]) {
         let errorVC = ErrorViewController.instantiate()
         errorVC.errors = errors

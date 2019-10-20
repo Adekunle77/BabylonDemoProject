@@ -8,6 +8,9 @@
 
 import UIKit
 
+// the refresh button is a very odd UI
+// it would make more sense from a native app point of view to
+// make this a navigationItem button
 final class PostsViewController: UIViewController {
     @IBOutlet private var collectionView: UICollectionView!
     @IBOutlet weak var refreshButton: UIButton!

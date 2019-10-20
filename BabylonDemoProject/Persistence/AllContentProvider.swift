@@ -8,6 +8,9 @@
 
 import Foundation
 
+// This probably should not exist as it means the app start up is very slow
+// because you fetch everything in one go. It would be much better to fetch only
+// what you need when you need it. The app will feel faster and use less data.
 final class AllContentProvider {
     private let contentProvider: PersistedContentProvider
     private weak var delegate: ContentFetchingStateDelegate?

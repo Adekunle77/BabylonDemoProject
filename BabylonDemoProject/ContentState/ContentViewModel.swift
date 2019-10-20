@@ -18,6 +18,8 @@ protocol ContentFetchingStateDelegate: class {
     func isLoading()
 }
 
+// this is a bit of an off view model as it mostly talks about posts but
+// under the hood it also fetches the users and comments when you fetch the posts
 final class ContentViewModel {
     private let persistedContentProvider: PersistedContentProvider!
     private let contentProvider: AllContentProvider!
@@ -26,6 +28,8 @@ final class ContentViewModel {
     init(delegate: ContentFetchingStateDelegate) {
         self.delegate = delegate
 
+        // it would be good to inject these too so that you can use mocks and
+        // then be able to test some of the code in here without hitting the network
         self.persistedContentProvider = PersistedContentProvider(dataSource: APIContentProvider())
         self.contentProvider = AllContentProvider(contentProvider: persistedContentProvider,
                                                  delegate: delegate)
@@ -33,6 +37,8 @@ final class ContentViewModel {
         self.refresh()
     }
 
+    // a better approach here might be to make this conform to Sequence
+    // which would give you `count` and `isEmpty` and access to posts using `[index]`
     private func numberOfSavedPosts() -> Int? {
         return self.persistedContentProvider.fetchAllPosts().count
     }
