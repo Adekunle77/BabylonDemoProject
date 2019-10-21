@@ -8,28 +8,30 @@
 
 import UIKit
 
-// the refresh button is a very odd UI
-// it would make more sense from a native app point of view to
-// make this a navigationItem button
 final class PostsViewController: UIViewController {
     @IBOutlet private var collectionView: UICollectionView!
-    @IBOutlet weak var refreshButton: UIButton!
     private let viewModel = PostsDataSource()
     weak var coordinator: ContentPresentationCoordinator?
+
+    @IBOutlet private var _navigationItem: UINavigationItem?
+    override var navigationItem: UINavigationItem {
+        get { return self._navigationItem ?? super.navigationItem }
+        set { }
+    }
+
+    override var title: String? {
+        get { return NSLocalizedString("com.babylon.authors", comment: "") }
+        set { }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel.delegate = self
         collectionViewSetUp()
-        buttonSetup()
     }
 
     deinit {
         self.coordinator?.childDidFinish(self)
-    }
-
-    func buttonSetup() {
-        self.refreshButton.layer.cornerRadius = 20
     }
 
     @IBAction func didTapRefreshButton(_: Any) {

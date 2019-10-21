@@ -5,6 +5,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -54,46 +55,54 @@
             </objects>
             <point key="canvasLocation" x="673" y="-874"/>
         </scene>
-        <!--Posts-->
+        <!--Posts View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="PostsViewController" title="Posts" hidesBottomBarWhenPushed="YES" id="BYZ-38-t0r" customClass="PostsViewController" customModule="BabylonDemoProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PostsViewController" title="Posts" hidesBottomBarWhenPushed="YES" id="BYZ-38-t0r" userLabel="Posts View Controller" customClass="PostsViewController" customModule="BabylonDemoProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="9Oe-ba-G5l">
-                                <rect key="frame" x="0.0" y="149" width="414" height="659"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="50" id="fsm-w2-opl">
-                                    <size key="itemSize" width="260" height="80"/>
+                                    <size key="itemSize" width="320" height="80"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PostCell" id="Nrg-25-nxh" customClass="PostCell" customModule="BabylonDemoProject" customModuleProvider="target">
-                                        <rect key="frame" x="77" y="0.0" width="260" height="80"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" reuseIdentifier="PostCell" id="Nrg-25-nxh" customClass="PostCell" customModule="BabylonDemoProject" customModuleProvider="target">
+                                        <rect key="frame" x="47" y="0.0" width="320" height="80"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="260" height="80"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="zhR-pD-Y7K">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1Mx-qe-KCC">
-                                                    <rect key="frame" x="-77" y="-312" width="414" height="703"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Mx-qe-KCC">
+                                                    <rect key="frame" x="8" y="8" width="304" height="64"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                                     <color key="textColor" red="0.25259169939999998" green="0.1055563316" blue="0.59955292940000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TbB-jb-xhd" userLabel="Background">
-                                                    <rect key="frame" x="10" y="-24" width="240" height="128"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TbB-jb-xhd" userLabel="Background">
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
                                                     <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </view>
                                             </subviews>
-                                        </view>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="1Mx-qe-KCC" secondAttribute="trailing" constant="8" id="BEu-7E-1AT"/>
+                                                <constraint firstItem="1Mx-qe-KCC" firstAttribute="leading" secondItem="zhR-pD-Y7K" secondAttribute="leading" constant="8" id="HrP-Js-nVq"/>
+                                                <constraint firstAttribute="bottom" secondItem="TbB-jb-xhd" secondAttribute="bottom" id="MRf-8d-udd"/>
+                                                <constraint firstItem="TbB-jb-xhd" firstAttribute="leading" secondItem="zhR-pD-Y7K" secondAttribute="leading" id="NdX-iy-CQH"/>
+                                                <constraint firstAttribute="trailing" secondItem="TbB-jb-xhd" secondAttribute="trailing" id="Tdk-um-FWf"/>
+                                                <constraint firstItem="1Mx-qe-KCC" firstAttribute="top" secondItem="zhR-pD-Y7K" secondAttribute="top" constant="8" id="j0Y-QO-e1g"/>
+                                                <constraint firstAttribute="bottom" secondItem="1Mx-qe-KCC" secondAttribute="bottom" constant="8" id="mBv-8W-wMG"/>
+                                                <constraint firstItem="TbB-jb-xhd" firstAttribute="top" secondItem="zhR-pD-Y7K" secondAttribute="top" id="yXk-dN-mhk"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
                                         <connections>
                                             <outlet property="backgroundView" destination="TbB-jb-xhd" id="Wml-nF-pHo"/>
                                             <outlet property="titleLabel" destination="1Mx-qe-KCC" id="WHJ-Uc-ZIZ"/>
@@ -101,40 +110,33 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6j5-Ql-OTY">
-                                <rect key="frame" x="215" y="95" width="161" height="41"/>
-                                <color key="backgroundColor" red="0.36432421207427979" green="0.7236400842666626" blue="0.7271609902381897" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Refresh ">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="didTapRefreshButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KXp-Tv-vXI"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="9Oe-ba-G5l" firstAttribute="top" secondItem="6j5-Ql-OTY" secondAttribute="bottom" constant="13" id="19Y-rx-M4D"/>
-                            <constraint firstItem="9Oe-ba-G5l" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="61" id="6ds-ce-sod"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="6j5-Ql-OTY" secondAttribute="trailing" constant="38" id="7Vw-Jl-NV8"/>
                             <constraint firstItem="9Oe-ba-G5l" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="MqK-iL-5qd"/>
-                            <constraint firstItem="6j5-Ql-OTY" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="7" id="Rsm-g1-5x0"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="9Oe-ba-G5l" secondAttribute="bottom" constant="54" id="hKD-ZH-4Mw"/>
-                            <constraint firstItem="6j5-Ql-OTY" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="215" id="wXK-aC-0lJ"/>
+                            <constraint firstAttribute="bottom" secondItem="9Oe-ba-G5l" secondAttribute="bottom" constant="34" id="hKD-ZH-4Mw"/>
+                            <constraint firstItem="9Oe-ba-G5l" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="qpe-EN-bA9"/>
                             <constraint firstItem="9Oe-ba-G5l" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="x0e-9c-iN4"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Title" id="puW-bn-saI">
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="refresh" id="NrI-fR-Kow">
+                            <color key="tintColor" systemColor="systemPurpleColor" red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="didTapRefreshButton:" destination="BYZ-38-t0r" id="oM3-Kf-41o"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
+                        <outlet property="_navigationItem" destination="puW-bn-saI" id="AjR-dU-TZP"/>
                         <outlet property="collectionView" destination="9Oe-ba-G5l" id="voZ-nD-PD4"/>
-                        <outlet property="refreshButton" destination="6j5-Ql-OTY" id="KN3-Cn-dNY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="672.79999999999995" y="5.8470764617691158"/>
+            <point key="canvasLocation" x="672.46376811594212" y="5.3571428571428568"/>
         </scene>
         <!--Error View Controller-->
         <scene sceneID="AA7-nV-jox">

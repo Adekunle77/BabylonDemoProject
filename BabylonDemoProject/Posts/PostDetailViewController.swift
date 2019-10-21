@@ -9,9 +9,9 @@
 import UIKit
 
 final class PostDetailViewController: UIViewController {
-    @IBOutlet private var authorName: UILabel!
-    @IBOutlet private var postDescription: UILabel!
-    @IBOutlet private var commentsCount: UILabel!
+    @IBOutlet private var authorName: UILabel?
+    @IBOutlet private var postDescription: UILabel?
+    @IBOutlet private var commentsCount: UILabel?
 
     weak var coordinator: MainCoordinator?
     var postDetails: PostTuple?
@@ -21,7 +21,7 @@ final class PostDetailViewController: UIViewController {
         self.labelsSetup()
     }
 
-    override func viewDidDisappear(_ animated: Bool) {
+    deinit {
         self.coordinator?.childDidFinish(self)
     }
 
