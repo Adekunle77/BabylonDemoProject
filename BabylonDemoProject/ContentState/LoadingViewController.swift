@@ -12,18 +12,19 @@ final class LoadingViewController: UIViewController {
     weak var coordinator: MainCoordinator?
     @IBOutlet private var babylonLogo: UIImageView!
     private lazy var activityIndicator = UIActivityIndicatorView(style: .gray)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.activityIndicatorSetting()
     }
 
+    deinit {
+        self.coordinator?.childDidFinish(self)
+    }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.activityIndicator.startAnimating()
-    }
-
-    override func viewDidDisappear(_ animated: Bool) {
-        self.coordinator?.childDidFinish(self)
     }
 
     func delayPushToContentVC() {
@@ -41,4 +42,4 @@ final class LoadingViewController: UIViewController {
     }
 }
 
-extension LoadingViewController: Storyboarded {}
+extension LoadingViewController: Instantiatable {}

@@ -6,28 +6,32 @@
 //  Copyright © 2019 AKA. All rights reserved.
 //
 
-import CoreData
 import UIKit
 
 final class PostsViewController: UIViewController {
     @IBOutlet private var collectionView: UICollectionView!
-    @IBOutlet weak var refreshButton: UIButton!
     private let viewModel = PostsDataSource()
-    weak var coordinator: MainCoordinator?
+    weak var coordinator: ContentPresentationCoordinator?
+
+    @IBOutlet private var _navigationItem: UINavigationItem?
+    override var navigationItem: UINavigationItem {
+        get { return self._navigationItem ?? super.navigationItem }
+        set { }
+    }
+
+    override var title: String? {
+        get { return NSLocalizedString("com.babylon.authors", comment: "") }
+        set { }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel.delegate = self
         collectionViewSetUp()
-        buttonSetup()
     }
 
-    override func viewDidDisappear(_ animated: Bool) {
+    deinit {
         self.coordinator?.childDidFinish(self)
-    }
-
-    func buttonSetup() {
-        self.refreshButton.layer.cornerRadius = 20
     }
 
     @IBAction func didTapRefreshButton(_: Any) {
@@ -38,8 +42,6 @@ final class PostsViewController: UIViewController {
     private func collectionViewSetUp() {
         collectionView?.delegate = viewModel
         collectionView?.dataSource = viewModel
-        collectionView?.register(PostCell.nib(),
-                                 forCellWithReuseIdentifier: PostCell.reuseIdentifier)
     }
 }
 
@@ -49,13 +51,13 @@ extension PostsViewController: ViewModelDelegate {
     }
 
     func showPostDetails(post: PostTuple) {
-        self.coordinator?.pushPostDetailVC(with: post)
+        self.coordinator?.showPostDetail(post)
     }
 
     func modelDidUpdateWithError(error: Error) {
         var errorArray = [Error]()
         errorArray.append(error)
-        self.coordinator?.pushErrorVC(with: errorArray)
+        self.coordinator?.showErrors(errorArray)
     }
 }
 
@@ -70,4 +72,4 @@ extension PostsViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-extension PostsViewController: Storyboarded {}
+extension PostsViewController: Instantiatable {}

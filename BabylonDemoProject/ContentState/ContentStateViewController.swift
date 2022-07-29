@@ -12,32 +12,31 @@ import UIKit
 // or if loading is required.
 final class ContentStateViewController: UIViewController {
     weak var coordinator: MainCoordinator?
-    private var viewModel = ContentStateViewModel()
+    private lazy var viewModel = ContentViewModel(delegate: self)
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.viewModel.delegate = self
-        self.viewModel.loadData()
+        self.viewModel.refresh()
     }
 
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
+    deinit {
         self.coordinator?.childDidFinish(self)
     }
 }
 
-extension ContentStateViewController: Storyboarded {}
+extension ContentStateViewController: Instantiatable {}
 
-extension ContentStateViewController: ContentStateViewModelDelegate {
-    func didUpdateWithError(error: [Error]) {
-        self.coordinator?.pushErrorVC(with: error)
+extension ContentStateViewController: ContentFetchingStateDelegate {
+
+    func didFailWithErrors(_ errors: [Error]) {
+        self.coordinator?.showErrors(errors)
     }
 
     func didUpdateWithData() {
-        self.coordinator?.pushPostVC()
+        self.coordinator?.showPosts()
     }
 
-    func dataIsLoading() {
-        self.coordinator?.pushLoadingVC()
+    func isLoading() {
+        self.coordinator?.showLoading()
     }
 }

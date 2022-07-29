@@ -12,20 +12,34 @@ import Foundation
 // Doing this helps when making the API request, parsing the retrieved
 // the data amd for other functions.
 
-enum URLEndpoint: String {
+enum ContentType: String {
     case posts
     case users
     case comments
+}
+
+extension ContentType {
+    private var path: String {
+        switch self {
+        case .posts:
+            return "/posts"
+        case .users:
+            return "/users"
+        case .comments:
+            return "/comments"
+        }
+    }
 
     var url: URL? {
         var components = URLComponents()
         components.scheme = "https"
         components.host = "jsonplaceholder.typicode.com"
-        components.path = "/\(rawValue)"
+        components.path = self.path
         return components.url
     }
 
-    func parse(_ data: Data) throws -> ModelType {
+    // init?
+    func modelType(_ data: Data) throws -> ModelCollection {
         let decoder = JSONDecoder()
         switch self {
         case .posts:

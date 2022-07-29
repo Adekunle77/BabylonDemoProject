@@ -9,25 +9,20 @@
 import UIKit
 
 final class PostDetailViewController: UIViewController {
-    @IBOutlet private var authorName: UILabel!
-    @IBOutlet private var postDescription: UILabel!
-    @IBOutlet private var commentsCount: UILabel!
-    @IBOutlet private weak var didTapBackBtn: UIButton!
+    @IBOutlet private var authorName: UILabel?
+    @IBOutlet private var postDescription: UILabel?
+    @IBOutlet private var commentsCount: UILabel?
+
     weak var coordinator: MainCoordinator?
     var postDetails: PostTuple?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.labelsSetup()
-        self.buttonSetup()
     }
 
-    override func viewDidDisappear(_ animated: Bool) {
+    deinit {
         self.coordinator?.childDidFinish(self)
-    }
-
-    @IBAction func didTapBackButton(_: Any) {
-        self.coordinator?.popPostVC()
     }
 
     private func labelsSetup() {
@@ -36,10 +31,10 @@ final class PostDetailViewController: UIViewController {
         self.commentsCount?.text = postDetails?.commentsCount
     }
 
-    private func buttonSetup() {
-        self.didTapBackBtn.layer.cornerRadius = 20
-
+    override var title: String? {
+        get { return self.postDetails?.author.name }
+        set { }
     }
 }
 
-extension PostDetailViewController: Storyboarded {}
+extension PostDetailViewController: Instantiatable {}

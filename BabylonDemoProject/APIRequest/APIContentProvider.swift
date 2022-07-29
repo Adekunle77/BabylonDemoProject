@@ -8,24 +8,26 @@
 
 import Foundation
 
-final class APIDataSource: API {
-    func fetchJSONData(endpoint: URLEndpoint, completion: @escaping CompletionHandler) {
-        guard let url = endpoint.url else {
-            completion(.failure(DataSourceError.fatal("Connection Error!")))
+final class APIContentProvider: ContentProvider {
+    func fetch(_ type: ContentType, completion: @escaping Completion) {
+        guard let url = type.url else {
+            completion(.failure(DataSourceError.fatal("Malformed URL Error")))
             return
         }
+
         let task = URLSession.shared.dataTask(with: url) { data, _, error in
             DispatchQueue.main.async {
                 switch (error, data) {
                 case let (error?, _):
                     completion(.failure(DataSourceError.network(error)))
                 case let (_, data?):
-                    completion(Result { try endpoint.parse(data) })
+                    completion(Result { try type.modelType(data) })
                 default:
                     completion(.failure(DataSourceError.noData))
                 }
             }
         }
+
         task.resume()
     }
 }

@@ -19,8 +19,8 @@ final class MockNetworkManager: Network {
         coreDataManager = StorageManager(persistentContainer: mockPersistentContainer.mockPersistentContainer)
     }
 
-    func fetchAPIData(with path: URLEndpoint, completion: @escaping (Result<(), DataSourceError>) -> Void) {
-        networkManager?.fetchJSONData(endpoint: path, completion: { [weak self] result in
+    func fetchAPIData(with path: ContentType, completion: @escaping (Result<(), DataSourceError>) -> Void) {
+        networkManager?.fetch(_ contentType: path, completion: { [weak self] result in
             switch result {
             case let .failure(error):
                 completion(Result.failure(.network(error)))
@@ -45,26 +45,26 @@ final class MockNetworkManager: Network {
     }
 }
 
-final class MockAPI: API {
+final class MockAPI: ContentProvider {
     var isReturningError: Bool
     let properties = TestProperties()
     init(isReturningError: Bool) {
         self.isReturningError = isReturningError
     }
 
-    func fetchJSONData(endpoint: URLEndpoint, completion: @escaping CompletionHandler) {
+    func fetch(_ contentType: ContentType, completion: @escaping CompletionHandler) {
         if isReturningError {
             completion(.failure(DataSourceError.noData))
         } else {
-            if endpoint.rawValue == URLEndpoint.users.rawValue {
+            if _ contentType.rawValue == ContentType.users.rawValue {
                 let authors = [properties.authorItem()]
                 completion(.success(.users(authors)))
             }
-            if endpoint.rawValue == URLEndpoint.comments.rawValue {
+            if _ contentType.rawValue == ContentType.comments.rawValue {
                 let comments = [properties.commentItem()]
                 completion(.success(.comments(comments)))
             }
-            if endpoint.rawValue == URLEndpoint.posts.rawValue {
+            if _ contentType.rawValue == ContentType.posts.rawValue {
                 let posts = [properties.postItem()]
                 completion(.success(.posts(posts)))
             }

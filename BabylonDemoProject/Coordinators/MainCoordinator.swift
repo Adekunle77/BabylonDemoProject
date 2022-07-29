@@ -9,52 +9,56 @@
 import Foundation
 import UIKit
 
+protocol ContentPresentationCoordinator: Coordinator {
+    func showPosts()
+    func showPostDetail(_ post: PostTuple)
+    func showErrors(_ :[Error])
+    func showLoading()
+}
+
 // The Coordinator Pattern is used avoid views being coupled togethier.
-final class MainCoordinator: NSObject, Coordinator, UINavigationControllerDelegate {
+final class MainCoordinator: NSObject, ContentPresentationCoordinator {
     private var childCoordinator = [UIViewController]()
-    var navigationController: UINavigationController
+    private let navigationController: UINavigationController
 
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
 
     func start() {
-        navigationController.delegate = self
+        self.showDefaultContentState()
+    }
+
+    private func showDefaultContentState() {
         let contentStateVC = ContentStateViewController.instantiate()
         contentStateVC.coordinator = self
         childCoordinator.append(contentStateVC)
-        navigationController.pushViewController(contentStateVC, animated: false)
+        navigationController.setViewControllers([contentStateVC], animated: false)
     }
 
-    func pushPostVC() {
+    func showPosts() {
         let postVC = PostsViewController.instantiate()
         postVC.coordinator = self
         childCoordinator.append(postVC)
-        navigationController.pushViewController(postVC, animated: true)
+        navigationController.setViewControllers([postVC], animated: false)
     }
 
-    func popPostVC() {
-        if let popVC = navigationController.popViewController(animated: true) {
-            childDidFinish(popVC)
-        }
-    }
-
-    func pushErrorVC(with error: [Error]) {
+    func showErrors(_ errors: [Error]) {
         let errorVC = ErrorViewController.instantiate()
-        errorVC.errors = error
+        errorVC.errors = errors
         errorVC.coordinator = self
         childCoordinator.append(errorVC)
-        navigationController.pushViewController(errorVC, animated: false)
+        navigationController.setViewControllers([errorVC], animated: false)
     }
 
-    func pushLoadingVC() {
+    func showLoading() {
         let loadingVC = LoadingViewController.instantiate()
         loadingVC.coordinator = self
         childCoordinator.append(loadingVC)
-        navigationController.pushViewController(loadingVC, animated: false)
+        navigationController.setViewControllers([loadingVC], animated: false)
     }
 
-    func pushPostDetailVC(with post: PostTuple) {
+    func showPostDetail(_ post: PostTuple) {
         let postDetailVC = PostDetailViewController.instantiate()
         postDetailVC.coordinator = self
         postDetailVC.postDetails = post

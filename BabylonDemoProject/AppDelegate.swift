@@ -11,13 +11,12 @@ import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-    var coordinator: MainCoordinator?
-    var window: UIWindow?
+    private var coordinator: MainCoordinator?
+    internal var window: UIWindow?
 
     func application(_: UIApplication,
                      didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         let navController = UINavigationController()
-        navController.isNavigationBarHidden = true
         coordinator = MainCoordinator(navigationController: navController)
         coordinator?.start()
 

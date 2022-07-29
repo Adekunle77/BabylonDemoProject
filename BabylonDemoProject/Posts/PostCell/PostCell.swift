@@ -10,16 +10,12 @@ import UIKit
 
 final class PostCell: UICollectionViewCell {
     @IBOutlet var titleLabel: UILabel!
-    @IBOutlet var cellBackgroundView: UIView!
-    static let reuseIdentifier = "Cell"
+
+    static let reuseIdentifier = "PostCell"
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        cellBackgroundView.addBorder(to: .top, with: UIColor.gray.cgColor, thickness: 0.5)
-    }
-
-    static func nib() -> UINib {
-        return UINib(nibName: "PostCell", bundle: nil)
+        self.backgroundView?.addBorder(to: .top, with: UIColor.gray.cgColor, thickness: 0.5)
     }
 
     func updateCell(with info: Posts) {

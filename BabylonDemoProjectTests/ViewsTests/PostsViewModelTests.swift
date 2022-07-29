@@ -92,8 +92,8 @@ class PostsViewModelTests: XCTestCase {
         postViewModel.delegate = mockDelegate
 
         let mockAPI = MockAPI(isReturningError: true)
-        let path = URLEndpoint.posts
-        mockAPI.fetchJSONData(endpoint: path, completion: {result in
+        let path = ContentType.posts
+        mockAPI.fetch(_ contentType: path, completion: {result in
             switch result {
             case .failure(let error):
                 mockDelegate.modelDidUpdateWithError(error: error)
